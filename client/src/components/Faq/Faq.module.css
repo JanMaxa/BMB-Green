@@ -1,0 +1,122 @@
+.faqSection {
+  background: var(--surface);
+  padding: var(--s-20) 0;
+}
+
+.faqContainer {
+  max-width: 1320px;
+}
+
+.faqGrid {
+  display: grid;
+  gap: var(--s-12);
+  grid-template-columns: 1.35fr 0.65fr;
+}
+
+.faqIntro {
+  max-width: 460px;
+}
+
+.faqIntro h2 {
+  color: var(--ink-900);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--s-4);
+  text-wrap: balance;
+}
+
+.faqIntro p {
+  color: var(--ink-500);
+  font-size: var(--t-md);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+}
+
+.faqActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+
+.faqList {
+  border-top: 1px solid var(--border);
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--border);
+}
+
+.faqItem summary {
+  align-items: center;
+  color: var(--ink-900);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--font-display);
+  font-size: var(--t-lg);
+  font-weight: var(--w-bold);
+  gap: var(--s-4);
+  justify-content: space-between;
+  line-height: var(--lh-snug);
+  list-style: none;
+  padding: var(--s-5) 0;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem summary::after {
+  background: var(--green-50);
+  border-radius: var(--r-pill);
+  color: var(--green-700);
+  content: '+';
+  display: grid;
+  flex: 0 0 28px;
+  font-size: var(--t-xl);
+  font-weight: var(--w-semibold);
+  height: 28px;
+  line-height: 1;
+  place-items: center;
+  transition: background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+  width: 28px;
+}
+
+.faqItem[open] summary::after {
+  background: var(--green-500);
+  color: var(--fg-on-green);
+  content: '-';
+  transform: rotate(180deg);
+}
+
+.faqItem p {
+  color: var(--ink-500);
+  font-size: var(--t-md);
+  line-height: var(--lh-relaxed);
+  margin: 0;
+  max-width: 680px;
+  padding: 0 var(--s-12) var(--s-5) 0;
+}
+
+@media (max-width: 960px) {
+  .faqSection {
+    padding: var(--s-16) 0;
+  }
+
+  .faqGrid {
+    gap: var(--s-8);
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .faqItem summary {
+    font-size: var(--t-md);
+  }
+
+  .faqItem p {
+    padding-right: 0;
+  }
+}

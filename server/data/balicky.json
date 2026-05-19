@@ -1,0 +1,113 @@
+{
+  "bundleSection": {
+    "title": "Televize s Internetem v jednom balíčku.",
+    "description": "Výhodné kombinace rychlého Internetu a BMB-IPTV. Ceny jsou uvedené včetně DPH.",
+    "featuredBadge": "VÝHODNÁ VOLBA",
+    "priceUnit": "Kč / měsíc",
+    "ctaLabel": "Ověřit dostupnost"
+  },
+  "bundles": [
+    {
+      "name": "i110M + TV Mini",
+      "internet": "110 / 55 Mb/s",
+      "tv": "77 programů",
+      "hd": "38 v HD",
+      "price": "599",
+      "savings": "Ušetříte 432 Kč ročně",
+      "features": [
+        "Internet přes optiku",
+        "77 programů",
+        "38 v HD",
+        "Ušetříte 432 Kč ročně",
+        "Pronájem Wi-Fi Gateway zdarma"
+      ],
+      "featured": false,
+      "visible": true
+    },
+    {
+      "name": "i110M + TV Basic",
+      "internet": "110 / 55 Mb/s",
+      "tv": "120 programů",
+      "hd": "56 v HD",
+      "price": "777",
+      "savings": "Ušetříte 732 Kč ročně",
+      "features": [
+        "Internet přes optiku",
+        "120 programů",
+        "56 v HD",
+        "Ušetříte 732 Kč ročně",
+        "Pronájem Wi-Fi Gateway zdarma"
+      ],
+      "featured": false,
+      "visible": true
+    },
+    {
+      "name": "i220M + TV Mini",
+      "internet": "220 / 110 Mb/s",
+      "tv": "77 programů",
+      "hd": "38 v HD",
+      "price": "789",
+      "savings": "Ušetříte 828 Kč ročně",
+      "features": [
+        "Internet přes optiku",
+        "77 programů",
+        "38 v HD",
+        "Ušetříte 828 Kč ročně",
+        "Pronájem Wi-Fi Gateway zdarma"
+      ],
+      "featured": false,
+      "visible": true
+    },
+    {
+      "name": "i220M + TV Basic",
+      "internet": "220 / 110 Mb/s",
+      "tv": "120 programů",
+      "hd": "56 v HD",
+      "price": "899",
+      "savings": "Ušetříte 1 944 Kč ročně",
+      "features": [
+        "Internet přes optiku",
+        "120 programů",
+        "56 v HD",
+        "Ušetříte 1 944 Kč ročně",
+        "Pronájem Wi-Fi Gateway zdarma"
+      ],
+      "featured": true,
+      "visible": true
+    },
+    {
+      "name": "i110M + TV Max",
+      "internet": "110 / 55 Mb/s",
+      "tv": "145 programů",
+      "hd": "72 v HD",
+      "price": "1 199",
+      "savings": "Ušetříte 2 196 Kč ročně",
+      "features": [
+        "Internet přes optiku",
+        "145 programů",
+        "72 v HD",
+        "Ušetříte 2 196 Kč ročně",
+        "Pronájem Wi-Fi Gateway zdarma"
+      ],
+      "featured": false,
+      "visible": true
+    },
+    {
+      "name": "i220M + TV Max",
+      "internet": "220 / 110 Mb/s",
+      "tv": "145 programů",
+      "hd": "72 v HD",
+      "price": "1 399",
+      "savings": "Ušetříte 2 472 Kč ročně",
+      "features": [
+        "Internet přes optiku",
+        "145 programů",
+        "72 v HD",
+        "Ušetříte 2 472 Kč ročně",
+        "Pronájem Wi-Fi Gateway zdarma"
+      ],
+      "featured": false,
+      "visible": true
+    }
+  ]
+}

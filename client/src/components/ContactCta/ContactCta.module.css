@@ -1,0 +1,81 @@
+.contactCard {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  gap: var(--s-12);
+  grid-template-columns: 1.1fr 0.9fr;
+  padding: var(--s-10);
+}
+
+.contactCard h2 {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: var(--s-8);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.15;
+  margin: 0 0 var(--s-3);
+  text-wrap: balance;
+}
+
+.contactCard p {
+  color: var(--ink-500);
+  font-size: var(--t-md);
+  line-height: 1.55;
+  margin: 0 0 var(--s-6);
+}
+
+.contactActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contactRow {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+}
+
+.contactIcon {
+  align-items: center;
+  background: var(--green-50);
+  border-radius: var(--r-md);
+  display: flex;
+  flex-shrink: 0;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.contactIcon img {
+  height: 20px;
+  width: 20px;
+}
+
+.contactValue {
+  color: var(--ink-900);
+  font-size: 15px;
+  font-weight: var(--w-semibold);
+}
+
+.contactLabel {
+  color: var(--ink-500);
+  font-size: var(--t-xs);
+}
+
+@media (max-width: 960px) {
+  .contactCard {
+    gap: var(--s-8);
+    grid-template-columns: 1fr;
+  }
+}

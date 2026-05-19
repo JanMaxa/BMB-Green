@@ -1,0 +1,45 @@
+.contentEditor .editField {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  color: inherit;
+  display: block;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  margin: -2px -4px;
+  padding: 2px 4px;
+  width: calc(100% + 8px);
+}
+
+.contentEditor .editField:focus {
+  background: var(--surface);
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(20, 174, 75, 0.14);
+}
+
+.contentEditor .editArea {
+  field-sizing: content;
+  min-height: 1lh;
+  overflow: hidden;
+  resize: vertical;
+}
+
+.contentEditor .buttonEdit {
+  border: 1px solid transparent;
+}
+
+.contentEditor .buttonEdit .editField {
+  color: var(--fg-on-green);
+  display: inline-block;
+  flex: 1;
+  min-width: 190px;
+  width: auto;
+}
+
+.contentEditor .darkEdit .editField:focus,
+.contentEditor .buttonEdit .editField:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--green-400);
+  box-shadow: 0 0 0 3px rgba(43, 227, 111, 0.18);
+}

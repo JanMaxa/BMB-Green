@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Buttons</title><link rel="stylesheet" href="_card.css">
+<style>
+  .btn { font-family:Manrope; font-weight:600; font-size:14px; border-radius:10px; padding:10px 18px; border:1px solid transparent; cursor:pointer; display:inline-flex; align-items:center; gap:8px; line-height:1; transition: background 120ms, border-color 120ms, box-shadow 180ms; }
+  .btn img { width:16px; height:16px }
+  .btn-primary { background:#14AE4B; color:#fff }
+  .btn-primary:hover { background:#0E8E3D }
+  .btn-primary:active { background:#0B7332 }
+  .btn-secondary { background:#fff; color:#14AE4B; border-color:#14AE4B }
+  .btn-secondary:hover { background:#ECFBF1 }
+  .btn-ghost { background:transparent; color:#1E2221 }
+  .btn-ghost:hover { background:#F4F6F4 }
+  .btn-dark { background:#1E2221; color:#fff }
+  .btn-dark:hover { background:#121514 }
+  .btn-danger { background:#fff; color:#DC2626; border-color:#DC2626 }
+  .btn-disabled { background:#EAEDEC; color:#8C9491; cursor:not-allowed }
+  .btn-sm { padding:7px 12px; font-size:12.5px; border-radius:8px }
+  .btn-lg { padding:14px 24px; font-size:16px; border-radius:12px }
+  .btn-focus { background:#14AE4B; color:#fff; outline:2px solid #14AE4B; outline-offset:0; box-shadow: 0 0 0 4px rgba(20,174,75,0.22); }
+  .lbl { font-size:11px; color:#8C9491; font-family:'JetBrains Mono',monospace }
+</style></head>
+<body>
+<div class="stack-4">
+  <div>
+    <div class="lbl" style="margin-bottom:8px">PRIMARY · default · hover · pressed · focus · disabled</div>
+    <div class="row" style="gap:10px; flex-wrap:wrap">
+      <button class="btn btn-primary">Objednat</button>
+      <button class="btn btn-primary" style="background:#0E8E3D">Hover</button>
+      <button class="btn btn-primary" style="background:#0B7332">Pressed</button>
+      <button class="btn btn-focus">Focus</button>
+      <button class="btn btn-disabled">Disabled</button>
+    </div>
+  </div>
+  <div>
+    <div class="lbl" style="margin-bottom:8px">SECONDARY · GHOST · DARK · DANGER</div>
+    <div class="row" style="gap:10px; flex-wrap:wrap">
+      <button class="btn btn-secondary">Zjistit více</button>
+      <button class="btn btn-ghost">Zrušit</button>
+      <button class="btn btn-dark">Admin login</button>
+      <button class="btn btn-danger">Smazat zákazníka</button>
+    </div>
+  </div>
+  <div>
+    <div class="lbl" style="margin-bottom:8px">SIZES · WITH ICONS</div>
+    <div class="row" style="gap:10px; flex-wrap:wrap; align-items:center">
+      <button class="btn btn-primary btn-sm"><img src="../assets/icons/plus.svg" style="filter:invert(1)">Přidat</button>
+      <button class="btn btn-primary">Zjistit dostupnost <img src="../assets/icons/arrow-right.svg" style="filter:invert(1)"></button>
+      <button class="btn btn-primary btn-lg">Objednat tarif Domov 220</button>
+    </div>
+  </div>
+</div>
+</body></html>

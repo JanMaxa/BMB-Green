@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "tag": "Síť · Brandýs",
+      "date": "14. 4. 2026",
+      "icon": "fiber",
+      "title": "Rozšíření optiky v ulici Pražská a Seifertova",
+      "desc": "Spustili jsme novou trasu, která pokryje dalších 320 bytových jednotek. Rychlosti až 1 Gb/s.",
+      "visible": true
+    },
+    {
+      "tag": "Tarify",
+      "date": "03. 3. 2026",
+      "icon": "tv",
+      "title": "Nové TV kanály v balíčcích Domov 220 a Profi 500",
+      "desc": "Přidali jsme 18 nových kanálů včetně sportovních a dokumentárních stanic v HD/4K.",
+      "visible": true
+    },
+    {
+      "tag": "Fotovoltaika",
+      "date": "21. 2. 2026",
+      "icon": "sun",
+      "title": "NZÚ Light - dotace na FVE i pro byty",
+      "desc": "Pomáháme klientům s podáním žádosti. Realizace na klíč od projektu po revizi.",
+      "visible": true
+    },
+    {
+      "tag": "Podpora",
+      "date": "10. 1. 2026",
+      "icon": "phone",
+      "title": "Rozšíření zákaznické podpory v ranních hodinách",
+      "desc": "Zákaznická linka nově pomáhá s běžnými požadavky už od 8:00 v pracovních dnech.",
+      "visible": true
+    },
+    {
+      "tag": "Dokumenty",
+      "date": "18. 12. 2025",
+      "icon": "download",
+      "title": "Aktualizované dokumenty ke službám",
+      "desc": "Připravili jsme přehlednější podklady ke smlouvám, rychlostem a ceníkům služeb.",
+      "visible": true
+    },
+    {
+      "tag": "Televize",
+      "date": "05. 11. 2025",
+      "icon": "tv",
+      "title": "Připravujeme úpravy programových balíčků",
+      "desc": "Vybrané televizní balíčky postupně doplníme o nové stanice a lepší programový přehled.",
+      "visible": true
+    }
+  ]
+}

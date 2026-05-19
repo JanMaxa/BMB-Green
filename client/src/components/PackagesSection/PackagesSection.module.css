@@ -1,0 +1,112 @@
+.packageGrid {
+  display: grid;
+  gap: var(--s-5);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.packageCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  position: relative;
+  transition: box-shadow var(--dur-base), border-color var(--dur-base);
+}
+
+.packageCard:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.featured {
+  background: linear-gradient(180deg, var(--green-50) 0%, var(--surface) 60%);
+  border-color: var(--green-500);
+}
+
+.badge {
+  background: var(--green-500);
+  border-radius: var(--r-pill);
+  color: var(--fg-on-green);
+  font-size: 11px;
+  font-weight: var(--w-black);
+  left: 28px;
+  letter-spacing: 0.08em;
+  padding: var(--s-1) var(--s-2);
+  position: absolute;
+  top: -12px;
+}
+
+.name {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: var(--w-black);
+  letter-spacing: var(--ls-snug);
+}
+
+.speed {
+  color: var(--green-500);
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: var(--w-black);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.price {
+  align-items: baseline;
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 6px;
+  padding: 14px 0;
+}
+
+.priceValue {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: var(--w-black);
+}
+
+.priceUnit {
+  color: var(--ink-500);
+  font-size: var(--t-sm);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.features li {
+  color: var(--ink-700);
+  display: flex;
+  font-size: 14px;
+  gap: var(--s-2);
+  line-height: 1.45;
+}
+
+.features li img {
+  flex-shrink: 0;
+  height: 18px;
+  margin-top: 1px;
+  width: 18px;
+}
+
+.cta {
+  margin-top: var(--s-1);
+}
+
+@media (max-width: 960px) {
+  .packageGrid {
+    grid-template-columns: 1fr;
+  }
+}

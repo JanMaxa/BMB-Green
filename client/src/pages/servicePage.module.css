@@ -1,0 +1,330 @@
+.servicePage {
+  overflow: hidden;
+}
+
+.serviceHero {
+  align-items: center;
+  display: grid;
+  gap: 56px;
+  grid-template-columns: 1.08fr 0.92fr;
+  margin-bottom: 36px;
+}
+
+.serviceHero h1 {
+  color: var(--ink-900);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.serviceHero p {
+  color: var(--ink-500);
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0 0 26px;
+  max-width: 560px;
+}
+
+.serviceHighlight {
+  background: var(--ink-900);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  color: var(--fg-on-dark);
+  padding: 36px;
+}
+
+.serviceHighlight span {
+  color: var(--green-400);
+  display: block;
+  font-size: var(--t-xs);
+  font-weight: var(--w-black);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s-3);
+  text-transform: uppercase;
+}
+
+.serviceHighlight strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 50px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: var(--s-4);
+}
+
+.serviceHighlight p {
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.serviceBenefits {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: var(--s-6);
+}
+
+.serviceBenefit {
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 14px;
+  padding: var(--s-5);
+}
+
+.serviceBenefitIcon {
+  align-items: center;
+  background: var(--green-50);
+  border-radius: 12px;
+  display: flex;
+  flex-shrink: 0;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.serviceBenefitIcon img {
+  height: 21px;
+  width: 21px;
+}
+
+.serviceBenefit h3 {
+  color: var(--ink-900);
+  font-size: 15px;
+  font-weight: var(--w-black);
+  line-height: 1.25;
+  margin: 0 0 5px;
+}
+
+.serviceBenefit p {
+  color: var(--ink-500);
+  font-size: var(--t-sm);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.serviceTariffs,
+.serviceInfoGrid,
+.tvPackageGrid,
+.whyGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.serviceTariffs {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+}
+
+.serviceInfoGrid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 18px;
+}
+
+.tvPackageGrid {
+  gap: var(--s-5);
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+}
+
+.whyGrid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.serviceTariffCard,
+.serviceNote,
+.tvPackageCard,
+.whyCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.serviceTariffCard,
+.serviceNote,
+.tvPackageCard {
+  border-radius: var(--r-lg);
+  padding: var(--s-6);
+}
+
+.serviceTariffCard h2,
+.serviceNote h2,
+.tvPackageCard h2 {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: var(--t-xl);
+  letter-spacing: var(--ls-snug);
+  line-height: 1.2;
+  margin: 0 0 var(--s-2);
+}
+
+.serviceTariffCard p,
+.serviceNote p,
+.tvPackageCard p {
+  color: var(--ink-500);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.servicePlanList {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+}
+
+.servicePlan {
+  align-items: center;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding-top: var(--s-3);
+}
+
+.servicePlan strong {
+  color: var(--ink-900);
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.servicePlan span {
+  color: var(--ink-500);
+  display: block;
+  font-size: 12.5px;
+}
+
+.servicePlan em {
+  color: var(--green-600);
+  font-style: normal;
+  font-weight: var(--w-black);
+  white-space: nowrap;
+}
+
+.servicePlan small,
+.tvPackageCard small {
+  color: var(--ink-500);
+  font-weight: var(--w-semibold);
+  margin-left: 3px;
+}
+
+.serviceNoteMuted {
+  background: var(--ink-900);
+  color: var(--fg-on-dark);
+}
+
+.serviceNoteMuted h2 {
+  color: var(--fg-on-dark);
+}
+
+.serviceNote ul {
+  display: grid;
+  gap: var(--s-2);
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.serviceNote li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--t-sm);
+  line-height: 1.45;
+}
+
+.tvPackageCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  position: relative;
+}
+
+.tvPackageCount {
+  color: var(--green-500);
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: var(--w-black);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.tvPackageCard strong {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1;
+  margin: var(--s-2) 0;
+}
+
+.whyCard {
+  border-radius: var(--r-lg);
+  padding: 26px;
+  transition: box-shadow var(--dur-base), border-color var(--dur-base);
+}
+
+.whyCard:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.whyCard img {
+  background: var(--green-50);
+  border-radius: var(--r-lg);
+  box-sizing: content-box;
+  height: 42px;
+  margin-bottom: 18px;
+  padding: var(--s-2);
+  width: 42px;
+}
+
+.whyCard h3 {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: 19px;
+  letter-spacing: var(--ls-snug);
+  line-height: 1.25;
+  margin: 0 0 var(--s-2);
+}
+
+.whyCard p {
+  color: var(--ink-500);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .serviceHero {
+    gap: var(--s-8);
+    grid-template-columns: 1fr;
+  }
+
+  .serviceTariffs,
+  .serviceInfoGrid,
+  .tvPackageGrid,
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceBenefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .serviceBenefits {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceHighlight {
+    padding: 26px;
+  }
+}

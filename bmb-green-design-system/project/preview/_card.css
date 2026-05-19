@@ -1,0 +1,33 @@
+/* Preview card shared styles */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--fg); }
+body {
+  font-family: var(--font-sans);
+  padding: 20px 24px;
+  width: 700px;
+  min-height: 100%;
+}
+
+.row { display: flex; gap: 12px; align-items: center; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.stack-2 { display: flex; flex-direction: column; gap: 8px; }
+.stack-4 { display: flex; flex-direction: column; gap: 16px; }
+.between { justify-content: space-between; }
+.muted { color: var(--fg-muted); }
+.mono { font-family: var(--font-mono); font-size: 12px; }
+.eyebrow {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--green-700);
+}
+
+.swatch {
+  display: flex; flex-direction: column; gap: 6px;
+  flex: 1; min-width: 0;
+}
+.swatch .chip {
+  height: 64px; border-radius: 10px; border: 1px solid var(--border);
+}
+.swatch .name { font-size: 12px; font-weight: 600; color: var(--fg); }
+.swatch .hex { font-family: var(--font-mono); font-size: 11px; color: var(--fg-muted); }

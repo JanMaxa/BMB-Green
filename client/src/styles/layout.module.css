@@ -1,0 +1,42 @@
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+.section {
+  padding: var(--s-24) 0;
+}
+
+.sectionAlt {
+  background: var(--ink-25);
+}
+
+.sectionHead {
+  max-width: 740px;
+  margin-bottom: 56px;
+}
+
+.sectionHead h2 {
+  color: var(--ink-900);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.sectionHead p {
+  color: var(--ink-500);
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 560px;
+}
+
+@media (max-width: 960px) {
+  .section {
+    padding: var(--s-16) 0;
+  }
+}

@@ -1,0 +1,161 @@
+================================================================
+BMB-Green s.r.o. — COMPANY INFO
+Source: https://bmb-green.cz/ (scraped 2026-05-18)
+================================================================
+
+LEGAL / IDENTITY
+----------------
+Name:        BMB-Green s.r.o.
+IČO:         24658391
+DIČ:         (not published on the public site)
+Founded:     1991 (the firm uses "tradice od roku 1991" everywhere)
+Type:        Czech ISP / telecom / cable-TV operator (ČTÚ license)
+
+ADDRESSES
+---------
+Sídlo společnosti (registered office):
+    BMB-Green s.r.o.
+    Na Dračkách 843/24
+    162 00 Praha 6
+
+Kancelář (office / walk-in):
+    BMB-Green s.r.o.
+    Drahobejlova 1894/52
+    190 00 Praha 9
+
+NOTE: The design mockup mentions "Brandýs nad Labem, 250 01" and
+"U Vodojemu 2281" as the seat — that is FICTIONAL design copy.
+The real registered seat is Praha 6 (above). Confirm with client
+before publishing.
+
+PHONES
+------
+Zákaznická linka (customer line):  +420 266 317 129
+Hotline (technical support):       +420 604 252 462
+Dispečink (dispatch):              +420 602 262 659
+
+E-MAIL
+------
+smlouva@bmb-green.cz
+(The page renders it as plain text "smlouvabmb-green.cz" — likely
+an anti-bot obfuscation; the working address is smlouva@bmb-green.cz.
+Confirm with client.)
+
+================================================================
+SERVICES (what the real site actually sells today)
+================================================================
+
+1) INTERNET
+-----------
+Tagline: "Nejrychlejší Internet ve městě – až 220 Mb/s"
+Installation: 2–3 working days
+Hardware (modem / Wi-Fi gateway) loaned free for the 24-month contract.
+
+Technologies offered:
+  - FTTH GPON / FTTH P2P / FTTB 1G   (optika)
+  - DOCSIS 3 over cable TV network    (kabelová TV)
+  - Wi-Fi 5 GHz outdoor              (bezdrát)
+  - xDSL / WS                        (legacy)
+
+Tariffs (Kč/měsíc, vč. DPH):
+  Optika (FTTH):
+    i110M — 110 / 55 Mb/s   — 483 Kč
+    i220M — 220 / 110 Mb/s  — 706 Kč
+  Kabelovka (DOCSIS3):
+    i110M — 110 / 11 Mb/s   — 483 Kč
+    i220M — 220 / 22 Mb/s   — 706 Kč
+  Wi-Fi:
+    i16M  — 16 / 8 Mb/s     — 483 Kč
+    i25M  — 25 / 13 Mb/s    — 706 Kč
+
+Tabulka rychlostí (ČTÚ-required):
+  FTTH i110M:    inz 110 / max 200 / běžná 100 / min 44   (DL)
+  FTTH i220M:    inz 220 / max 400 / běžná 200 / min 88   (DL)
+  DOCSIS i110M:  inz 110 / max 150 / běžná 100 / min 44
+  DOCSIS i220M:  inz 220 / max 300 / běžná 200 / min 88
+  WiFi i16M:     inz 16  / max 20  / běžná 10  / min 5
+  WiFi i25M:     inz 25  / max 40  / běžná 15  / min 7,5
+
+2) TELEVIZE (IPTV Genius / Basic)
+---------------------------------
+Tagline: "Digitální kabelová televize" via IPTV Genius.
+Includes: TV archive, 55 internetových rádií, HBO GO on Max.
+
+Tariffs:
+  BMB Mini   —  77 programů  (38 v HD)            — 152 Kč/měs
+  BMB Basic  — 120 programů  (56 v HD)            — 355 Kč/měs
+  BMB Max    — 145 programů  (72 v HD) + HBO GO   — 899 Kč/měs
+
+3) VOLÁNÍ (VoIP)
+----------------
+Tagline: "Levné volání po ČR bez paušálu."
+  - bez paušálu
+  - bez závazku
+  - default credit limit 10 000 Kč (changeable)
+  - VoIP handset included in price up to 2 000 Kč
+    (wired or wireless; multi-base wireless supported)
+  - dedicated voice channel inside BMB network for call quality
+  - detailed billing / itemized list in price
+Detailed pricelist: see ceniktel-dsbmb20230904-1.pdf
+
+================================================================
+COVERAGE (where the network actually runs)
+================================================================
+Primary: Brandýs nad Labem (dozens of streets)
+Prague:
+  - Praha 5 — Zbraslav
+  - Praha 6 — Střešovice
+  - Praha 10 — Vinohrady
+Other:
+  - Čelákovice
+The homepage has an address-availability checker.
+
+================================================================
+DOWNLOADABLE DOCUMENTS (from /files/ on live site)
+================================================================
+PRICELISTS:
+  - ceniknetbmb-fttx20170217.pdf   — Internet over FTTx pricelist
+  - ceniknetbmb-catv20170217.pdf   — Internet over CATV pricelist
+  - ceniknetbmb-wifi20170217.pdf   — Internet over Wi-Fi pricelist
+  - cenikmovdsl-bmb-green.pdf      — xDSL/WS pricelist
+  - ceniktel-dsbmb20230904-1.pdf   — Phone pricelist (current)
+  - ceniktelbmb20130101.pdf        — Phone pricelist (legacy)
+
+OFFERS / BROCHURES:
+  - nabidkabmbiptvfttx11.pdf       — IPTV over FTTx
+  - nabidkabmbiptvcatv12.pdf       — IPTV over CATV
+
+CONTRACTS / LEGAL:
+  - smlouva_vzor_novy_20210101_vzor_web.pdf  — sample contract
+  - smlouva_tabulka_rychlosti_202101.pdf     — speed table annex
+  - vseobecne-obchodni-podminky.pdf          — terms of business
+  - vseobecne-smluvni-podminky.pdf           — contractual terms
+
+================================================================
+USP / SELLING POINTS (from copy on live site)
+================================================================
+- Tradition since 1991
+- Installation in 2–3 working days
+- Stable connection, free loaned hardware
+- Own network (not reselling foreign connectivity)
+- No mandatory contract for phone service
+- 24h response on contact form
+
+================================================================
+WHAT THE DESIGN MOCKUP CLAIMS BUT IS NOT ON THE REAL SITE
+(verify with client before publishing — DO NOT invent)
+================================================================
+- Photovoltaics (FVE) installation
+- Security: EZS / EPS / CCTV, IP cameras, NVR, PCO
+- Structured cabling for developer projects
+- "1 540 přípojek", "99,97 % dostupnost"  (numbers in TrustBand)
+- Brandýs office at "U Vodojemu 2281"
+- Speeds up to 1 Gb/s (real site caps at 220 Mb/s)
+- Coverage in Lysá nad Labem, Neratovice
+- Tariffs "Start 100 / Domov 220 / Profi 500"
+  (real tariffs are i110M / i220M / Mini / Basic / Max)
+
+================================================================
+NAV ITEMS ON LIVE SITE (all are #anchors, no real subpages exist)
+================================================================
+Balíčky · Televize · Internet · Volání · Novinky · Ke stažení · Kontakty

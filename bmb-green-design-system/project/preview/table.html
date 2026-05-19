@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Data Table</title><link rel="stylesheet" href="_card.css">
+<style>
+  table { width:100%; border-collapse:collapse; font-size:13px; background:#fff; border:1px solid #EAEDEC; border-radius:10px; overflow:hidden }
+  th { text-align:left; font-family:Manrope; font-weight:600; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#5F6764; padding:10px 14px; background:#FAFBFA; border-bottom:1px solid #EAEDEC }
+  td { padding:12px 14px; border-bottom:1px solid #F4F6F4; color:#1E2221; font-family:Manrope }
+  tr:last-child td { border-bottom:none }
+  tr.selected td { background:#ECFBF1; }
+  tr.selected td:first-child { box-shadow:inset 2px 0 0 #14AE4B }
+  tr:hover td { background:#FAFBFA }
+  tr.selected:hover td { background:#ECFBF1 }
+  .pill { display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600 }
+  .pill::before { content:"●"; font-size:7px }
+  .id { font-family:'JetBrains Mono',monospace; font-size:12px; color:#5F6764 }
+</style></head>
+<body>
+<table>
+  <thead><tr><th>Zákazník</th><th>Tarif</th><th>Stav</th><th style="text-align:right">MRR</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><div style="font-weight:600">Jan Novák</div><div class="id">#A-10293 · Brandýs</div></td>
+      <td>Domov 220</td>
+      <td><span class="pill" style="background:#ECFBF1;color:#0B7332">Aktivní</span></td>
+      <td style="text-align:right;font-weight:600" class="tabular">699 Kč</td>
+    </tr>
+    <tr class="selected">
+      <td><div style="font-weight:600">Petra Dvořáková</div><div class="id">#A-10294 · Zbraslav</div></td>
+      <td>Profi 500</td>
+      <td><span class="pill" style="background:#EFF4FF;color:#1E40AF">V instalaci</span></td>
+      <td style="text-align:right;font-weight:600" class="tabular">1 199 Kč</td>
+    </tr>
+    <tr>
+      <td><div style="font-weight:600">SVJ Vodojem 2281</div><div class="id">#B-00514 · Brandýs</div></td>
+      <td>Komplet 1G ×18</td>
+      <td><span class="pill" style="background:#ECFBF1;color:#0B7332">Aktivní</span></td>
+      <td style="text-align:right;font-weight:600" class="tabular">21 582 Kč</td>
+    </tr>
+    <tr>
+      <td><div style="font-weight:600">Tomáš Černý</div><div class="id">#A-09871 · Střešovice</div></td>
+      <td>Domov 100</td>
+      <td><span class="pill" style="background:#FDECEC;color:#9F1818">Po splatnosti</span></td>
+      <td style="text-align:right;font-weight:600" class="tabular">499 Kč</td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

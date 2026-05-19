@@ -1,0 +1,132 @@
+.contactFormLayout {
+  align-items: start;
+  display: grid;
+  gap: var(--s-16);
+  grid-template-columns: 1.08fr 0.92fr;
+}
+
+.contactFormCopy {
+  max-width: 520px;
+  padding-top: var(--s-2);
+}
+
+.contactFormCopy h2 {
+  color: var(--ink-900);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+
+.contactFormCopy p {
+  color: var(--ink-500);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.contactReasons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contactReasons li {
+  align-items: flex-start;
+  color: var(--ink-700);
+  display: flex;
+  font-size: 14px;
+  gap: var(--s-3);
+  line-height: 1.5;
+}
+
+.contactReasons img {
+  flex-shrink: 0;
+  height: 18px;
+  margin-top: 2px;
+  width: 18px;
+}
+
+.contactForm {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--ink-25) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  padding: 34px;
+}
+
+.formRow {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: 1fr 1fr;
+}
+
+.contactForm label {
+  color: var(--ink-900);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--t-sm);
+  font-weight: var(--w-bold);
+  gap: var(--s-2);
+}
+
+.contactForm input,
+.contactForm textarea {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  box-shadow: var(--shadow-xs);
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 15px;
+  padding: 13px 15px;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
+  width: 100%;
+}
+
+.contactForm input:hover,
+.contactForm textarea:hover {
+  border-color: var(--ink-300);
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  background: var(--surface);
+  border-color: var(--green-500);
+  box-shadow: var(--shadow-xs), 0 0 0 4px rgba(20, 174, 75, 0.14);
+}
+
+.contactForm textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.submitButton {
+  align-self: flex-start;
+  min-width: 190px;
+}
+
+@media (max-width: 960px) {
+  .contactFormLayout {
+    gap: var(--s-8);
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contactForm {
+    padding: 26px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
