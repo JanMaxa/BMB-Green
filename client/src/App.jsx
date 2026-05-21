@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Footer from './components/Footer/Footer.jsx';
+import Seo from './components/Seo/Seo.jsx';
 import Landing from './pages/home/Landing.jsx';
 import Balicky from './pages/balicky/Balicky.jsx';
 import Internet from './pages/internet/Internet.jsx';
@@ -8,6 +9,7 @@ import Televize from './pages/televize/Televize.jsx';
 import ProZakazniky from './pages/pro-zakazniky/ProZakazniky.jsx';
 import Kontakty from './pages/kontakty/Kontakty.jsx';
 import Admin from './pages/admin/Admin.jsx';
+import { getPageMeta } from './seo/pageMeta.js';
 
 const routes = {
   '/': Landing,
@@ -24,6 +26,7 @@ const normalizePath = (path) => path.replace(/\/+$/, '') || '/';
 export default function App() {
   const [path, setPath] = useState(() => normalizePath(window.location.pathname));
   const Page = routes[path] || Landing;
+  const meta = getPageMeta(path);
 
   useEffect(() => {
     const handlePopState = () => setPath(normalizePath(window.location.pathname));
@@ -41,6 +44,7 @@ export default function App() {
 
   return (
     <>
+      <Seo meta={meta} />
       {path !== '/admin' && <Navbar currentPath={path} onNavigate={navigate} />}
       <main>
         <Page />

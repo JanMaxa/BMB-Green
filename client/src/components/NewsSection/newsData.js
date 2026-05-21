@@ -1,0 +1,60 @@
+export const defaultNewsData = {
+  items: [
+    {
+      tag: 'Síť · Brandýs',
+      date: '14. 4. 2026',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqWx1tn2aKUm5E9NVVfWG8CPeyK1uT8XlwhA&s',
+      title: 'Rozšíření optiky v ulici Pražská a Seifertova',
+      desc: 'Spustili jsme novou trasu, která pokryje dalších 320 bytových jednotek. Rychlosti až 1 Gb/s.',
+    },
+    {
+      tag: 'Tarify',
+      date: '03. 3. 2026',
+      imageUrl: 'https://www.master.cz/mydata/myuploads/2025/05/vyber-serveru-1536x853.jpg',
+      title: 'Nové TV kanály v balíčcích Domov 220 a Profi 500',
+      desc: 'Přidali jsme 18 nových kanálů včetně sportovních a dokumentárních stanic v HD/4K.',
+    },
+    {
+      tag: 'Fotovoltaika',
+      date: '21. 2. 2026',
+      imageUrl: 'https://davidmencl.cz/wp-content/uploads/2023/09/2.jpeg',
+      title: 'NZÚ Light - dotace na FVE i pro byty',
+      desc: 'Pomáháme klientům s podáním žádosti. Realizace na klíč od projektu po revizi.',
+    },
+    {
+      tag: 'Podpora',
+      date: '10. 1. 2026',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG_86AjeNt89Wz9rNRxcpx-GZvbegI34drYg&s',
+      title: 'Rozšíření zákaznické podpory v ranních hodinách',
+      desc: 'Zákaznická linka nově pomáhá s běžnými požadavky už od 8:00 v pracovních dnech.',
+    },
+    {
+      tag: 'Dokumenty',
+      date: '18. 12. 2025',
+      imageUrl: 'https://www.interval.cz/podklady/2017/02/server.jpg',
+      title: 'Aktualizované dokumenty ke službám',
+      desc: 'Připravili jsme přehlednější podklady ke smlouvám, rychlostem a ceníkům služeb.',
+    },
+    {
+      tag: 'Televize',
+      date: '05. 11. 2025',
+      imageUrl: 'https://d39-a.sdn.cz/d_39/c_img_of_A/nO1Ur3YPjBPH4pB9pEzCsNY/6163/stavba-roku-2025.jpeg',
+      title: 'Připravujeme úpravy programových balíčků',
+      desc: 'Vybrané televizní balíčky postupně doplníme o nové stanice a lepší programový přehled.',
+    },
+  ],
+};
+
+export function normalizeNewsData(loaded) {
+  if (!loaded?.items) return defaultNewsData;
+  return {
+    items: loaded.items.map((item) => ({
+      tag: '',
+      date: '',
+      imageUrl: '',
+      title: '',
+      desc: '',
+      ...item,
+    })),
+  };
+}

@@ -12,7 +12,7 @@ const featureItems = [
   { icon: 'bolt',     t: 'Nejrychlejší Internet',   d: 'Optika a bezdrát 5 GHz, symetricky až 1 Gb/s.' },
   { icon: 'clock',    t: 'Instalace do 2–3 dnů',    d: 'Rychlá montáž bez čekání na techniky.' },
   { icon: 'building', t: 'Developerské projekty',   d: 'Slaboproudá infrastruktura na klíč.' },
-  { icon: 'map-pin',  t: 'Tradice od roku 1991',    d: 'Česká firma se sídlem v Brandýse n. L.' },
+  { icon: 'map-pin',  t: 'Tradice od roku 1991',    d: 'Česká firma se sídlem v Praze 6.' },
 ];
 
 const services = [
@@ -23,7 +23,7 @@ const services = [
   { icon: 'sun',          title: 'Fotovoltaika',     desc: 'Návrh i realizace FVE na klíč. Dotace NZÚ vyřídíme za Vás.' },
   { icon: 'fiber',        title: 'Sítě a kabeláž',   desc: 'Optické trasy, strukturovaná kabeláž, anténní rozvody pro developerské projekty.' },
   { icon: 'camera',       title: 'Kamerové systémy', desc: 'IP kamery 4K, NVR úložiště, vzdálený dohled přes mobilní aplikaci.' },
-  { icon: 'building',     title: 'Developerům',      desc: 'Kompletní slaboproudá infrastruktura pro novostavby. Od projektu po předání.' },
+  { icon: 'building',     title: 'Pro developery',   desc: 'Kompletní slaboproudá infrastruktura pro novostavby. Od projektu po předání.' },
 ];
 
 const trustStats = [
@@ -40,7 +40,7 @@ export default function Landing() {
         <div className={cx(layout.container, styles.heroGrid)}>
           <div>
             <h1>
-              Nejrychlejší Internet ve&nbsp;<em>městě</em>. A&nbsp;ještě k&nbsp;tomu televize.
+              Stabilní internet pro <em>domácnosti</em>. A&nbsp;ještě k&nbsp;tomu televize.
             </h1>
             <p className={styles.heroLead}>
               Rychlý Internet, digitální televize a&nbsp;levné volání pro byty, rodinné domy
@@ -52,7 +52,7 @@ export default function Landing() {
                 Zjistit dostupnost
                 <img src="/assets/icons/arrow-right.svg" alt="" />
               </Button>
-              <Button variant="ghost" size="lg">Prohlédnout tarify</Button>
+              <Button variant="secondary" size="lg">Prohlédnout tarify</Button>
             </div>
           </div>
           <div className={styles.heroImage}>
@@ -104,10 +104,11 @@ export default function Landing() {
           <div className={styles.aboutImage}>
             <img src={aboutImage} alt="Síťová a optická infrastruktura" />
           </div>
-          <div>
+          <div className={styles.aboutContent}>
             <h2>Stavíme sítě, kterým může město věřit.</h2>
             <p>
-              BMB-Green je česká technologická společnost se&nbsp;sídlem v&nbsp;Brandýse nad&nbsp;Labem.
+              BMB-Green je česká technologická společnost se&nbsp;sídlem na&nbsp;adrese
+              Na&nbsp;Dračkách&nbsp;843/24 v&nbsp;Praze&nbsp;6.
               Od&nbsp;roku 1991 budujeme optické a&nbsp;bezdrátové sítě, instalujeme bezpečnostní
               a&nbsp;fotovoltaické systémy pro domácnosti, firmy i&nbsp;developery.
             </p>

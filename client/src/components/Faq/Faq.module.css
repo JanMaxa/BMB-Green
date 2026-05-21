@@ -1,10 +1,6 @@
 .faqSection {
   background: var(--surface);
-  padding: var(--s-20) 0;
-}
-
-.faqContainer {
-  max-width: 1320px;
+  padding: 88px 0 104px;
 }
 
 .faqGrid {
@@ -102,16 +98,29 @@
 
 @media (max-width: 960px) {
   .faqSection {
-    padding: var(--s-16) 0;
+    padding: 64px 0 72px;
   }
 
   .faqGrid {
     gap: var(--s-8);
     grid-template-columns: 1fr;
   }
+
+  .faqIntro {
+    max-width: 720px;
+    order: 1;
+  }
+
+  .faqList {
+    order: 2;
+  }
 }
 
 @media (max-width: 560px) {
+  .faqSection {
+    padding: 44px 0 52px;
+  }
+
   .faqItem summary {
     font-size: var(--t-md);
   }

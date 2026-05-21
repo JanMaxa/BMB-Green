@@ -4,6 +4,10 @@ import styles from './Faq.module.css';
 
 const faqItems = [
   {
+    question: 'Co dělat, když se moje lokalita na webu zobrazuje červeně nebo oranžově?',
+    answer: 'Najetím na název lokality na mapě uvidíte přesnou zprávu ke stavu sítě. Pokud je u vás výpadek internetu a na webu je označený, náš tým o něm ví a dělá maximum pro co nejrychlejší opravu.',
+  },
+  {
     question: 'Internet mi vůbec nefunguje. Co mám zkontrolovat jako první?',
     answer: 'Zkontrolujte, jestli je zapojený napájecí adaptér routeru, zda svítí kontrolky a jestli nejsou uvolněné kabely. Potom router na 30 sekund vypněte ze zásuvky a znovu zapněte. Pokud se připojení neobnoví, kontaktujte podporu.',
   },
@@ -40,7 +44,7 @@ const faqItems = [
 export default function Faq() {
   return (
     <section className={styles.faqSection}>
-      <div className={`${layout.container} ${styles.faqContainer}`}>
+      <div className={layout.container}>
         <div className={styles.faqGrid}>
           <div className={styles.faqList}>
             {faqItems.map((item) => (

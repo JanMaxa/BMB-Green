@@ -2,7 +2,7 @@ export const defaultTelevizeData = {
   hero: {
     title: 'Digitální kabelová televize',
     description: 'BMB-IPTV přináší kvalitní televizní signál, chytré funkce IPTV Genius, archiv a programové balíčky od základní nabídky po maximální TV výběr.',
-    ctaLabel: 'Vybrat televizní nabídku',
+    ctaLabel: 'Nezávazně poptat',
     ctaHref: '/kontakty',
   },
   highlight: {
@@ -35,6 +35,8 @@ export const defaultTelevizeData = {
   packages: [
     {
       name: 'BMB Mini',
+      apiPackage: 'G.TV Základ',
+      programsButtonLabel: 'Zobrazit programy',
       channels: '77 programů',
       hd: '38 v HD',
       price: '152 Kč',
@@ -42,6 +44,8 @@ export const defaultTelevizeData = {
     },
     {
       name: 'BMB Basic',
+      apiPackage: 'G.TV Standard',
+      programsButtonLabel: 'Zobrazit programy',
       channels: '120 programů',
       hd: '56 v HD',
       price: '355 Kč',
@@ -49,6 +53,8 @@ export const defaultTelevizeData = {
     },
     {
       name: 'BMB Max',
+      apiPackage: 'G.TV Komplet',
+      programsButtonLabel: 'Zobrazit programy',
       channels: '145 programů',
       hd: '72 v HD',
       price: '899 Kč',

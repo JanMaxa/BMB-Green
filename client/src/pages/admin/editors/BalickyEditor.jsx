@@ -1,116 +1,79 @@
 import { useCallback, useEffect, useState } from 'react';
+import BalickyContent from '../../balicky/BalickyContent.jsx';
+import { defaultBalickyData, normalizeBalickyData } from '../../balicky/balickyData.js';
 import { loadAdminData, saveAdminData } from '../adminApi.js';
 import cx from '../../../utils/cx.js';
 import styles from '../Admin.module.css';
 
 const endpoint = '/api/balicky';
 
-const emptyBundle = () => ({
-  name: 'Nový balíček',
-  internet: '',
-  tv: '',
-  hd: '',
-  price: '',
-  savings: '',
-  features: [],
-  featured: false,
-  visible: true,
-});
-
 export default function BalickyEditor({ setHeaderAction }) {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(defaultBalickyData);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [status, setStatus] = useState('Načítám obsah...');
 
   useEffect(() => {
     loadAdminData(endpoint)
       .then((loaded) => {
-        setData(loaded);
+        setData(normalizeBalickyData(loaded));
+        setIsLoaded(true);
         setStatus('');
       })
       .catch(() => setStatus('Obsah se nepodařilo načíst. Zkontrolujte server.'));
   }, []);
 
   const save = useCallback(async () => {
-    if (!data) return;
+    if (!isLoaded) return;
+
     try {
       await saveAdminData(endpoint, data);
       setStatus('Uloženo.');
     } catch {
       setStatus('Uložení se nepodařilo.');
     }
-  }, [data]);
+  }, [data, isLoaded]);
 
   useEffect(() => {
     if (!setHeaderAction) return undefined;
 
     setHeaderAction(
       <div className={styles.adminTopbarSave}>
-        {status && data && <span>{status}</span>}
-        <button className={styles.adminPrimary} disabled={!data} onClick={save} type="button">Uložit</button>
+        {status && isLoaded && <span>{status}</span>}
+        <button className={styles.adminPrimary} disabled={!isLoaded} onClick={save} type="button">Uložit</button>
       </div>,
     );
 
     return () => setHeaderAction(null);
-  }, [data, save, setHeaderAction, status]);
+  }, [isLoaded, save, setHeaderAction, status]);
 
-  if (!data) return <div className={cx(styles.adminStatus, styles.adminStatusPlain)}>{status}</div>;
-
-  const updateSection = (key, value) => {
-    setData({ ...data, bundleSection: { ...data.bundleSection, [key]: value } });
+  const updateField = (path, value) => {
+    setData((current) => updateNestedValue(current, path, value));
   };
 
-  const updateBundle = (index, key, value) => {
-    setData({
-      ...data,
-      bundles: data.bundles.map((bundle, i) => (i === index ? { ...bundle, [key]: value } : bundle)),
-    });
-  };
-
-  const removeBundle = (index) => {
-    setData({ ...data, bundles: data.bundles.filter((_, i) => i !== index) });
-  };
+  if (!isLoaded) return <div className={cx(styles.adminStatus, styles.adminStatusPlain)}>{status}</div>;
 
   return (
-    <div className={styles.adminForm}>
-        <div className={styles.adminEditCard}>
-          <h3>Hlavička sekce</h3>
-          <label>Nadpis<input value={data.bundleSection.title} onChange={(event) => updateSection('title', event.target.value)} /></label>
-          <label>Popis<textarea value={data.bundleSection.description} onChange={(event) => updateSection('description', event.target.value)} /></label>
-          <div className={styles.adminGridTwo}>
-            <label>Badge doporučeného<input value={data.bundleSection.featuredBadge} onChange={(event) => updateSection('featuredBadge', event.target.value)} /></label>
-            <label>Jednotka ceny<input value={data.bundleSection.priceUnit} onChange={(event) => updateSection('priceUnit', event.target.value)} /></label>
-          </div>
-          <label>Text tlačítka<input value={data.bundleSection.ctaLabel} onChange={(event) => updateSection('ctaLabel', event.target.value)} /></label>
-        </div>
-
-        <div className={styles.adminListHead}>
-          <h3>Balíčky</h3>
-          <button className={styles.adminSecondary} onClick={() => setData({ ...data, bundles: [...data.bundles, emptyBundle()] })} type="button">Přidat balíček</button>
-        </div>
-
-        <div className={styles.adminCardList}>
-          {data.bundles.map((bundle, index) => (
-            <article className={styles.adminEditCard} key={`${bundle.name}-${index}`}>
-              <div className={styles.adminCardTitle}>
-                <h3>{bundle.name || 'Balíček'}</h3>
-                <button className={styles.adminDanger} onClick={() => removeBundle(index)} type="button">Smazat</button>
-              </div>
-              <div className={styles.adminGridTwo}>
-                <label>Název<input value={bundle.name} onChange={(event) => updateBundle(index, 'name', event.target.value)} /></label>
-                <label>Internet<input value={bundle.internet} onChange={(event) => updateBundle(index, 'internet', event.target.value)} /></label>
-                <label>TV<input value={bundle.tv} onChange={(event) => updateBundle(index, 'tv', event.target.value)} /></label>
-                <label>HD<input value={bundle.hd} onChange={(event) => updateBundle(index, 'hd', event.target.value)} /></label>
-                <label>Cena<input value={bundle.price} onChange={(event) => updateBundle(index, 'price', event.target.value)} /></label>
-              </div>
-              <label>Úspora<input value={bundle.savings} onChange={(event) => updateBundle(index, 'savings', event.target.value)} /></label>
-              <label>Vlastnosti, každá na nový řádek<textarea value={(bundle.features || []).join('\n')} onChange={(event) => updateBundle(index, 'features', event.target.value.split('\n').filter(Boolean))} /></label>
-              <div className={styles.adminCheckRow}>
-                <label><input type="checkbox" checked={bundle.featured === true} onChange={(event) => updateBundle(index, 'featured', event.target.checked)} /> Doporučený</label>
-                <label><input type="checkbox" checked={bundle.visible !== false} onChange={(event) => updateBundle(index, 'visible', event.target.checked)} /> Viditelný</label>
-              </div>
-            </article>
-          ))}
-        </div>
+    <div className={styles.adminTelevizeEditor}>
+      <BalickyContent data={data} editable onFieldChange={updateField} />
     </div>
   );
+}
+
+function updateNestedValue(source, path, value) {
+  const [key, ...rest] = path;
+
+  if (!rest.length) {
+    return { ...source, [key]: value };
+  }
+
+  if (Array.isArray(source)) {
+    return source.map((item, index) => (
+      index === key ? updateNestedValue(item, rest, value) : item
+    ));
+  }
+
+  return {
+    ...source,
+    [key]: updateNestedValue(source[key], rest, value),
+  };
 }

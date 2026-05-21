@@ -2,7 +2,6 @@
   "bundleSection": {
     "title": "Televize s Internetem v jednom balíčku.",
     "description": "Výhodné kombinace rychlého Internetu a BMB-IPTV. Ceny jsou uvedené včetně DPH.",
-    "featuredBadge": "VÝHODNÁ VOLBA",
     "priceUnit": "Kč / měsíc",
     "ctaLabel": "Ověřit dostupnost"
   },
@@ -20,9 +19,7 @@
         "38 v HD",
         "Ušetříte 432 Kč ročně",
         "Pronájem Wi-Fi Gateway zdarma"
-      ],
-      "featured": false,
-      "visible": true
+      ]
     },
     {
       "name": "i110M + TV Basic",
@@ -37,9 +34,7 @@
         "56 v HD",
         "Ušetříte 732 Kč ročně",
         "Pronájem Wi-Fi Gateway zdarma"
-      ],
-      "featured": false,
-      "visible": true
+      ]
     },
     {
       "name": "i220M + TV Mini",
@@ -54,9 +49,7 @@
         "38 v HD",
         "Ušetříte 828 Kč ročně",
         "Pronájem Wi-Fi Gateway zdarma"
-      ],
-      "featured": false,
-      "visible": true
+      ]
     },
     {
       "name": "i220M + TV Basic",
@@ -71,9 +64,7 @@
         "56 v HD",
         "Ušetříte 1 944 Kč ročně",
         "Pronájem Wi-Fi Gateway zdarma"
-      ],
-      "featured": true,
-      "visible": true
+      ]
     },
     {
       "name": "i110M + TV Max",
@@ -88,9 +79,7 @@
         "72 v HD",
         "Ušetříte 2 196 Kč ročně",
         "Pronájem Wi-Fi Gateway zdarma"
-      ],
-      "featured": false,
-      "visible": true
+      ]
     },
     {
       "name": "i220M + TV Max",
@@ -105,9 +94,28 @@
         "72 v HD",
         "Ušetříte 2 472 Kč ročně",
         "Pronájem Wi-Fi Gateway zdarma"
-      ],
-      "featured": false,
-      "visible": true
+      ]
     }
-  ]
+  ],
+  "whySection": {
+    "title": "Proč zvolit balíček od BMB-Green?",
+    "description": "Internet i televize od jednoho poskytovatele znamenají jednodušší správu, výhodnější cenu a jedno místo, kam se obrátit.",
+    "cards": [
+      {
+        "icon": "check",
+        "title": "Jedna smlouva, jedna podpora",
+        "text": "Internet i BMB-IPTV řešíte dohromady u stejného týmu, bez přehazování odpovědnosti mezi dodavateli."
+      },
+      {
+        "icon": "tv",
+        "title": "Výhodnější kombinace služeb",
+        "text": "Balíčky spojují rychlý Internet s televizní nabídkou Mini, Basic nebo Max za zvýhodněnou cenu."
+      },
+      {
+        "icon": "wifi",
+        "title": "Vhodné řešení podle adresy",
+        "text": "Nejdřív ověříme dostupnost a následně doporučíme kombinaci, která dává technicky i cenově smysl."
+      }
+    ]
+  }
 }

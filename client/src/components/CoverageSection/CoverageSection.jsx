@@ -4,21 +4,22 @@ import 'leaflet/dist/leaflet.css';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import styles from './CoverageSection.module.css';
+import { defaultLocationsData, normalizeLocationsData } from './locationsData.js';
 
 const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 const SECTION_TITLE = 'Pokrytí a aktuální stav naší sítě.';
 const SECTION_DESCRIPTION = 'Aktuální pokrytí a připravované lokality v síti BMB-Green.';
 
-export default function CoverageSection() {
+export default function CoverageSection({ className }) {
   const mapElementRef = useRef(null);
   const mapRef = useRef(null);
   const markersRef = useRef([]);
-  const [locationsData, setLocationsData] = useState(null);
+  const [locationsData, setLocationsData] = useState(defaultLocationsData);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/locations`)
       .then((response) => response.ok ? response.json() : null)
-      .then((data) => data && setLocationsData(data))
+      .then((data) => data && setLocationsData(normalizeLocationsData(data)))
       .catch(() => {});
   }, []);
 
@@ -77,10 +78,24 @@ export default function CoverageSection() {
     markersRef.current = [];
   }, []);
 
-  if (!locationsData) return null;
+  const statusCards = locationsData.locations
+    .filter((location) => location.statusMessage?.trim())
+    .map((location, index) => {
+      const safeStatus = normalizeStatus(location.status);
+      const name = location.label || location.address || 'Lokace';
+      const message = location.statusMessage.trim();
+
+      return {
+        id: `${safeStatus}-${name}-${index}`,
+        name,
+        status: safeStatus,
+        statusLabel: statusLabel(safeStatus),
+        message,
+      };
+    });
 
   return (
-    <section className={layout.section}>
+    <section className={cx(layout.section, className)}>
       <div className={layout.container}>
         <div className={layout.sectionHead}>
           <h2>{SECTION_TITLE}</h2>
@@ -88,6 +103,23 @@ export default function CoverageSection() {
         </div>
         <div className={styles.coverage}>
           <div className={styles.map} ref={mapElementRef} aria-label={SECTION_TITLE}></div>
+          {statusCards.length > 0 && (
+            <div className={styles.statusGrid}>
+              {statusCards.map((item) => (
+                <article
+                  className={cx(
+                    styles.statusCard,
+                    item.status === 'warning' && styles.statusCardWarning,
+                    item.status === 'error' && styles.statusCardError,
+                  )}
+                  key={item.id}
+                >
+                  <h3>{item.name} - {item.statusLabel}</h3>
+                  <p>{item.message}</p>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -95,7 +127,7 @@ export default function CoverageSection() {
 }
 
 function createLocationIcon(location) {
-  const safeStatus = ['active', 'warning', 'error'].includes(location.status) ? location.status : 'active';
+  const safeStatus = normalizeStatus(location.status);
   const label = escapeHtml(location.label || location.address || 'Lokace');
   const status = escapeHtml(statusLabel(safeStatus));
   const detail = escapeHtml(location.statusMessage || markerDetail(location));
@@ -116,6 +148,10 @@ function createLocationIcon(location) {
     iconSize: [310, 92],
     iconAnchor: [12, 12],
   });
+}
+
+function normalizeStatus(status) {
+  return ['active', 'warning', 'error'].includes(status) ? status : 'active';
 }
 
 function statusLabel(status) {

@@ -5,6 +5,7 @@ import televizeRoute from './routes/televize.js';
 import locationsRoute from './routes/locations.js';
 import newsRoute from './routes/news.js';
 import authRoute from './routes/auth.js';
+import sendEmailRoute from './routes/sendEmail.js';
 
 const PORT = 8090;
 const allowedOrigins = new Set(['http://localhost:5173', 'http://127.0.0.1:5173']);
@@ -46,6 +47,11 @@ const server = http.createServer(async (req, res) => {
 
     if (req.url?.startsWith('/api/auth')) {
       await authRoute(req, res);
+      return;
+    }
+
+    if (req.url === '/api/sendEmail') {
+      await sendEmailRoute(req, res);
       return;
     }
 

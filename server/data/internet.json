@@ -2,7 +2,7 @@
   "hero": {
     "title": "Kvalitní internetové připojení pro domácnosti",
     "description": "Internet na doma, do bytu i na chalupu. Podle adresy vybereme vhodnou technologii, ověříme dostupnost a připravíme instalaci včetně potřebného zařízení.",
-    "ctaLabel": "Ověřit dostupnost",
+    "ctaLabel": "Nezávazně poptat",
     "ctaHref": "/kontakty"
   },
   "highlight": {
@@ -36,7 +36,6 @@
     {
       "title": "Internet přes optiku",
       "desc": "FTTH připojení pro domácnosti, kde je dostupná optická síť.",
-      "visible": true,
       "plans": [
         {
           "name": "Internet i110M",
@@ -53,7 +52,6 @@
     {
       "title": "Internet přes kabelovou televizi",
       "desc": "Připojení přes kabelovou síť s vysokou stabilitou a rychlostí až 220 Mb/s.",
-      "visible": true,
       "plans": [
         {
           "name": "Internet i110M",
@@ -70,7 +68,6 @@
     {
       "title": "Internet přes Wi-Fi",
       "desc": "Bezdrátová varianta pro adresy, kde dává největší smysl pokrytí přes 5GHz síť.",
-      "visible": true,
       "plans": [
         {
           "name": "Internet i16M",
@@ -107,5 +104,26 @@
       "text": "",
       "muted": true
     }
-  ]
+  ],
+  "whySection": {
+    "title": "Proč si vybrat Internet od BMB-Green?",
+    "description": "Lokální síť, rychlá instalace a technologie vybraná podle konkrétní adresy. Neprodáváme univerzální slib, ale dostupné řešení.",
+    "cards": [
+      {
+        "icon": "fiber",
+        "title": "Vlastní síť a lokální znalost",
+        "text": "BMB-Green dlouhodobě buduje a provozuje vlastní přístupovou síť v lokalitách, které obsluhuje."
+      },
+      {
+        "icon": "clock",
+        "title": "Rychlé zřízení služby",
+        "text": "U dostupných adres zvládneme běžnou instalaci obvykle v horizontu 2-3 pracovních dnů."
+      },
+      {
+        "icon": "shield-check",
+        "title": "Technologie podle reality",
+        "text": "Optika, kabelová síť, Wi-Fi nebo xDSL. Vybereme variantu podle dostupnosti a potřeb domácnosti."
+      }
+    ]
+  }
 }

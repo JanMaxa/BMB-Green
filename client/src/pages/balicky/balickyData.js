@@ -1,0 +1,162 @@
+export const defaultBalickyData = {
+  bundleSection: {
+    title: 'Televize s Internetem v jednom balíčku.',
+    description: 'Výhodné kombinace rychlého Internetu a BMB-IPTV. Ceny jsou uvedené včetně DPH.',
+    priceUnit: 'Kč / měsíc',
+    ctaLabel: 'Ověřit dostupnost',
+  },
+  bundles: [
+    {
+      name: 'i110M + TV Mini',
+      internet: '110 / 55 Mb/s',
+      tv: '77 programů',
+      hd: '38 v HD',
+      price: '599',
+      savings: 'Ušetříte 432 Kč ročně',
+      features: [
+        'Internet přes optiku',
+        '77 programů',
+        '38 v HD',
+        'Ušetříte 432 Kč ročně',
+        'Pronájem Wi-Fi Gateway zdarma',
+      ],
+    },
+    {
+      name: 'i110M + TV Basic',
+      internet: '110 / 55 Mb/s',
+      tv: '120 programů',
+      hd: '56 v HD',
+      price: '777',
+      savings: 'Ušetříte 732 Kč ročně',
+      features: [
+        'Internet přes optiku',
+        '120 programů',
+        '56 v HD',
+        'Ušetříte 732 Kč ročně',
+        'Pronájem Wi-Fi Gateway zdarma',
+      ],
+    },
+    {
+      name: 'i220M + TV Mini',
+      internet: '220 / 110 Mb/s',
+      tv: '77 programů',
+      hd: '38 v HD',
+      price: '789',
+      savings: 'Ušetříte 828 Kč ročně',
+      features: [
+        'Internet přes optiku',
+        '77 programů',
+        '38 v HD',
+        'Ušetříte 828 Kč ročně',
+        'Pronájem Wi-Fi Gateway zdarma',
+      ],
+    },
+    {
+      name: 'i220M + TV Basic',
+      internet: '220 / 110 Mb/s',
+      tv: '120 programů',
+      hd: '56 v HD',
+      price: '899',
+      savings: 'Ušetříte 1 944 Kč ročně',
+      features: [
+        'Internet přes optiku',
+        '120 programů',
+        '56 v HD',
+        'Ušetříte 1 944 Kč ročně',
+        'Pronájem Wi-Fi Gateway zdarma',
+      ],
+    },
+    {
+      name: 'i110M + TV Max',
+      internet: '110 / 55 Mb/s',
+      tv: '145 programů',
+      hd: '72 v HD',
+      price: '1 199',
+      savings: 'Ušetříte 2 196 Kč ročně',
+      features: [
+        'Internet přes optiku',
+        '145 programů',
+        '72 v HD',
+        'Ušetříte 2 196 Kč ročně',
+        'Pronájem Wi-Fi Gateway zdarma',
+      ],
+    },
+    {
+      name: 'i220M + TV Max',
+      internet: '220 / 110 Mb/s',
+      tv: '145 programů',
+      hd: '72 v HD',
+      price: '1 399',
+      savings: 'Ušetříte 2 472 Kč ročně',
+      features: [
+        'Internet přes optiku',
+        '145 programů',
+        '72 v HD',
+        'Ušetříte 2 472 Kč ročně',
+        'Pronájem Wi-Fi Gateway zdarma',
+      ],
+    },
+  ],
+  whySection: {
+    title: 'Proč zvolit balíček od BMB-Green?',
+    description: 'Internet i televize od jednoho poskytovatele znamenají jednodušší správu, výhodnější cenu a jedno místo, kam se obrátit.',
+    cards: [
+      {
+        icon: 'check',
+        title: 'Jedna smlouva, jedna podpora',
+        text: 'Internet i BMB-IPTV řešíte dohromady u stejného týmu, bez přehazování odpovědnosti mezi dodavateli.',
+      },
+      {
+        icon: 'tv',
+        title: 'Výhodnější kombinace služeb',
+        text: 'Balíčky spojují rychlý Internet s televizní nabídkou Mini, Basic nebo Max za zvýhodněnou cenu.',
+      },
+      {
+        icon: 'wifi',
+        title: 'Vhodné řešení podle adresy',
+        text: 'Nejdřív ověříme dostupnost a následně doporučíme kombinaci, která dává technicky i cenově smysl.',
+      },
+    ],
+  },
+};
+
+export function normalizeBalickyData(loaded) {
+  return {
+    bundleSection: { ...defaultBalickyData.bundleSection, ...(loaded?.bundleSection || {}) },
+    bundles: normalizeArray(defaultBalickyData.bundles, loaded?.bundles, emptyBundle),
+    whySection: {
+      ...defaultBalickyData.whySection,
+      ...(loaded?.whySection || {}),
+      cards: normalizeArray(defaultBalickyData.whySection.cards, loaded?.whySection?.cards, emptyWhyCard),
+    },
+  };
+}
+
+function emptyBundle() {
+  return {
+    name: 'Nový balíček',
+    internet: '',
+    tv: '',
+    hd: '',
+    price: '',
+    savings: '',
+    features: [],
+  };
+}
+
+function emptyWhyCard() {
+  return {
+    icon: 'check',
+    title: '',
+    text: '',
+  };
+}
+
+function normalizeArray(fallbackItems, loadedItems, emptyItem) {
+  const source = Array.isArray(loadedItems) ? loadedItems : fallbackItems;
+
+  return source.map((item, index) => ({
+    ...(fallbackItems[index] || emptyItem()),
+    ...item,
+  }));
+}

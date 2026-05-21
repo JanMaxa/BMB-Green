@@ -43,3 +43,198 @@
   border-color: var(--green-400);
   box-shadow: 0 0 0 3px rgba(43, 227, 111, 0.18);
 }
+
+.programsButton {
+  margin: 8px 0 0;
+}
+
+.contentEditor .programsButton.buttonEdit .editField {
+  color: var(--green-500);
+  flex: initial;
+  min-width: 0;
+  text-align: center;
+}
+
+.contentEditor .programsButton.buttonEdit .editField:focus {
+  background: var(--green-50);
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(20, 174, 75, 0.14);
+}
+
+.dialogBackdrop {
+  align-items: center;
+  background: rgba(17, 24, 39, 0.44);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 24px;
+  position: fixed;
+  z-index: 2000;
+}
+
+.dialog {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  max-height: min(760px, calc(100vh - 48px));
+  max-width: 980px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.dialogHead {
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: var(--s-4);
+  justify-content: space-between;
+  padding: 24px 26px 20px;
+}
+
+.dialogHead span {
+  color: var(--green-700);
+  display: block;
+  font-size: var(--t-xs);
+  font-weight: var(--w-black);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s-2);
+  text-transform: uppercase;
+}
+
+.dialogHead h2 {
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: var(--ls-snug);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.dialogClose {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--ink-500);
+  border-radius: 8px;
+  color: var(--ink-500);
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 28px;
+  height: 38px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  width: 38px;
+}
+
+.dialogClose:hover {
+  background: var(--ink-50);
+  color: var(--ink-900);
+}
+
+.dialogState {
+  color: var(--ink-500);
+  font-size: 15px;
+  margin: 0;
+  padding: 28px 26px;
+}
+
+.channelGrid {
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-height: calc(min(760px, 100vh - 48px) - 150px);
+  overflow: auto;
+  padding: 26px;
+}
+
+.channelCard {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  min-width: 0;
+  padding: var(--s-3);
+}
+
+.channelLogo {
+  align-items: center;
+  background: var(--ink-25);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex;
+  height: 52px;
+  justify-content: center;
+  overflow: hidden;
+  width: 52px;
+}
+
+.channelLogo img {
+  max-height: 42px;
+  max-width: 42px;
+  object-fit: contain;
+}
+
+.channelLogo span {
+  color: var(--green-700);
+  font-size: 13px;
+  font-weight: var(--w-black);
+}
+
+.channelCard h3 {
+  color: var(--ink-900);
+  font-size: 14px;
+  font-weight: var(--w-black);
+  line-height: 1.25;
+  margin: 0 0 3px;
+  overflow-wrap: anywhere;
+}
+
+.channelCard p {
+  color: var(--ink-500);
+  font-size: 12.5px;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.channelQuality {
+  align-self: start;
+  background: var(--green-50);
+  border-radius: var(--r-sm);
+  color: var(--green-700);
+  font-size: 11px;
+  font-weight: var(--w-black);
+  line-height: 1;
+  padding: 5px 6px;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .channelGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .dialogBackdrop {
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .dialog {
+    max-height: calc(100vh - 24px);
+  }
+
+  .dialogHead {
+    padding: 20px 18px 16px;
+  }
+
+  .channelGrid {
+    grid-template-columns: 1fr;
+    max-height: calc(100vh - 170px);
+    padding: 18px;
+  }
+}

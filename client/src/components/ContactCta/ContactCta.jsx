@@ -14,14 +14,18 @@ export default function ContactCta() {
               Zavolejte v&nbsp;pracovní dny 8–17&nbsp;h nebo nám napište — odpovíme do&nbsp;druhého pracovního dne.
             </p>
             <div className={styles.contactActions}>
-              <Button size="lg">Zavolat technika</Button>
-              <Button variant="secondary" size="lg">Napsat e-mail</Button>
+              <Button as="a" href="/kontakty" size="lg">
+                Kontaktní formulář
+              </Button>
+              <Button as="a" href="tel:+420266317129" variant="secondary" size="lg">
+                +420&nbsp;266&nbsp;317&nbsp;129
+              </Button>
             </div>
           </div>
           <div className={styles.contactList}>
             <ContactRow icon="phone" label="Telefon" value="+420&nbsp;266&nbsp;317&nbsp;129" />
-            <ContactRow icon="mail" label="E-mail" value="info@bmb-green.cz" />
-            <ContactRow icon="map-pin" label="Sídlo" value="Brandýs nad&nbsp;Labem, 250&nbsp;01" />
+            <ContactRow icon="mail" label="E-mail" value="smlouva@bmb-green.cz" />
+            <ContactRow icon="map-pin" label="Sídlo" value="Na&nbsp;Dračkách&nbsp;843/24, 162&nbsp;00 Praha&nbsp;6" />
             <ContactRow icon="clock" label="Provozní doba" value="Po–Pá 8:00–17:00" />
           </div>
         </div>

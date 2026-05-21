@@ -72,7 +72,16 @@
 
 .newsImage {
   aspect-ratio: 16 / 9;
+  background: var(--ink-50);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.newsImage img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .newsBody {

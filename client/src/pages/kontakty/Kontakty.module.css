@@ -1,13 +1,12 @@
 .contactFormLayout {
   align-items: start;
   display: grid;
-  gap: var(--s-16);
-  grid-template-columns: 1.08fr 0.92fr;
+  gap: var(--s-12);
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
 }
 
 .contactFormCopy {
   max-width: 520px;
-  padding-top: var(--s-2);
 }
 
 .contactFormCopy h2 {
@@ -55,15 +54,33 @@
 .contactForm {
   background: linear-gradient(180deg, var(--surface) 0%, var(--ink-25) 100%);
   border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--s-5);
-  padding: 34px;
+  gap: var(--s-6);
+  overflow: hidden;
+  padding: var(--s-8);
+  position: relative;
+}
+
+.contactForm::before {
+  background: linear-gradient(90deg, var(--green-500), var(--green-300));
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .formRow {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: 1fr 1fr;
+}
+
+.contactFields {
   display: grid;
   gap: var(--s-4);
   grid-template-columns: 1fr 1fr;
@@ -78,40 +95,115 @@
   gap: var(--s-2);
 }
 
+.requiredMark {
+  color: var(--green-700);
+}
+
 .contactForm input,
-.contactForm textarea {
+.contactForm textarea,
+.contactForm select {
   background: var(--surface);
   border: 1px solid var(--border-strong);
-  border-radius: 12px;
+  border-radius: var(--r-md);
   box-shadow: var(--shadow-xs);
   color: var(--ink-900);
   font: inherit;
   font-size: 15px;
+  min-height: 50px;
+  outline: none;
   padding: 13px 15px;
   transition: border-color var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
   width: 100%;
 }
 
 .contactForm input:hover,
-.contactForm textarea:hover {
+.contactForm textarea:hover,
+.contactForm select:hover {
   border-color: var(--ink-300);
 }
 
 .contactForm input:focus,
-.contactForm textarea:focus {
+.contactForm textarea:focus,
+.contactForm select:focus {
   background: var(--surface);
   border-color: var(--green-500);
   box-shadow: var(--shadow-xs), 0 0 0 4px rgba(20, 174, 75, 0.14);
 }
 
+.contactForm .invalidField {
+  border-color: var(--danger);
+}
+
+.contactForm .invalidField:focus {
+  border-color: var(--danger);
+  box-shadow: var(--shadow-xs), 0 0 0 4px rgba(220, 38, 38, 0.12);
+}
+
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+  color: var(--ink-400);
+}
+
+.contactForm select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink-500) 50%),
+    linear-gradient(135deg, var(--ink-500) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 21px,
+    calc(100% - 15px) 21px;
+  background-repeat: no-repeat;
+  background-size: 5px 5px;
+  padding-right: 44px;
+}
+
 .contactForm textarea {
+  max-height: 260px;
   min-height: 132px;
   resize: vertical;
 }
 
+.formFooter {
+  align-items: center;
+  display: flex;
+  padding-top: var(--s-1);
+}
+
 .submitButton {
-  align-self: flex-start;
+  justify-content: center;
   min-width: 190px;
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+.errorText {
+  color: var(--danger);
+  font-size: var(--t-xs);
+  font-weight: var(--w-semibold);
+}
+
+.successMessage,
+.errorMessage {
+  border-radius: var(--r-md);
+  font-size: var(--t-sm);
+  font-weight: var(--w-semibold);
+  line-height: 1.45;
+  padding: var(--s-4);
+}
+
+.successMessage {
+  background: var(--success-soft);
+  border: 1px solid var(--green-200);
+  color: var(--green-800);
+}
+
+.errorMessage {
+  background: var(--danger-soft);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  color: var(--danger);
 }
 
 @media (max-width: 960px) {
@@ -119,14 +211,26 @@
     gap: var(--s-8);
     grid-template-columns: 1fr;
   }
+
+  .contactFormCopy {
+    order: 1;
+  }
+
+  .contactForm {
+    order: 2;
+  }
 }
 
 @media (max-width: 560px) {
   .contactForm {
-    padding: 26px;
+    padding: var(--s-6);
   }
 
   .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .contactFields {
     grid-template-columns: 1fr;
   }
 }

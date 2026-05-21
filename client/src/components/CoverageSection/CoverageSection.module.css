@@ -1,4 +1,6 @@
 .coverage {
+  display: grid;
+  gap: var(--s-6);
   width: 100%;
 }
 
@@ -44,6 +46,13 @@
 
 .map :global(.leaflet-marker-icon) {
   overflow: visible;
+  pointer-events: none;
+}
+
+.map :global(.leaflet-marker-icon):has(.markerDot:hover),
+.map :global(.leaflet-marker-icon):has(.markerLabel:hover),
+.map :global(.leaflet-marker-icon):has(.isOpen) {
+  z-index: 1000 !important;
 }
 
 .divIcon {
@@ -55,6 +64,7 @@
 .markerWrap {
   display: block;
   height: 92px;
+  pointer-events: none;
   position: relative;
   width: 310px;
 }
@@ -70,6 +80,8 @@
   position: absolute;
   top: 0;
   width: 20px;
+  z-index: 1;
+  pointer-events: auto;
 }
 
 .statusWarning {
@@ -102,6 +114,8 @@
   padding: 6px 10px;
   top: -5px;
   white-space: nowrap;
+  z-index: 2;
+  pointer-events: auto;
 }
 
 .markerDetail {
@@ -118,6 +132,7 @@
   top: 27px;
   transform: translateY(-4px);
   transition: opacity var(--dur-fast), transform var(--dur-fast);
+  z-index: 3;
 }
 
 .markerDetail strong {
@@ -132,16 +147,80 @@
   display: block;
 }
 
-:global(.leaflet-marker-icon:hover) .markerDetail,
-:global(.leaflet-marker-icon:focus) .markerDetail,
+.markerDot:hover ~ .markerDetail,
+.markerLabel:hover ~ .markerDetail,
 .isOpen .markerDetail {
   opacity: 1;
   transform: translateY(0);
+}
+
+.statusGrid {
+  align-items: start;
+  display: grid;
+  gap: var(--s-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.statusCard {
+  background: #dcfce7;
+  border: 1px solid rgba(22, 101, 52, 0.16);
+  border-radius: var(--r-md);
+  color: var(--ink-900);
+  display: grid;
+  gap: 8px;
+  height: max-content;
+  padding: var(--s-4);
+}
+
+.statusCardWarning {
+  background: #fdecc8;
+  border-color: rgba(146, 64, 14, 0.18);
+}
+
+.statusCardError {
+  background: #fbd6d6;
+  border-color: rgba(153, 27, 27, 0.18);
+}
+
+.statusCard h3 {
+  color: #166534;
+  font-family: var(--font-body);
+  font-size: var(--t-sm);
+  font-weight: var(--w-black);
+  letter-spacing: 0;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.statusCardWarning h3 {
+  color: #92400e;
+}
+
+.statusCardError h3 {
+  color: #991b1b;
+}
+
+.statusCard p {
+  color: var(--ink-700);
+  font-size: 13px;
+  font-weight: var(--w-regular);
+  line-height: 1.45;
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .statusGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 560px) {
   .map {
     height: 420px;
     min-height: 0;
+  }
+
+  .statusGrid {
+    grid-template-columns: 1fr;
   }
 }

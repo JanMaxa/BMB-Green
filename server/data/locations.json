@@ -37,7 +37,7 @@
       "address": "Lysá nad Labem",
       "connectionsText": "88 přípojek",
       "speedText": "500 Mb/s",
-      "status": "warning",
+      "status": "error",
       "statusMessage": "Nestabilni pripojeni"
     },
     {
@@ -47,8 +47,8 @@
       "address": "Neratovice",
       "connectionsText": "64 přípojek",
       "speedText": "500 Mb/s",
-      "status": "error",
-      "statusMessage": "neco nefunguje"
+      "status": "warning",
+      "statusMessage": "neco nefunguje, velky problem v siti, odhadovana doba vypadku je tak 3 dny"
     }
   ]
 }
