@@ -17,8 +17,8 @@ export default function Footer({ onNavigate }) {
           <div>
             <img className={styles.logo} src="/assets/logo-on-dark.svg" alt="BMB-Green" />
             <p className={styles.footerBlurb}>
-              Česká technologická společnost. Stavíme rychlé sítě, instalujeme bezpečnostní
-              a&nbsp;fotovoltaické systémy. Od&nbsp;roku 1991.
+              Rychlý internet, digitální televize a&nbsp;pevná linka pro domácnosti
+              i&nbsp;firmy v&nbsp;Praze a&nbsp;okolí. Česká firma s&nbsp;vlastním týmem techniků. Od&nbsp;roku 1991.
             </p>
           </div>
           <div>
@@ -27,6 +27,7 @@ export default function Footer({ onNavigate }) {
               <li><a href="/balicky" onClick={(event) => handleRouteClick(event, '/balicky')}>Balíčky</a></li>
               <li><a href="/internet" onClick={(event) => handleRouteClick(event, '/internet')}>Internet</a></li>
               <li><a href="/televize" onClick={(event) => handleRouteClick(event, '/televize')}>Televize</a></li>
+              <li><a href="/volani" onClick={(event) => handleRouteClick(event, '/volani')}>Volání</a></li>
               <li><a href="/pro-zakazniky" onClick={(event) => handleRouteClick(event, '/pro-zakazniky')}>Pro zákazníky</a></li>
               <li><a href="/kontakty" onClick={(event) => handleRouteClick(event, '/kontakty')}>Kontakty</a></li>
             </ul>

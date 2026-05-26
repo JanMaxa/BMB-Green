@@ -18,6 +18,7 @@ export default function Navbar({ currentPath = '/', onNavigate }) {
     { label: 'Balíčky', path: '/balicky' },
     { label: 'Internet', path: '/internet' },
     { label: 'Televize', path: '/televize' },
+    { label: 'Volání', path: '/volani' },
     { label: 'Pro zákazníky', path: '/pro-zakazniky' },
     { label: 'Kontakty', path: '/kontakty' },
   ];

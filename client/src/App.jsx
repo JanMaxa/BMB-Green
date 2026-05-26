@@ -6,6 +6,7 @@ import Landing from './pages/home/Landing.jsx';
 import Balicky from './pages/balicky/Balicky.jsx';
 import Internet from './pages/internet/Internet.jsx';
 import Televize from './pages/televize/Televize.jsx';
+import Volani from './pages/volani/Volani.jsx';
 import ProZakazniky from './pages/pro-zakazniky/ProZakazniky.jsx';
 import Kontakty from './pages/kontakty/Kontakty.jsx';
 import Admin from './pages/admin/Admin.jsx';
@@ -16,6 +17,7 @@ const routes = {
   '/balicky': Balicky,
   '/internet': Internet,
   '/televize': Televize,
+  '/volani': Volani,
   '/pro-zakazniky': ProZakazniky,
   '/kontakty': Kontakty,
   '/admin': Admin,

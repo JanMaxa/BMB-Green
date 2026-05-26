@@ -26,7 +26,6 @@ export default function AdminLogin({ onSignedIn }) {
     <div className={styles.adminLoginPage}>
       <form className={styles.adminLoginCard} onSubmit={handleSubmit}>
         <img src="/assets/logo.svg" alt="BMB-Green" />
-        <h1>Admin</h1>
         <label>
           Uživatelské jméno
           <input value={username} onChange={(event) => setUsername(event.target.value)} />

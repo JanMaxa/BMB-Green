@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button.jsx';
 import ContactCta from '../../components/ContactCta/ContactCta.jsx';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
+import autoImage from '../../assets/auto.webp';
 import styles from './Kontakty.module.css';
 
 const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
@@ -25,6 +26,14 @@ export default function Kontakty() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const showServiceInterest = serviceInterestReasons.includes(reason);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paramReason = params.get('reason');
+    const paramService = params.get('service');
+    if (paramReason) setReason(paramReason);
+    if (paramService) setFormData((current) => ({ ...current, service: paramService }));
+  }, []);
 
   const handleReasonChange = (event) => {
     const nextReason = event.target.value;
@@ -120,7 +129,7 @@ export default function Kontakty() {
 
   return (
     <>
-      <section className={cx(layout.section, layout.sectionAlt, layout.topSection)}>
+      <section className={cx(layout.section, layout.topSection, layout.topGradient)}>
         <div className={layout.container}>
           <div className={styles.contactFormLayout}>
             <form className={styles.contactForm} onSubmit={handleSubmit}>
@@ -165,7 +174,7 @@ export default function Kontakty() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className={errors.phone ? styles.invalidField : undefined}
-                    placeholder="+420 777 000 000"
+                    placeholder="+420 123 456 789"
                   />
                   {errors.phone && <span className={styles.errorText}>{errors.phone}</span>}
                 </label>
@@ -180,7 +189,7 @@ export default function Kontakty() {
                         value={formData.email}
                         onChange={handleInputChange}
                         className={errors.email ? styles.invalidField : undefined}
-                        placeholder="jan@example.cz"
+                        placeholder="jan@novak.cz"
                       />
                       {errors.email && <span className={styles.errorText}>{errors.email}</span>}
                     </label>
@@ -241,6 +250,9 @@ export default function Kontakty() {
                 <li><img src="/assets/icons/check.svg" alt="" />Doporučíme vhodný tarif, technologii i termín instalace.</li>
                 <li><img src="/assets/icons/check.svg" alt="" />Připravíme konkrétní nabídku bez závazku.</li>
               </ul>
+              <div className={styles.contactFormImage}>
+                <img src={autoImage} alt="Servisní vůz BMB-Green" />
+              </div>
             </div>
           </div>
         </div>

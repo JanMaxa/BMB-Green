@@ -163,7 +163,7 @@
 
 .statusCard {
   background: #dcfce7;
-  border: 1px solid rgba(22, 101, 52, 0.16);
+  border: 2px solid rgba(22, 101, 52, 0.35);
   border-radius: var(--r-md);
   color: var(--ink-900);
   display: grid;
@@ -174,18 +174,18 @@
 
 .statusCardWarning {
   background: #fdecc8;
-  border-color: rgba(146, 64, 14, 0.18);
+  border-color: rgba(146, 64, 14, 0.35);
 }
 
 .statusCardError {
   background: #fbd6d6;
-  border-color: rgba(153, 27, 27, 0.18);
+  border-color: rgba(153, 27, 27, 0.35);
 }
 
 .statusCard h3 {
   color: #166534;
   font-family: var(--font-body);
-  font-size: var(--t-sm);
+  font-size: var(--t-md);
   font-weight: var(--w-black);
   letter-spacing: 0;
   line-height: 1.35;
@@ -202,7 +202,7 @@
 
 .statusCard p {
   color: var(--ink-700);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: var(--w-regular);
   line-height: 1.45;
   margin: 0;

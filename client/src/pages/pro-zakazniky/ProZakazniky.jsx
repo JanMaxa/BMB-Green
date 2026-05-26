@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import ContactCta from '../../components/ContactCta/ContactCta.jsx';
 import CoverageSection from '../../components/CoverageSection/CoverageSection.jsx';
 import Faq from '../../components/Faq/Faq.jsx';
+import OutageForm from '../../components/OutageForm/OutageForm.jsx';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import styles from './ProZakazniky.module.css';
@@ -31,7 +32,11 @@ export default function ProZakazniky() {
 
   return (
     <>
-      <CoverageSection className={layout.topSection} />
+      <CoverageSection className={cx(layout.topSection, layout.topGradient)} />
+
+      <OutageForm className={layout.sectionAlt} />
+
+      <Faq />
 
       <section className={cx(layout.section, layout.sectionAlt)}>
         <div className={layout.container}>
@@ -66,7 +71,6 @@ export default function ProZakazniky() {
           </div>
         </div>
       </section>
-      <Faq />
       <ContactCta />
     </>
   );

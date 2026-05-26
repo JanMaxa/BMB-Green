@@ -5,21 +5,16 @@ export const defaultTelevizeData = {
     ctaLabel: 'Nezávazně poptat',
     ctaHref: '/kontakty',
   },
-  highlight: {
-    label: 'Nejširší nabídka',
-    value: '145 programů',
-    description: 'Balíček BMB Max nabízí 72 programů v HD kvalitě a HBO GO na Max.',
-  },
   features: [
     {
       icon: 'tv',
-      title: 'Až 145 programů',
-      text: 'Široká nabídka českých, filmových, dokumentárních i sportovních stanic.',
+      title: 'Bohatá nabídka',
+      text: 'Česká, filmová, dokumentární i sportovní televize v jednom balíčku.',
     },
     {
       icon: 'check',
-      title: 'Až 72 v HD',
-      text: 'Kvalitní obraz u hlavních programů podle zvoleného balíčku.',
+      title: 'v HD kvalitě',
+      text: 'Ostrý obraz u velké části kanálů podle zvoleného balíčku.',
     },
     {
       icon: 'clock',
@@ -28,14 +23,13 @@ export const defaultTelevizeData = {
     },
     {
       icon: 'bolt',
-      title: '55 internetových rádií',
-      text: 'Součástí chytré IPTV nabídky jsou i internetová rádia.',
+      title: 'Stabilní příjem signálu',
+      text: 'Kabelový rozvod zajišťuje spolehlivý příjem bez výpadků a rušení.',
     },
   ],
   packages: [
     {
       name: 'BMB Mini',
-      apiPackage: 'G.TV Základ',
       programsButtonLabel: 'Zobrazit programy',
       channels: '77 programů',
       hd: '38 v HD',
@@ -44,7 +38,6 @@ export const defaultTelevizeData = {
     },
     {
       name: 'BMB Basic',
-      apiPackage: 'G.TV Standard',
       programsButtonLabel: 'Zobrazit programy',
       channels: '120 programů',
       hd: '56 v HD',
@@ -53,26 +46,11 @@ export const defaultTelevizeData = {
     },
     {
       name: 'BMB Max',
-      apiPackage: 'G.TV Komplet',
       programsButtonLabel: 'Zobrazit programy',
       channels: '145 programů',
       hd: '72 v HD',
       price: '899 Kč',
       desc: 'Maximální nabídka včetně HBO GO na Max a nejširší programové skladby.',
-    },
-  ],
-  infoCards: [
-    {
-      title: 'IPTV Genius',
-      text: 'Chytré funkce služby zvyšují komfort sledování a rozšiřují možnosti individuální televizní zábavy.',
-    },
-    {
-      title: 'TV archiv a rádia',
-      text: 'Součástí nabídky jsou funkce jako TV archiv a 55 internetových rádií podle dostupné služby.',
-    },
-    {
-      title: 'Výhodně s Internetem',
-      text: 'Televizi můžete spojit s internetem do zvýhodněného balíčku a řešit obě služby u jednoho poskytovatele.',
     },
   ],
   whySection: {
@@ -94,6 +72,21 @@ export const defaultTelevizeData = {
         title: 'Výhodně s Internetem',
         text: 'Televizi lze spojit s internetovým tarifem do jednoho balíčku a řešit vše u jednoho poskytovatele.',
       },
+      {
+        icon: 'check',
+        title: 'Bez výpadků ze špatného počasí',
+        text: 'Kabelový rozvod eliminuje rušení a výpadky příjmu způsobené deštěm, větrem nebo špatnou polohou antény.',
+      },
+      {
+        icon: 'shield-check',
+        title: 'Snadné ovládání celé domácnosti',
+        text: 'Přehledné EPG, pohodlný výběr kanálů a intuitivní rozhraní IPTV Genius pro každodenní pohodlí.',
+      },
+      {
+        icon: 'wifi',
+        title: 'Multiroom bez komplikací',
+        text: 'Jeden tarif lze sledovat na více zařízeních v domácnosti, TV, tabletu i mobilu, podle podmínek zvoleného balíčku.',
+      },
     ],
   },
 };
@@ -101,10 +94,8 @@ export const defaultTelevizeData = {
 export function normalizeTelevizeData(loaded) {
   return {
     hero: { ...defaultTelevizeData.hero, ...(loaded?.hero || {}) },
-    highlight: { ...defaultTelevizeData.highlight, ...(loaded?.highlight || {}) },
     features: mergeFixedArray(defaultTelevizeData.features, loaded?.features),
     packages: mergeFixedArray(defaultTelevizeData.packages, loaded?.packages),
-    infoCards: mergeFixedArray(defaultTelevizeData.infoCards, loaded?.infoCards),
     whySection: {
       ...defaultTelevizeData.whySection,
       ...(loaded?.whySection || {}),

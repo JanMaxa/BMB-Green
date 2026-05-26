@@ -6,12 +6,14 @@ import InternetEditor from './editors/InternetEditor.jsx';
 import NovinkyEditor from './editors/NovinkyEditor.jsx';
 import PokrytiEditor from './editors/PokrytiEditor.jsx';
 import TelevizeEditor from './editors/TelevizeEditor.jsx';
+import VolaniEditor from './editors/VolaniEditor.jsx';
 
 const tabs = [
   { slug: 'pokryti', label: 'Pokrytí', icon: 'map-pin', component: PokrytiEditor },
   { slug: 'balicky', label: 'Balíčky', icon: 'check', component: BalickyEditor },
   { slug: 'internet', label: 'Internet', icon: 'wifi', component: InternetEditor },
   { slug: 'televize', label: 'Televize', icon: 'tv', component: TelevizeEditor },
+  { slug: 'volani', label: 'Volání', icon: 'phone', component: VolaniEditor },
   { slug: 'novinky', label: 'Novinky', icon: 'clock', component: NovinkyEditor },
 ];
 

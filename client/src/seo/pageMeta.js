@@ -28,6 +28,12 @@ export const pageMeta = {
       'Digitální televize s HD programy, TV archivem, internetovými rádii a možností výhodného spojení s Internetem.',
     path: '/televize',
   },
+  '/volani': {
+    title: 'Levné volání po ČR bez paušálu | BMB-Green',
+    description:
+      'VoIP telefonie bez paušálu a závazků. Výhodné ceny volání na pevné linky a do mobilních sítí v rámci České republiky.',
+    path: '/volani',
+  },
   '/pro-zakazniky': {
     title: 'Dostupnost, novinky a podpora | BMB-Green',
     description:

@@ -7,7 +7,7 @@ import styles from '../Admin.module.css';
 const endpoint = '/api/news';
 
 const emptyNews = () => ({
-  tag: 'Novinky',
+  tag: '',
   date: '',
   imageUrl: '',
   title: 'Nová novinka',

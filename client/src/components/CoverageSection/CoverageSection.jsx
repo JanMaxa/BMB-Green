@@ -161,10 +161,16 @@ function statusLabel(status) {
 }
 
 function markerDetail(location) {
-  if (location.connectionsText && location.speedText) return `${location.connectionsText} · až ${location.speedText}`;
-  if (location.connectionsText) return location.connectionsText;
-  if (location.speedText) return `až ${location.speedText}`;
+  const connStr = location.connections ? `${formatConnections(location.connections)} přípojek` : '';
+  const speedStr = location.speedText ? `až ${location.speedText}` : '';
+  if (connStr && speedStr) return `${connStr} · ${speedStr}`;
+  if (connStr) return connStr;
+  if (speedStr) return speedStr;
   return location.address || location.label || '';
+}
+
+function formatConnections(n) {
+  return String(Math.round(Number(n))).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 function closeMarkerMenus() {

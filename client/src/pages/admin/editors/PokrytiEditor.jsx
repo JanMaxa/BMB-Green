@@ -10,7 +10,7 @@ const emptyLocation = () => ({
   lng: '',
   label: '',
   address: '',
-  connectionsText: '',
+  connections: '',
   speedText: '',
   status: 'active',
   statusMessage: '',
@@ -81,6 +81,7 @@ export default function PokrytiEditor({ setHeaderAction }) {
       ...draft,
       lat: draft.lat === '' ? null : Number(draft.lat),
       lng: draft.lng === '' ? null : Number(draft.lng),
+      connections: draft.connections === '' ? 0 : Number(draft.connections),
     };
     const nextLocations = editingIndex === null
       ? [...data.locations, normalized]
@@ -154,7 +155,7 @@ function LocationModal({ draft, isNew, onChange, onCancel, onSave }) {
             <label>Adresa<input value={draft.address} onChange={(event) => onChange('address', event.target.value)} /></label>
             <label>Zeměpisná šířka<input type="number" step="0.0001" value={draft.lat} onChange={(event) => onChange('lat', event.target.value)} /></label>
             <label>Zeměpisná délka<input type="number" step="0.0001" value={draft.lng} onChange={(event) => onChange('lng', event.target.value)} /></label>
-            <label>Přípojky<input value={draft.connectionsText} onChange={(event) => onChange('connectionsText', event.target.value)} /></label>
+            <label>Počet přípojek<input type="number" min="0" step="1" value={draft.connections} onChange={(event) => onChange('connections', event.target.value)} /></label>
             <label>Rychlost<input value={draft.speedText} onChange={(event) => onChange('speedText', event.target.value)} /></label>
           </div>
           <label>Stav

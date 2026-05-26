@@ -1,15 +1,15 @@
-.contactFormLayout {
+.outageLayout {
   align-items: start;
   display: grid;
   gap: var(--s-12);
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
 }
 
-.contactFormCopy {
+.outageCopy {
   max-width: 520px;
 }
 
-.contactFormCopy h2 {
+.outageCopy h2 {
   color: var(--ink-900);
   font-size: clamp(28px, 3.4vw, 42px);
   font-weight: var(--w-bold);
@@ -19,14 +19,14 @@
   text-wrap: balance;
 }
 
-.contactFormCopy p {
+.outageCopy p {
   color: var(--ink-500);
   font-size: 17px;
   line-height: 1.6;
   margin: 0 0 28px;
 }
 
-.contactReasons {
+.outageReasons {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -35,7 +35,7 @@
   padding: 0;
 }
 
-.contactReasons li {
+.outageReasons li {
   align-items: flex-start;
   color: var(--ink-700);
   display: flex;
@@ -44,24 +44,14 @@
   line-height: 1.5;
 }
 
-.contactReasons img {
+.outageReasons img {
   flex-shrink: 0;
   height: 18px;
   margin-top: 2px;
   width: 18px;
 }
 
-.contactFormImage {
-  max-width: 400px;
-}
-
-.contactFormImage img {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-
-.contactForm {
+.outageForm {
   background: linear-gradient(180deg, var(--surface) 0%, var(--ink-25) 100%);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
@@ -74,7 +64,7 @@
   position: relative;
 }
 
-.contactForm::before {
+.outageForm::before {
   background: linear-gradient(90deg, var(--green-500), var(--green-300));
   content: "";
   height: 4px;
@@ -84,19 +74,13 @@
   top: 0;
 }
 
-.formRow {
+.outageFields {
   display: grid;
   gap: var(--s-4);
   grid-template-columns: 1fr 1fr;
 }
 
-.contactFields {
-  display: grid;
-  gap: var(--s-4);
-  grid-template-columns: 1fr 1fr;
-}
-
-.contactForm label {
+.outageForm label {
   color: var(--ink-900);
   display: flex;
   flex-direction: column;
@@ -109,9 +93,8 @@
   color: var(--green-700);
 }
 
-.contactForm input,
-.contactForm textarea,
-.contactForm select {
+.outageForm input,
+.outageForm textarea {
   background: var(--surface);
   border: 1px solid var(--border-strong);
   border-radius: var(--r-md);
@@ -126,48 +109,33 @@
   width: 100%;
 }
 
-.contactForm input:hover,
-.contactForm textarea:hover,
-.contactForm select:hover {
+.outageForm input:hover,
+.outageForm textarea:hover {
   border-color: var(--ink-300);
 }
 
-.contactForm input:focus,
-.contactForm textarea:focus,
-.contactForm select:focus {
+.outageForm input:focus,
+.outageForm textarea:focus {
   background: var(--surface);
   border-color: var(--green-500);
   box-shadow: var(--shadow-xs), 0 0 0 4px rgba(20, 174, 75, 0.14);
 }
 
-.contactForm .invalidField {
+.outageForm .invalidField {
   border-color: var(--danger);
 }
 
-.contactForm .invalidField:focus {
+.outageForm .invalidField:focus {
   border-color: var(--danger);
   box-shadow: var(--shadow-xs), 0 0 0 4px rgba(220, 38, 38, 0.12);
 }
 
-.contactForm input::placeholder,
-.contactForm textarea::placeholder {
+.outageForm input::placeholder,
+.outageForm textarea::placeholder {
   color: var(--ink-400);
 }
 
-.contactForm select {
-  appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--ink-500) 50%),
-    linear-gradient(135deg, var(--ink-500) 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) 21px,
-    calc(100% - 15px) 21px;
-  background-repeat: no-repeat;
-  background-size: 5px 5px;
-  padding-right: 44px;
-}
-
-.contactForm textarea {
+.outageForm textarea {
   max-height: 260px;
   min-height: 132px;
   resize: vertical;
@@ -215,30 +183,26 @@
 }
 
 @media (max-width: 960px) {
-  .contactFormLayout {
+  .outageLayout {
     gap: var(--s-8);
     grid-template-columns: 1fr;
   }
 
-  .contactFormCopy {
+  .outageCopy {
     order: 1;
   }
 
-  .contactForm {
+  .outageForm {
     order: 2;
   }
 }
 
 @media (max-width: 560px) {
-  .contactForm {
+  .outageForm {
     padding: var(--s-6);
   }
 
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-
-  .contactFields {
+  .outageFields {
     grid-template-columns: 1fr;
   }
 }

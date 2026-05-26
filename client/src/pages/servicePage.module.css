@@ -275,14 +275,22 @@
   box-shadow: var(--shadow-md);
 }
 
-.whyCard img {
-  background: var(--green-50);
+.whyIconBox {
+  align-items: center;
+  background: var(--green-500);
   border-radius: var(--r-lg);
-  box-sizing: content-box;
-  height: 42px;
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  justify-content: center;
   margin-bottom: 18px;
-  padding: var(--s-2);
-  width: 42px;
+  width: 50px;
+}
+
+.whyIconBox img {
+  filter: brightness(0) invert(1);
+  height: 26px;
+  width: 26px;
 }
 
 .whyCard h3 {

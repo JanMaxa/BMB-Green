@@ -13,7 +13,7 @@ export default function BalickyContent({ data, editable = false, onFieldChange }
 
   return (
     <div className={cx(editable && service.contentEditor)}>
-      <section className={cx(layout.section, layout.topSection)}>
+      <section className={cx(layout.section, layout.topSection, layout.topGradient)}>
         <div className={layout.container}>
           <div className={layout.sectionHead}>
             <h2>
@@ -80,7 +80,13 @@ export default function BalickyContent({ data, editable = false, onFieldChange }
                   </ul>
                 )}
 
-                <Button as={editable ? 'div' : 'button'} className={cx(packageStyles.cta, editable && service.buttonEdit)} variant="secondary" block>
+                <Button
+                  as={editable ? 'div' : 'a'}
+                  href={editable ? undefined : '/kontakty?reason=zajem-o-sluzby&service=internet'}
+                  className={cx(packageStyles.cta, editable && service.buttonEdit)}
+                  variant="secondary"
+                  block
+                >
                   <EditableText
                     editable={editable}
                     value={content.bundleSection.ctaLabel}
@@ -117,7 +123,9 @@ export default function BalickyContent({ data, editable = false, onFieldChange }
           <div className={service.whyGrid}>
             {content.whySection.cards.map((card, index) => (
               <article className={service.whyCard} key={`${card.icon}-${index}`}>
-                <img src={`/assets/icons/${card.icon}.svg`} alt="" />
+                <div style={{ alignItems: 'center', background: 'var(--green-500)', borderRadius: '10px', display: 'flex', flexShrink: 0, height: '42px', justifyContent: 'center', marginBottom: '18px', width: '42px' }}>
+                  <img style={{ filter: 'brightness(0) invert(1)', height: '21px', width: '21px' }} src={`/assets/icons/${card.icon}.svg`} alt="" />
+                </div>
                 <h3>
                   <EditableText
                     editable={editable}

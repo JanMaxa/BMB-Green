@@ -1,8 +1,65 @@
 .hero {
-  background: linear-gradient(180deg, var(--green-50) 0%, var(--surface) 70%);
+  isolation: isolate;
   overflow: hidden;
   padding: 88px 0 104px;
   position: relative;
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(ellipse 68% 52% at 0% 0%,    rgba(210, 245, 222, 0.58) 0%, transparent 62%),
+    radial-gradient(ellipse 62% 48% at 100% 0%,  rgba(166, 235, 190, 0.48) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 0% 100%,  rgba(166, 235, 190, 0.42) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 100% 100%,rgba(210, 245, 222, 0.38) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 45% at 50% 50%,  rgba(110, 220, 147, 0.08) 0%, transparent 65%);
+  background-repeat: no-repeat;
+}
+
+.hero::before {
+  animation: blob1 14s ease-in-out infinite;
+  background-image:
+    radial-gradient(ellipse 50% 44% at 24% 38%,  rgba(110, 220, 147, 0.34) 0%, transparent 55%),
+    radial-gradient(ellipse 46% 40% at 76% 60%,  rgba(166, 235, 190, 0.40) 0%, transparent 52%);
+  content: '';
+  height: 160%;
+  left: -30%;
+  pointer-events: none;
+  position: absolute;
+  top: -30%;
+  width: 160%;
+  z-index: -1;
+}
+
+.hero::after {
+  animation: blob2 21s ease-in-out infinite;
+  background-image:
+    radial-gradient(ellipse 48% 42% at 62% 26%,  rgba(54, 199, 106, 0.20) 0%, transparent 52%),
+    radial-gradient(ellipse 44% 38% at 32% 70%,  rgba(110, 220, 147, 0.28) 0%, transparent 50%);
+  content: '';
+  height: 160%;
+  left: -30%;
+  pointer-events: none;
+  position: absolute;
+  top: -30%;
+  width: 160%;
+  z-index: -1;
+}
+
+@keyframes blob1 {
+  0%   { transform: translate(0%,    0%)  scale(1);    }
+  17%  { transform: translate(-8%,   3%)  scale(1.07); }
+  35%  { transform: translate(-4%,  -5%)  scale(0.93); }
+  52%  { transform: translate(-11%,  2%)  scale(1.09); }
+  68%  { transform: translate(-6%,   5%)  scale(0.95); }
+  84%  { transform: translate(-9%,  -2%)  scale(1.04); }
+  100% { transform: translate(0%,    0%)  scale(1);    }
+}
+
+@keyframes blob2 {
+  0%   { transform: translate(0%,    0%)  scale(1);    }
+  22%  { transform: translate(-6%,  -4%)  scale(1.08); }
+  41%  { transform: translate(-10%,  3%)  scale(0.92); }
+  59%  { transform: translate(-3%,  -2%)  scale(1.06); }
+  77%  { transform: translate(-8%,   5%)  scale(0.94); }
+  100% { transform: translate(0%,    0%)  scale(1);    }
 }
 
 .heroGrid {
@@ -137,9 +194,9 @@
 
 .serviceIcon {
   align-items: center;
-  background: var(--green-50);
+  background: var(--green-500);
   border-radius: 12px;
-  color: var(--green-500);
+  color: white;
   display: flex;
   height: 48px;
   justify-content: center;
@@ -147,6 +204,7 @@
 }
 
 .serviceIcon img {
+  filter: brightness(0) invert(1);
   height: 24px;
   width: 24px;
 }
@@ -180,8 +238,14 @@
 }
 
 .serviceLink img {
+  filter: brightness(0) saturate(100%) invert(26%) sepia(95%) saturate(600%) hue-rotate(120deg) brightness(90%);
   height: 14px;
+  transition: filter var(--dur-base);
   width: 14px;
+}
+
+.serviceLink:hover img {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(70%) saturate(450%) hue-rotate(105deg) brightness(100%);
 }
 
 .about {

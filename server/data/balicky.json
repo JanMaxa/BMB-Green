@@ -3,7 +3,7 @@
     "title": "Televize s Internetem v jednom balíčku.",
     "description": "Výhodné kombinace rychlého Internetu a BMB-IPTV. Ceny jsou uvedené včetně DPH.",
     "priceUnit": "Kč / měsíc",
-    "ctaLabel": "Ověřit dostupnost"
+    "ctaLabel": "Mám zájem"
   },
   "bundles": [
     {
@@ -115,6 +115,21 @@
         "icon": "wifi",
         "title": "Vhodné řešení podle adresy",
         "text": "Nejdřív ověříme dostupnost a následně doporučíme kombinaci, která dává technicky i cenově smysl."
+      },
+      {
+        "icon": "bolt",
+        "title": "Rychlá instalace obou služeb",
+        "text": "Internet i televizi zprovozníme v rámci jedné návštěvy technika, bez opakovaných termínů."
+      },
+      {
+        "icon": "clock",
+        "title": "TV archiv a chytré funkce",
+        "text": "IPTV Genius přidá možnost zpětného sledování pořadů a další funkce pro každodenní komfort sledování."
+      },
+      {
+        "icon": "fiber",
+        "title": "Optika tam, kde je dostupná",
+        "text": "Balíčky primárně využívají optickou přípojku FTTH, která zajišťuje nejvyšší stabilitu a rychlost internetu."
       }
     ]
   }

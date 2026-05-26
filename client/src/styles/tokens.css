@@ -29,7 +29,7 @@
   --ink-800: #1E2221;
   --ink-900: #121514;
 
-  --bg:           var(--ink-0);
+  --bg:           #FCFEFD;
   --bg-subtle:    var(--ink-25);
   --bg-muted:     var(--ink-50);
   --surface:      var(--ink-0);

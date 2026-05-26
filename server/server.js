@@ -2,6 +2,7 @@ import http from 'node:http';
 import balickyRoute from './routes/balicky.js';
 import internetRoute from './routes/internet.js';
 import televizeRoute from './routes/televize.js';
+import volaniRoute from './routes/volani.js';
 import locationsRoute from './routes/locations.js';
 import newsRoute from './routes/news.js';
 import authRoute from './routes/auth.js';
@@ -32,6 +33,11 @@ const server = http.createServer(async (req, res) => {
 
     if (req.url === '/api/televize') {
       await televizeRoute(req, res);
+      return;
+    }
+
+    if (req.url === '/api/volani') {
+      await volaniRoute(req, res);
       return;
     }
 

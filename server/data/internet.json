@@ -1,33 +1,24 @@
 {
   "hero": {
-    "title": "Kvalitní internetové připojení pro domácnosti",
+    "title": "Kvalitní internetové připojení",
     "description": "Internet na doma, do bytu i na chalupu. Podle adresy vybereme vhodnou technologii, ověříme dostupnost a připravíme instalaci včetně potřebného zařízení.",
     "ctaLabel": "Nezávazně poptat",
     "ctaHref": "/kontakty"
   },
-  "highlight": {
-    "label": "Nejrychlejší tarif",
-    "value": "220 / 110 Mb/s",
-    "description": "Optické připojení i220M pro adresy s dostupnou optickou sítí."
-  },
   "benefits": [
     {
-      "icon": "bolt",
       "title": "Až 220 Mb/s",
       "text": "Nejrychlejší běžná nabídka pro domácnosti v síti BMB."
     },
     {
-      "icon": "clock",
       "title": "Instalace 2-3 dny",
       "text": "Rychlé zřízení služby podle dostupnosti na adrese."
     },
     {
-      "icon": "shield-check",
       "title": "Stabilní připojení",
       "text": "Vlastní síť a technologie zvolené podle lokality."
     },
     {
-      "icon": "wifi",
       "title": "Hardware k zapůjčení",
       "text": "Modem nebo Wi-Fi Gateway v rámci 24měsíční smlouvy."
     }
@@ -82,47 +73,33 @@
       ]
     }
   ],
-  "legacyPlans": [
-    "xDSL mini WS: 2 / 0,25 Mb/s, 399 Kč",
-    "xDSL aktiv WS: 20 / 2 Mb/s, 449 Kč",
-    "xDSL extra WS: 40 / 2 Mb/s, 549 Kč",
-    "Classic WS varianty od 199 Kč měsíčně"
-  ],
-  "infoCards": [
-    {
-      "title": "Instalace a zařízení",
-      "text": "Cena instalace je zvýhodněna při sjednání služby na 24 měsíců. Modem nebo Wi-Fi Gateway zapůjčíme podle vybrané služby.",
-      "muted": false
-    },
-    {
-      "title": "Doplňkové služby",
-      "text": "Pevná veřejná IP adresa je dostupná za 120 Kč měsíčně a hodí se pro vlastní servery, kamery nebo pokročilé síťové použití.",
-      "muted": false
-    },
-    {
-      "title": "xDSL / WS",
-      "text": "",
-      "muted": true
-    }
-  ],
   "whySection": {
     "title": "Proč si vybrat Internet od BMB-Green?",
     "description": "Lokální síť, rychlá instalace a technologie vybraná podle konkrétní adresy. Neprodáváme univerzální slib, ale dostupné řešení.",
     "cards": [
       {
-        "icon": "fiber",
         "title": "Vlastní síť a lokální znalost",
         "text": "BMB-Green dlouhodobě buduje a provozuje vlastní přístupovou síť v lokalitách, které obsluhuje."
       },
       {
-        "icon": "clock",
         "title": "Rychlé zřízení služby",
         "text": "U dostupných adres zvládneme běžnou instalaci obvykle v horizontu 2-3 pracovních dnů."
       },
       {
-        "icon": "shield-check",
         "title": "Technologie podle reality",
         "text": "Optika, kabelová síť, Wi-Fi nebo xDSL. Vybereme variantu podle dostupnosti a potřeb domácnosti."
+      },
+      {
+        "title": "Modem nebo Gateway v ceně",
+        "text": "Při 24měsíční smlouvě zapůjčíme potřebné zařízení bez dodatečného poplatku za pronájem."
+      },
+      {
+        "title": "Žádné skryté poplatky",
+        "text": "Cena tarifu je cena, kterou platíte. Aktivační podmínky sdělujeme předem, bez překvapení ve faktuře."
+      },
+      {
+        "title": "Lokální podpora bez fronty",
+        "text": "Poruchu nebo dotaz řešíte s místním týmem, ne s call centrem vzdáleného operátora."
       }
     ]
   }

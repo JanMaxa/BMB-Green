@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button.jsx';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
@@ -8,6 +8,7 @@ import styles from './TelevizeContent.module.css';
 import { normalizeTelevizeData } from './televizeData.js';
 
 const CHANNELS_API_URL = 'https://admin.geniustv.cz/api/v1/public/channels';
+const API_PACKAGES = ['G.TV Základ', 'G.TV Standard', 'G.TV Komplet'];
 
 export default function TelevizeContent({ data, editable = false, onFieldChange }) {
   const content = normalizeTelevizeData(data);
@@ -19,11 +20,24 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
   });
 
   const activePackage = activePackageIndex === null ? null : content.packages[activePackageIndex];
-  const activeChannels = activePackage
+  const activeChannels = activePackageIndex !== null
     ? channelsState.items
-      .filter((channel) => channelMatchesPackage(channel, activePackage.apiPackage))
+      .filter((channel) => !channel.is_radio && channelMatchesPackage(channel, API_PACKAGES[activePackageIndex]))
       .sort(compareChannels)
     : [];
+
+  useEffect(() => {
+    loadChannels(setChannelsState);
+  }, []);
+
+  const packageStats = API_PACKAGES.map((pkg) => {
+    if (channelsState.status !== 'ready') return null;
+    const tv = channelsState.items.filter((c) => !c.is_radio && channelMatchesPackage(c, pkg));
+    return {
+      total: tv.length,
+      hd: tv.filter((c) => c.kvalita && c.kvalita.includes('HD')).length,
+    };
+  });
 
   const openPrograms = (index) => {
     setActivePackageIndex(index);
@@ -34,7 +48,7 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
 
   return (
     <div className={cx(editable && styles.contentEditor)}>
-      <section className={cx(layout.section, layout.sectionAlt, layout.topSection, service.servicePage)}>
+      <section className={cx(layout.section, layout.topSection, layout.topGradient, service.servicePage)}>
         <div className={layout.container}>
           <div className={service.serviceHero}>
             <div>
@@ -70,32 +84,6 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
                   <img src="/assets/icons/arrow-right.svg" alt="" />
                 </Button>
               )}
-            </div>
-            <div className={cx(service.serviceHighlight, styles.darkEdit)}>
-              <span>
-                <EditableText
-                  editable={editable}
-                  value={content.highlight.label}
-                  onChange={(value) => onFieldChange(['highlight', 'label'], value)}
-                  ariaLabel="Štítek zvýraznění"
-                />
-              </span>
-              <strong>
-                <EditableText
-                  editable={editable}
-                  value={content.highlight.value}
-                  onChange={(value) => onFieldChange(['highlight', 'value'], value)}
-                  ariaLabel="Hlavní hodnota"
-                />
-              </strong>
-              <p>
-                <EditableTextarea
-                  editable={editable}
-                  value={content.highlight.description}
-                  onChange={(value) => onFieldChange(['highlight', 'description'], value)}
-                  ariaLabel="Popis zvýraznění"
-                />
-              </p>
             </div>
           </div>
 
@@ -137,12 +125,9 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
                   />
                 </h2>
                 <div className={service.tvPackageCount}>
-                  <EditableText
-                    editable={editable}
-                    value={pkg.channels}
-                    onChange={(value) => onFieldChange(['packages', index, 'channels'], value)}
-                    ariaLabel="Počet programů"
-                  />
+                  {packageStats[index]
+                    ? `${packageStats[index].total} programů`
+                    : pkg.channels}
                 </div>
                 {editable ? (
                   <Button as="div" className={cx(styles.programsButton, styles.buttonEdit)} variant="secondary" block>
@@ -165,12 +150,9 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
                   </Button>
                 )}
                 <p>
-                  <EditableText
-                    editable={editable}
-                    value={pkg.hd}
-                    onChange={(value) => onFieldChange(['packages', index, 'hd'], value)}
-                    ariaLabel="HD programy"
-                  />
+                  {packageStats[index]
+                    ? `${packageStats[index].hd} v HD`
+                    : pkg.hd}
                 </p>
                 <strong>
                   <EditableText
@@ -193,31 +175,9 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
             ))}
           </div>
 
-          <div className={service.serviceInfoGrid}>
-            {content.infoCards.map((card, index) => (
-              <div className={service.serviceNote} key={`${card.title}-${index}`}>
-                <h2>
-                  <EditableText
-                    editable={editable}
-                    value={card.title}
-                    onChange={(value) => onFieldChange(['infoCards', index, 'title'], value)}
-                    ariaLabel="Nadpis informační karty"
-                  />
-                </h2>
-                <p>
-                  <EditableTextarea
-                    editable={editable}
-                    value={card.text}
-                    onChange={(value) => onFieldChange(['infoCards', index, 'text'], value)}
-                    ariaLabel="Text informační karty"
-                  />
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
-      <section className={layout.section}>
+      <section className={cx(layout.section, layout.sectionAlt)}>
         <div className={layout.container}>
           <div className={layout.sectionHead}>
             <h2>
@@ -240,7 +200,9 @@ export default function TelevizeContent({ data, editable = false, onFieldChange 
           <div className={service.whyGrid}>
             {content.whySection.cards.map((card, index) => (
               <article className={service.whyCard} key={`${card.icon}-${index}`}>
-                <img src={`/assets/icons/${card.icon}.svg`} alt="" />
+                <div style={{ alignItems: 'center', background: 'var(--green-500)', borderRadius: '10px', display: 'flex', flexShrink: 0, height: '42px', justifyContent: 'center', marginBottom: '18px', width: '42px' }}>
+                  <img style={{ filter: 'brightness(0) invert(1)', height: '21px', width: '21px' }} src={`/assets/icons/${card.icon}.svg`} alt="" />
+                </div>
                 <h3>
                   <EditableText
                     editable={editable}

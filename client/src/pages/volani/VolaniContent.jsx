@@ -2,22 +2,21 @@ import Button from '../../components/Button/Button.jsx';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import service from '../servicePage.module.css';
-import { normalizeInternetData } from './internetData.js';
+import { normalizeVolaniData } from './volaniData.js';
 
-const BENEFIT_ICONS = ['bolt', 'clock', 'shield-check', 'wifi'];
-const WHY_ICONS = ['fiber', 'clock', 'shield-check', 'wifi', 'check', 'bolt'];
+const BENEFIT_ICONS = ['check', 'bolt', 'clock', 'wifi'];
 
-export default function InternetContent({ data, editable = false, onFieldChange }) {
-  const content = normalizeInternetData(data);
-  const cards = content.cards;
+export default function VolaniContent({ data, editable = false, onFieldChange }) {
+  const content = normalizeVolaniData(data);
 
-  const updateCard = (index, key, value) => onFieldChange(['cards', index, key], value);
-  const updatePlan = (cardIndex, planIndex, key, value) => onFieldChange(['cards', cardIndex, 'plans', planIndex, key], value);
+  const updateRate = (cardIndex, rateIndex, key, value) =>
+    onFieldChange(['pricingCards', cardIndex, 'rates', rateIndex, key], value);
 
   return (
     <div className={cx(editable && service.contentEditor)}>
       <section className={cx(layout.section, layout.topSection, layout.topGradient, service.servicePage)}>
         <div className={layout.container}>
+
           <div className={service.serviceHero}>
             <div>
               <h1>
@@ -58,7 +57,9 @@ export default function InternetContent({ data, editable = false, onFieldChange 
           <div className={service.serviceBenefits}>
             {content.benefits.map((item, index) => (
               <div className={service.serviceBenefit} key={`${BENEFIT_ICONS[index]}-${index}`}>
-                <div className={service.serviceBenefitIcon}><img src={`/assets/icons/${BENEFIT_ICONS[index]}.svg`} alt="" /></div>
+                <div className={service.serviceBenefitIcon}>
+                  <img src={`/assets/icons/${BENEFIT_ICONS[index]}.svg`} alt="" />
+                </div>
                 <div>
                   <h3>
                     <EditableText
@@ -81,55 +82,46 @@ export default function InternetContent({ data, editable = false, onFieldChange 
             ))}
           </div>
 
-          <div className={service.serviceTariffs}>
-            {cards.map((tech, index) => (
-              <article className={service.serviceTariffCard} key={`${tech.title}-${index}`}>
+          <div className={service.serviceTariffs} style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+            {content.pricingCards.map((card, cardIndex) => (
+              <article className={service.serviceTariffCard} key={`${card.title}-${cardIndex}`}>
                 <h2>
                   <EditableText
                     editable={editable}
-                    value={tech.title}
-                    onChange={(value) => updateCard(index, 'title', value)}
-                    ariaLabel="Nadpis internetové karty"
+                    value={card.title}
+                    onChange={(value) => onFieldChange(['pricingCards', cardIndex, 'title'], value)}
+                    ariaLabel="Nadpis sítě"
                   />
                 </h2>
                 <p>
                   <EditableTextarea
                     editable={editable}
-                    value={tech.desc}
-                    onChange={(value) => updateCard(index, 'desc', value)}
-                    ariaLabel="Popis internetové karty"
+                    value={card.desc}
+                    onChange={(value) => onFieldChange(['pricingCards', cardIndex, 'desc'], value)}
+                    ariaLabel="Popis sítě"
                   />
                 </p>
                 <div className={service.servicePlanList}>
-                  {tech.plans.map((plan, planIndex) => (
-                    <div className={service.servicePlan} key={`${plan.name}-${planIndex}`}>
+                  {card.rates.map((rate, rateIndex) => (
+                    <div className={service.servicePlan} key={`${rate.label}-${rateIndex}`}>
                       <div>
                         <strong>
                           <EditableText
                             editable={editable}
-                            value={plan.name}
-                            onChange={(value) => updatePlan(index, planIndex, 'name', value)}
+                            value={rate.label}
+                            onChange={(value) => updateRate(cardIndex, rateIndex, 'label', value)}
                             ariaLabel="Název tarifu"
                           />
                         </strong>
-                        <span>
-                          rychlost{' '}
-                          <EditableText
-                            editable={editable}
-                            value={plan.speed}
-                            onChange={(value) => updatePlan(index, planIndex, 'speed', value)}
-                            ariaLabel="Rychlost tarifu"
-                          />
-                        </span>
                       </div>
                       <em>
                         <EditableText
                           editable={editable}
-                          value={plan.price}
-                          onChange={(value) => updatePlan(index, planIndex, 'price', value)}
+                          value={rate.price}
+                          onChange={(value) => updateRate(cardIndex, rateIndex, 'price', value)}
                           ariaLabel="Cena tarifu"
                         />
-                        <small>/měsíc</small>
+                        <small>/min</small>
                       </em>
                     </div>
                   ))}
@@ -163,9 +155,9 @@ export default function InternetContent({ data, editable = false, onFieldChange 
           </div>
           <div className={service.whyGrid}>
             {content.whySection.cards.map((card, index) => (
-              <article className={service.whyCard} key={`${WHY_ICONS[index]}-${index}`}>
+              <article className={service.whyCard} key={`${card.icon}-${index}`}>
                 <div style={{ alignItems: 'center', background: 'var(--green-500)', borderRadius: '10px', display: 'flex', flexShrink: 0, height: '42px', justifyContent: 'center', marginBottom: '18px', width: '42px' }}>
-                  <img style={{ filter: 'brightness(0) invert(1)', height: '21px', width: '21px' }} src={`/assets/icons/${WHY_ICONS[index]}.svg`} alt="" />
+                  <img style={{ filter: 'brightness(0) invert(1)', height: '21px', width: '21px' }} src={`/assets/icons/${card.icon}.svg`} alt="" />
                 </div>
                 <h3>
                   <EditableText

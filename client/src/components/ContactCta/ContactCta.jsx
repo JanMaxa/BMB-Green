@@ -1,4 +1,5 @@
 import Button from '../Button/Button.jsx';
+import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import styles from './ContactCta.module.css';
 
@@ -14,11 +15,12 @@ export default function ContactCta() {
               Zavolejte v&nbsp;pracovní dny 8–17&nbsp;h nebo nám napište — odpovíme do&nbsp;druhého pracovního dne.
             </p>
             <div className={styles.contactActions}>
-              <Button as="a" href="/kontakty" size="lg">
-                Kontaktní formulář
-              </Button>
               <Button as="a" href="tel:+420266317129" variant="secondary" size="lg">
                 +420&nbsp;266&nbsp;317&nbsp;129
+              </Button>
+              <Button as="a" href="/kontakty" size="lg">
+                Kontaktní formulář
+                <img src="/assets/icons/arrow-right.svg" alt="" />
               </Button>
             </div>
           </div>

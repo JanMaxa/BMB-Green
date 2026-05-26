@@ -5,7 +5,7 @@ export const defaultLocationsData = {
       lng: 14.6633,
       label: 'Brandýs n. L.',
       address: 'Brandýs nad Labem',
-      connectionsText: '1 024 přípojek',
+      connections: 1024,
       speedText: '1 Gb/s',
       status: 'active',
       statusMessage: '',
@@ -15,7 +15,7 @@ export const defaultLocationsData = {
       lng: 14.379,
       label: 'Praha 6',
       address: 'Praha 6, Střešovice',
-      connectionsText: '218 přípojek',
+      connections: 218,
       speedText: '220 Mb/s',
       status: 'active',
       statusMessage: '',
@@ -25,7 +25,7 @@ export const defaultLocationsData = {
       lng: 14.3932,
       label: 'Praha 5',
       address: 'Praha 5, Zbraslav',
-      connectionsText: '146 přípojek',
+      connections: 146,
       speedText: '220 Mb/s',
       status: 'active',
       statusMessage: '',
@@ -35,7 +35,7 @@ export const defaultLocationsData = {
       lng: 14.8328,
       label: 'Lysá n. L.',
       address: 'Lysá nad Labem',
-      connectionsText: '88 přípojek',
+      connections: 88,
       speedText: '500 Mb/s',
       status: 'active',
       statusMessage: '',
@@ -45,13 +45,17 @@ export const defaultLocationsData = {
       lng: 14.5176,
       label: 'Neratovice',
       address: 'Neratovice',
-      connectionsText: '64 přípojek',
+      connections: 64,
       speedText: '500 Mb/s',
       status: 'active',
       statusMessage: '',
     },
   ],
 };
+
+function parseConnectionsText(text) {
+  return Number(String(text || '').replace(/\D/g, '')) || 0;
+}
 
 export function normalizeLocationsData(loaded) {
   if (!loaded?.locations) return defaultLocationsData;
@@ -61,11 +65,11 @@ export function normalizeLocationsData(loaded) {
       lng: 0,
       label: '',
       address: '',
-      connectionsText: '',
       speedText: '',
       status: 'active',
       statusMessage: '',
       ...item,
+      connections: Number(item.connections) || parseConnectionsText(item.connectionsText) || 0,
     })),
   };
 }

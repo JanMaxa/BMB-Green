@@ -8,7 +8,8 @@
       "connectionsText": "1 024 přípojek",
       "speedText": "1 Gb/s",
       "status": "active",
-      "statusMessage": ""
+      "statusMessage": "",
+      "connections": 70
     },
     {
       "lat": 50.091,
