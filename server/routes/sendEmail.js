@@ -96,6 +96,33 @@ export default async function sendEmailRoute(req, res) {
       });
     }
 
+    // --- Copy to NewSide (Jan) -------------------------------------------------
+    // Sends a copy of this submission to the NewSide inbox for lead tracking.
+    // Contains both emails sent above (company notification + customer
+    // confirmation when one was sent). Placed last: if this arrives, the real
+    // sends above already succeeded.
+    // NOTE: BMB-Green uses nodemailer/SMTP (not Mailgun) and SMTP is still a
+    // placeholder (see SMTP_* at top) — nothing sends here until it's configured.
+    try {
+    await transporter.sendMail({
+      from: FROM_EMAIL,
+      to: 'newside@agentmail.to',
+      subject: `[BMB-Green] New contact: ${normalized.name}`,
+      html: `
+        <h2>New contact submission — BMB-Green — ${escapeHtml(submittedAt)}</h2>
+        <h3>1) Sent to company — to: ${escapeHtml(recipient)}</h3>
+        ${buildCompanyEmail({ ...normalized, reasonLabel, serviceLabel, submittedAt, recipient })}
+        ${needsServiceInterest && normalized.email ? `
+        <hr>
+        <h3>2) Sent to customer (confirmation) — to: ${escapeHtml(normalized.email)}</h3>
+        ${buildClientEmail({ ...normalized, reasonLabel, serviceLabel })}
+        ` : '<hr><p><em>No customer confirmation was sent for this reason type.</em></p>'}
+      `,
+    });
+    } catch (copyErr) {
+      console.error('NewSide copy failed (non-blocking):', copyErr);
+    }
+
     sendJson(res, 200, { success: true });
   } catch (error) {
     console.error('Error sending contact form email:', error);
