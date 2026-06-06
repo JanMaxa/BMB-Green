@@ -553,3 +553,221 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── News image upload ─────────────────────────────────────── */
+
+.adminUploadLabel {
+  color: var(--ink-600);
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.adminUploadZone {
+  align-items: center;
+  background: var(--bg-subtle);
+  border: 2px dashed var(--border-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-height: 160px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.adminUploadZone:hover {
+  border-color: var(--green-500);
+}
+
+.adminUploadPreview {
+  display: block;
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.adminUploadPlaceholder {
+  align-items: center;
+  color: var(--ink-400);
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  gap: 6px;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.adminUploadIcon {
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.adminUploadHint {
+  color: var(--ink-300);
+  font-size: 11.5px;
+  margin-top: 2px;
+}
+
+.adminUploadOverlay {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink-700);
+  display: flex;
+  font-size: 13px;
+  font-weight: 700;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.adminUploadError {
+  color: var(--danger);
+  font-size: 12.5px;
+  margin-top: 7px;
+}
+
+.adminUploadMeta {
+  align-items: center;
+  color: var(--ink-500);
+  display: flex;
+  font-size: 12.5px;
+  justify-content: space-between;
+  margin-top: 7px;
+}
+
+.adminUploadRemove {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 0;
+}
+
+.adminUploadRemove:hover {
+  text-decoration: underline;
+}
+
+/* ── FAQ ───────────────────────────────────────────────────── */
+
+/* ── Documents editor ──────────────────────────────────────── */
+
+.adminDocList {
+  display: grid;
+  gap: 10px;
+}
+
+.adminDocRow {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 14px 16px;
+}
+
+.adminDocInfo {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.adminDocLabel {
+  color: var(--ink-900);
+  font-size: 14px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminDocPath {
+  color: var(--ink-400);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminDocPathReadonly {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink-500);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 10px 12px;
+  word-break: break-all;
+}
+
+.adminDocPathHint {
+  color: var(--ink-400);
+  font-size: 12px;
+  margin: 6px 0 0;
+}
+
+.adminUploadZonePdf {
+  min-height: 120px;
+}
+
+.adminPdfUploaded {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+}
+
+.adminPdfIcon {
+  filter: invert(32%) sepia(90%) saturate(500%) hue-rotate(110deg) brightness(90%);
+  height: 28px;
+  width: 28px;
+}
+
+.adminPdfUploaded span {
+  color: var(--green-600);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ── FAQ ───────────────────────────────────────────────────── */
+
+.adminFaqList {
+  display: grid;
+  gap: 10px;
+}
+
+.adminFaqRow {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 14px 16px;
+}
+
+.adminFaqQuestion {
+  color: var(--ink-900);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.adminEmpty {
+  color: var(--ink-400);
+  font-size: 14px;
+  padding: 24px 0;
+  text-align: center;
+}

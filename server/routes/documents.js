@@ -1,35 +1,35 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile, writeFile, unlink } from 'node:fs/promises';
-import { UPLOADS_DIR } from './newsUpload.js';
+import { UPLOADS_DIR } from './documentsUpload.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_FILE = path.join(__dirname, '..', 'data', 'news.json');
+const DATA_FILE = path.join(__dirname, '..', 'data', 'documents.json');
 
-function isLocalUpload(url) {
-  return typeof url === 'string' && url.startsWith('/uploads/news/');
+function isLocalUpload(filePath) {
+  return typeof filePath === 'string' && filePath.startsWith('/uploads/documents/');
 }
 
-// Delete any local upload files that were removed between oldItems and newItems
-async function deleteOrphanedImages(oldItems, newItems) {
-  const newUrls = new Set((newItems ?? []).map((i) => i.imageUrl).filter(Boolean));
+// Delete any uploaded PDF files removed between old and new items
+async function deleteOrphanedFiles(oldItems, newItems) {
+  const newPaths = new Set((newItems ?? []).map((i) => i.path).filter(Boolean));
   const orphans = (oldItems ?? [])
-    .map((i) => i.imageUrl)
-    .filter((url) => isLocalUpload(url) && !newUrls.has(url));
+    .map((i) => i.path)
+    .filter((p) => isLocalUpload(p) && !newPaths.has(p));
 
-  for (const url of orphans) {
-    const filename = path.basename(url);
+  for (const filePath of orphans) {
+    const filename = path.basename(filePath);
     try {
       await unlink(path.join(UPLOADS_DIR, filename));
     } catch {
-      // File might already be missing — ignore
+      // Already gone — ignore
     }
   }
 }
 
-export default async function newsRoute(req, res) {
+export default async function documentsRoute(req, res) {
   if (req.method === 'GET') {
     const json = await readFile(DATA_FILE, 'utf8');
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
@@ -41,7 +41,6 @@ export default async function newsRoute(req, res) {
     const body = await readRequestBody(req);
     const newData = JSON.parse(body);
 
-    // Read old data to diff and clean up orphaned uploaded images
     let oldData = { items: [] };
     try {
       oldData = JSON.parse(await readFile(DATA_FILE, 'utf8'));
@@ -49,7 +48,7 @@ export default async function newsRoute(req, res) {
       // First write — nothing to diff
     }
 
-    await deleteOrphanedImages(oldData.items, newData.items);
+    await deleteOrphanedFiles(oldData.items, newData.items);
     await writeFile(DATA_FILE, JSON.stringify(newData, null, 2) + '\n', 'utf8');
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify({ ok: true }));

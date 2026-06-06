@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import cx from '../../../utils/cx.js';
 import newsStyles from '../../pro-zakazniky/ProZakazniky.module.css';
-import { loadAdminData, saveAdminData } from '../adminApi.js';
+import { loadAdminData, saveAdminData, uploadNewsImage } from '../adminApi.js';
 import styles from '../Admin.module.css';
 
 const endpoint = '/api/news';
@@ -148,6 +148,35 @@ export default function NovinkyEditor({ setHeaderAction }) {
 }
 
 function NewsModal({ draft, isNew, onChange, onCancel, onSave }) {
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Reset input so the same file can be re-selected after removal
+    event.target.value = '';
+
+    setUploading(true);
+    setUploadError('');
+
+    try {
+      const imagePath = await uploadNewsImage(file);
+      onChange('imageUrl', imagePath);
+    } catch (err) {
+      setUploadError(err.message || 'Nahrání selhalo.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = () => {
+    onChange('imageUrl', '');
+    setUploadError('');
+  };
+
   return (
     <div className={styles.adminModalBackdrop}>
       <div className={styles.adminModal}>
@@ -164,14 +193,61 @@ function NewsModal({ draft, isNew, onChange, onCancel, onSave }) {
             <label>Štítek<input value={draft.tag} onChange={(event) => onChange('tag', event.target.value)} /></label>
             <label>Datum<input value={draft.date} onChange={(event) => onChange('date', event.target.value)} /></label>
           </div>
-          <label>URL obrázku<input value={draft.imageUrl || ''} onChange={(event) => onChange('imageUrl', event.target.value)} /></label>
+
+          {/* Image upload */}
+          <div>
+            <span className={styles.adminUploadLabel}>Obrázek</span>
+            <button
+              type="button"
+              className={styles.adminUploadZone}
+              onClick={() => !uploading && fileInputRef.current?.click()}
+              aria-label="Nahrát obrázek"
+            >
+              {draft.imageUrl ? (
+                <img src={draft.imageUrl} alt="Náhled" className={styles.adminUploadPreview} />
+              ) : (
+                <div className={styles.adminUploadPlaceholder}>
+                  <span className={styles.adminUploadIcon}>🖼</span>
+                  <span>Klikněte pro nahrání obrázku</span>
+                  <span className={styles.adminUploadHint}>JPEG, PNG, WebP, GIF · max 10 MB</span>
+                </div>
+              )}
+              {uploading && (
+                <div className={styles.adminUploadOverlay}>
+                  <span>Nahrávám…</span>
+                </div>
+              )}
+            </button>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+
+            {uploadError && (
+              <div className={styles.adminUploadError}>{uploadError}</div>
+            )}
+
+            {draft.imageUrl && !uploading && (
+              <div className={styles.adminUploadMeta}>
+                <span>{draft.imageUrl.startsWith('/uploads/') ? '✓ Nahráno na server' : 'Obrázek nastaven'}</span>
+                <button type="button" className={styles.adminUploadRemove} onClick={removeImage}>
+                  Odebrat
+                </button>
+              </div>
+            )}
+          </div>
+
           <label>Nadpis<input value={draft.title} onChange={(event) => onChange('title', event.target.value)} /></label>
           <label>Popis<textarea value={draft.desc} onChange={(event) => onChange('desc', event.target.value)} /></label>
         </div>
 
         <div className={styles.adminModalActions}>
           <button className={styles.adminSecondary} onClick={onCancel} type="button">Zrušit</button>
-          <button className={styles.adminPrimary} onClick={onSave} type="button">Uložit</button>
+          <button className={styles.adminPrimary} onClick={onSave} disabled={uploading} type="button">Uložit</button>
         </div>
       </div>
     </div>

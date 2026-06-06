@@ -2,19 +2,25 @@ import { useState } from 'react';
 import AdminLayout from './AdminLayout.jsx';
 import AdminLogin from './AdminLogin.jsx';
 import BalickyEditor from './editors/BalickyEditor.jsx';
+import FaqEditor from './editors/FaqEditor.jsx';
 import InternetEditor from './editors/InternetEditor.jsx';
+import KeStazeniEditor from './editors/KeStazeniEditor.jsx';
 import NovinkyEditor from './editors/NovinkyEditor.jsx';
+import KontaktyEditor from './editors/KontaktyEditor.jsx';
 import PokrytiEditor from './editors/PokrytiEditor.jsx';
 import TelevizeEditor from './editors/TelevizeEditor.jsx';
 import VolaniEditor from './editors/VolaniEditor.jsx';
 
 const tabs = [
   { slug: 'pokryti', label: 'Pokrytí', icon: 'map-pin', component: PokrytiEditor },
+  { slug: 'faq', label: 'Časté dotazy', icon: 'chevron-down', component: FaqEditor },
+  { slug: 'novinky', label: 'Novinky', icon: 'clock', component: NovinkyEditor },
+  { slug: 'kontakty', label: 'Kontakty', icon: 'mail', component: KontaktyEditor },
   { slug: 'balicky', label: 'Balíčky', icon: 'check', component: BalickyEditor },
   { slug: 'internet', label: 'Internet', icon: 'wifi', component: InternetEditor },
   { slug: 'televize', label: 'Televize', icon: 'tv', component: TelevizeEditor },
   { slug: 'volani', label: 'Volání', icon: 'phone', component: VolaniEditor },
-  { slug: 'novinky', label: 'Novinky', icon: 'clock', component: NovinkyEditor },
+  { slug: 'ke-stazeni', label: 'Ke stažení', icon: 'download', component: KeStazeniEditor },
 ];
 
 export default function Admin() {

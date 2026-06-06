@@ -1,0 +1,269 @@
+.head {
+  margin-bottom: 36px;
+  width: 100%;
+}
+
+.editField {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: inherit;
+  display: inline-block;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  margin: -6px -8px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.editField:focus {
+  outline: none;
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(20, 174, 75, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.editArea {
+  min-height: 520px;
+  resize: vertical;
+}
+
+.title {
+  color: var(--ink-900);
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
+
+.subtitlePanel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-xs);
+  color: var(--ink-600);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 36px 0 0;
+  padding: 18px 20px;
+  white-space: pre-line;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 760px;
+}
+
+.row {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-xs);
+  color: inherit;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 40px 1fr auto;
+  padding: 18px 20px;
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.row:hover {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(20, 174, 75, 0.1);
+}
+
+.rowDisabled {
+  cursor: default;
+  opacity: 0.92;
+}
+
+.rowDisabled:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-xs);
+}
+
+.rowIcon {
+  align-items: center;
+  background: rgba(20, 174, 75, 0.09);
+  border-radius: 8px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.rowIcon img {
+  filter: invert(40%) sepia(90%) saturate(500%) hue-rotate(100deg) brightness(95%);
+  height: 20px;
+  width: 20px;
+}
+
+.rowLabel {
+  color: var(--ink-900);
+  font-size: 15px;
+  font-weight: var(--w-semibold);
+  line-height: 1.4;
+}
+
+.rowAction {
+  align-items: center;
+  color: var(--green-600);
+  display: flex;
+  flex-shrink: 0;
+  font-size: 13.5px;
+  font-weight: var(--w-bold);
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.rowAction img {
+  filter: invert(32%) sepia(90%) saturate(500%) hue-rotate(110deg) brightness(90%);
+  height: 16px;
+  width: 16px;
+}
+
+.loading,
+.empty {
+  color: var(--ink-400);
+  font-size: 15px;
+  padding: 12px 0;
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+  }
+
+  .rowAction {
+    display: none;
+  }
+}
+
+.imagePanel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-xs);
+  margin: 36px 0 0;
+  padding: 18px 20px;
+  width: 100%;
+}
+
+.imageDisplay {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.imageUploadLabel {
+  color: var(--ink-700);
+  display: block;
+  font-size: 13px;
+  font-weight: var(--w-bold);
+  margin-bottom: 10px;
+}
+
+.imageUploadZone {
+  align-items: center;
+  background: var(--bg-subtle);
+  border: 2px dashed var(--border-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  min-height: 240px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  transition: border-color 0.15s, background-color 0.15s;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+}
+
+.imageUploadZone:hover {
+  border-color: var(--green-500);
+  background: rgba(20, 174, 75, 0.02);
+}
+
+.imageUploadPreview {
+  display: block;
+  height: auto;
+  max-height: 480px;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.imageUploadPlaceholder {
+  align-items: center;
+  color: var(--ink-400);
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  gap: 6px;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.imageUploadIcon {
+  color: var(--green-600);
+  font-size: 18px;
+  font-weight: var(--w-black);
+}
+
+.imageUploadHint {
+  color: var(--ink-300);
+  font-size: 11.5px;
+  margin-top: 2px;
+}
+
+.imageUploadOverlay {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink-700);
+  display: flex;
+  font-size: 13px;
+  font-weight: var(--w-bold);
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.imageUploadError {
+  color: var(--danger);
+  font-size: 12.5px;
+  margin-top: 8px;
+}
+
+.imageUploadMeta {
+  align-items: center;
+  color: var(--ink-500);
+  display: flex;
+  font-size: 12.5px;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.imageUploadRemove {
+  background: none;
+  border: 0;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 12.5px;
+  font-weight: var(--w-bold);
+  padding: 0;
+}
+
+.imageUploadRemove:hover {
+  text-decoration: underline;
+}

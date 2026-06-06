@@ -12,6 +12,8 @@ const emptyLocation = () => ({
   address: '',
   connections: '',
   speedText: '',
+  streets: '',
+  streetsText: '',
   status: 'active',
   statusMessage: '',
 });
@@ -53,8 +55,12 @@ export default function PokrytiEditor({ setHeaderAction }) {
   if (!data) return <div className={cx(styles.adminStatus, styles.adminStatusPlain)}>{status}</div>;
 
   const openEdit = (index) => {
+    const location = data.locations[index];
     setEditingIndex(index);
-    setDraft({ ...data.locations[index] });
+    setDraft({
+      ...location,
+      streetsText: streetsToText(location.streets),
+    });
   };
 
   const closeModal = () => {
@@ -77,11 +83,13 @@ export default function PokrytiEditor({ setHeaderAction }) {
   };
 
   const saveDraft = async () => {
+    const { streetsText, ...draftData } = draft;
     const normalized = {
-      ...draft,
-      lat: draft.lat === '' ? null : Number(draft.lat),
-      lng: draft.lng === '' ? null : Number(draft.lng),
-      connections: draft.connections === '' ? 0 : Number(draft.connections),
+      ...draftData,
+      lat: draftData.lat === '' ? null : Number(draftData.lat),
+      lng: draftData.lng === '' ? null : Number(draftData.lng),
+      connections: draftData.connections === '' ? 0 : Number(draftData.connections),
+      streets: streetsToText(streetsText ?? draftData.streets),
     };
     const nextLocations = editingIndex === null
       ? [...data.locations, normalized]
@@ -158,6 +166,7 @@ function LocationModal({ draft, isNew, onChange, onCancel, onSave }) {
             <label>Počet přípojek<input type="number" min="0" step="1" value={draft.connections} onChange={(event) => onChange('connections', event.target.value)} /></label>
             <label>Rychlost<input value={draft.speedText} onChange={(event) => onChange('speedText', event.target.value)} /></label>
           </div>
+          <label>Seznam ulic<textarea value={draft.streetsText ?? streetsToText(draft.streets)} onChange={(event) => onChange('streetsText', event.target.value)} /></label>
           <label>Stav
             <select value={draft.status} onChange={(event) => onChange('status', event.target.value)}>
               <option value="active">Aktivní</option>
@@ -175,6 +184,11 @@ function LocationModal({ draft, isNew, onChange, onCancel, onSave }) {
       </div>
     </div>
   );
+}
+
+
+function streetsToText(streets) {
+  return Array.isArray(streets) ? streets.join('\n') : String(streets || '');
 }
 
 function DeleteModal({ location, onCancel, onDelete }) {

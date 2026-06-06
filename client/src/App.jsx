@@ -9,6 +9,7 @@ import Televize from './pages/televize/Televize.jsx';
 import Volani from './pages/volani/Volani.jsx';
 import ProZakazniky from './pages/pro-zakazniky/ProZakazniky.jsx';
 import Kontakty from './pages/kontakty/Kontakty.jsx';
+import KeStazeni from './pages/ke-stazeni/KeStazeni.jsx';
 import Admin from './pages/admin/Admin.jsx';
 import { getPageMeta } from './seo/pageMeta.js';
 
@@ -20,6 +21,7 @@ const routes = {
   '/volani': Volani,
   '/pro-zakazniky': ProZakazniky,
   '/kontakty': Kontakty,
+  '/ke-stazeni': KeStazeni,
   '/admin': Admin,
 };
 

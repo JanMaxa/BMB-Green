@@ -1,0 +1,13 @@
+{
+  "hero": {
+    "title": "Dokumenty ke stažení",
+    "description": "Seznam typů rozhraní:\nSeznam typů rozhraní a jejich technických specifikací pro připojení přístrojů oznámených podle § 73 odst. 7 zákona č. 127/2005 Sb., o elektronických komunikacích, pro připojení telekomunikačních koncových zařízení (článek 4.2 směrnice 1999/5/ES).\n\nRozhraní televizních a rozhlasových služeb:\nV analogové nebo digitální formě distribuce, specifikace ETSI EN301 489-14 a IEEE 802.21, účastnické rozhraní konektor IEC a/nebo F.\n\nRozhraní datových služeb:\n- EURODOCSIS – dle specifikace CableLabs CM-SP-CMCI-C00-3, účastnické - rozhraní konektor RJ-45F (8P8C) – standard ANSI/TIA/EIA-568-B, IEC 60603, IEEE802.3\n- WiFi 5 GHz – dle specifikace IEEE 802.11a a 802.11n\n- LAN – rozhraní konektor RJ-45F (8P8C) – standard ANSI/TIA/EIA-568-B, IEC 60603, IEEE802.3\nRozhraní hlasových služeb\n\nVoIP s protokolem SIP, kodek G.729 a G.711, účastnické rozhraní konektor 6P2C – standard RJ-11F.\n\nRozhraní optické sítě\nVlákna single mode s konektory E2000/APC, LC/PC, SC/PC a SC/APC.",
+    "imageUrl": "/uploads/news/1779971947690-471498.webp"
+  },
+  "items": [
+    {
+      "label": "V",
+      "path": "/uploads/documents/1779884397467-14be48.pdf"
+    }
+  ]
+}
