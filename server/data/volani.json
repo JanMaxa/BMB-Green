@@ -28,16 +28,28 @@
       "title": "Pevné sítě",
       "desc": "Místní i dálkové hovory na pevné linky všech operátorů v rámci České republiky.",
       "rates": [
-        { "label": "Špička (7:00–19:00)", "price": "1,03 Kč" },
-        { "label": "Mimo špičku", "price": "0,54 Kč" }
+        {
+          "label": "Špička (7:00–19:00)",
+          "price": "1,03 Kč"
+        },
+        {
+          "label": "Mimo špičku",
+          "price": "0,54 Kč"
+        }
       ]
     },
     {
       "title": "Mobilní sítě",
       "desc": "Hovory do mobilních sítí všech operátorů v rámci České republiky.",
       "rates": [
-        { "label": "Špička (7:00–19:00)", "price": "4,22 Kč" },
-        { "label": "Mimo špičku", "price": "4,22 Kč" }
+        {
+          "label": "Špička (7:00–19:00)",
+          "price": "4,22 Kč"
+        },
+        {
+          "label": "Mimo špičku",
+          "price": "4,22 Kč"
+        }
       ]
     }
   ],
@@ -62,7 +74,7 @@
       },
       {
         "icon": "wifi",
-        "title": "VoIP telefon v ceně do 2 000 Kč",
+        "title": "VoIP telefon",
         "text": "Dodáme nastavený VoIP přístroj v drátovém i bezdrátovém provedení. K jedné základně lze připojit více sluchátek."
       },
       {

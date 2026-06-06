@@ -1,7 +1,7 @@
 export const defaultInternetData = {
   hero: {
     title: 'Kvalitní internetové připojení',
-    description: 'Internet na doma, do bytu i na chalupu. Podle adresy vybereme vhodnou technologii, ověříme dostupnost a připravíme instalaci včetně potřebného zařízení.',
+    description: 'Internet na doma i do bytu. Podle adresy vybereme vhodnou technologii, ověříme dostupnost a připravíme instalaci včetně potřebného zařízení.',
     ctaLabel: 'Nezávazně poptat',
     ctaHref: '/kontakty',
   },
@@ -78,29 +78,29 @@ export const defaultInternetData = {
     description: 'Lokální síť, rychlá instalace a technologie vybraná podle konkrétní adresy. Neprodáváme univerzální slib, ale dostupné řešení.',
     cards: [
       {
-        title: 'Vlastní síť a lokální znalost',
-        text: 'BMB-Green dlouhodobě buduje a provozuje vlastní přístupovou síť v lokalitách, které obsluhuje.',
+        "title": "Vlastní síť a lokální znalost",
+        "text": "BMB-Green dlouhodobě buduje a provozuje vlastní přístupovou síť v lokalitách, které obsluhuje."
       },
       {
-        title: 'Rychlé zřízení služby',
-        text: 'U dostupných adres zvládneme běžnou instalaci obvykle v horizontu 2-3 pracovních dnů.',
+        "title": "Rychlé zřízení služby",
+        "text": "U dostupných adres zvládneme běžnou instalaci obvykle v horizontu 2-3 pracovních dnů."
       },
       {
-        title: 'Technologie podle reality',
-        text: 'Optika, kabelová síť, Wi-Fi nebo xDSL. Vybereme variantu podle dostupnosti a potřeb domácnosti.',
+        "title": "Technologie podle reality",
+        "text": "Optika, kabelová síť, Wi-Fi. Vybereme variantu podle dostupnosti a potřeb domácnosti."
       },
       {
-        title: 'Modem nebo Gateway v ceně',
-        text: 'Při 24měsíční smlouvě zapůjčíme potřebné zařízení bez dodatečného poplatku za pronájem.',
+        "title": "Modem nebo Gateway v ceně",
+        "text": "Při 24měsíční smlouvě zapůjčíme potřebné zařízení bez dodatečného poplatku za pronájem."
       },
       {
-        title: 'Žádné skryté poplatky',
-        text: 'Cena tarifu je cena, kterou platíte. Aktivační podmínky sdělujeme předem, bez překvapení ve faktuře.',
+        "title": "Žádné skryté poplatky",
+        "text": "Cena tarifu je cena, kterou platíte. Aktivační podmínky sdělujeme předem, bez překvapení ve faktuře."
       },
       {
-        title: 'Lokální podpora bez fronty',
-        text: 'Poruchu nebo dotaz řešíte s místním týmem, ne s call centrem vzdáleného operátora.',
-      },
+        "title": "Rychlá podpora",
+        "text": "Poruchu nebo dotaz řešíte přímo s naším týmem, ne s call centrem vzdáleného operátora."
+      }
     ],
   },
 };
@@ -128,15 +128,15 @@ function emptyBenefit() {
 function emptyPlan() {
   return {
     name: 'Nový tarif',
-    speed: '',
-    price: '',
+    speed: '??? / ??? Mb/s',
+    price: '0 Kč',
   };
 }
 
-function emptyInternetCard() {
+export function emptyInternetCard() {
   return {
     title: 'Nový typ internetu',
-    desc: '',
+    desc: 'Vyplňte popis tohoto typu připojení a pro koho je vhodné.',
     plans: [emptyPlan()],
   };
 }

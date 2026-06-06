@@ -130,7 +130,9 @@ function createLocationIcon(location) {
   const safeStatus = normalizeStatus(location.status);
   const label = escapeHtml(location.label || location.address || 'Lokace');
   const status = escapeHtml(statusLabel(safeStatus));
-  const detail = escapeHtml(location.statusMessage || markerDetail(location));
+  const detail = markerDetail(location);
+  const streets = escapeHtml(normalizeStreets(location.streets));
+  const message = escapeHtml(location.statusMessage || '');
   const statusClass = safeStatus === 'warning' ? styles.statusWarning : safeStatus === 'error' ? styles.statusError : '';
 
   return L.divIcon({
@@ -140,12 +142,15 @@ function createLocationIcon(location) {
         <span class="${cx(styles.markerDot, statusClass)}"></span>
         <span class="${styles.markerLabel}">${label}</span>
         <span class="${styles.markerDetail}">
-          <strong>${status}</strong>
+          <strong>Specifikace</strong>
           <span>${detail}</span>
+          ${streets ? `<span class="${styles.markerStreets}">${streets}</span>` : ''}
+          <strong class="${styles.markerStatus}">Stav: ${status}</strong>
+          ${message ? `<span class="${styles.markerMessage}">${message}</span>` : ''}
         </span>
       </span>
     `,
-    iconSize: [310, 92],
+    iconSize: [360, 156],
     iconAnchor: [12, 12],
   });
 }
@@ -161,12 +166,13 @@ function statusLabel(status) {
 }
 
 function markerDetail(location) {
-  const connStr = location.connections ? `${formatConnections(location.connections)} přípojek` : '';
-  const speedStr = location.speedText ? `až ${location.speedText}` : '';
-  if (connStr && speedStr) return `${connStr} · ${speedStr}`;
-  if (connStr) return connStr;
-  if (speedStr) return speedStr;
-  return location.address || location.label || '';
+  const connStr = `${formatConnections(location.connections)} přípojek`;
+  const speedStr = location.speedText ? `až ${location.speedText}` : 'rychlost neuvedena';
+  return `${connStr} · ${speedStr}`;
+}
+
+function normalizeStreets(streets) {
+  return Array.isArray(streets) ? streets.join('\n') : String(streets || '');
 }
 
 function formatConnections(n) {

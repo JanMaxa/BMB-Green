@@ -1,8 +1,22 @@
+import { useEffect, useState } from 'react';
 import layout from '../../styles/layout.module.css';
+import { defaultContactData, normalizeContactData } from '../../utils/contactData.js';
 import styles from './Footer.module.css';
+
+const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 
 export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
+  const [contacts, setContacts] = useState(defaultContactData);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/contacts`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((json) => {
+        if (json) setContacts(normalizeContactData(json));
+      })
+      .catch(() => {});
+  }, []);
 
   const handleRouteClick = (event, path) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
@@ -30,22 +44,45 @@ export default function Footer({ onNavigate }) {
               <li><a href="/volani" onClick={(event) => handleRouteClick(event, '/volani')}>Volání</a></li>
               <li><a href="/pro-zakazniky" onClick={(event) => handleRouteClick(event, '/pro-zakazniky')}>Pro zákazníky</a></li>
               <li><a href="/kontakty" onClick={(event) => handleRouteClick(event, '/kontakty')}>Kontakty</a></li>
+              <li><a href="/ke-stazeni" onClick={(event) => handleRouteClick(event, '/ke-stazeni')}>Ke stažení</a></li>
             </ul>
           </div>
           <div>
             <h4>Kontakty</h4>
             <ul className={styles.footerContact}>
-              <li><span>Telefon</span><a href="tel:+420266317129">+420&nbsp;266&nbsp;317&nbsp;129</a></li>
-              <li><span>Kancelář</span><strong>Drahobejlova 1894/52, 190&nbsp;00 Praha&nbsp;9</strong></li>
-              <li><span>E-mail</span><a href="mailto:smlouva@bmb-green.cz">smlouva@bmb-green.cz</a></li>
+              <li>
+                <span>Telefon</span>
+                <span>
+                  {contacts.telefon.split('\n').filter(Boolean).map((num, i) => (
+                    <a key={i} style={{ display: 'block' }} href={`tel:${num.replace(/\s+/g, '')}`}>{num.trim()}</a>
+                  ))}
+                </span>
+              </li>
+              <li>
+                <span>Kancelář</span>
+                <strong style={{ whiteSpace: 'pre-line', display: 'block' }}>{contacts.kancelar}</strong>
+              </li>
+              <li>
+                <span>E-mail</span>
+                <a href={`mailto:${contacts.email}`}>{contacts.email}</a>
+              </li>
             </ul>
           </div>
           <div>
             <h4>Právní údaje</h4>
             <ul className={styles.footerContact}>
-              <li><span>Sídlo</span><strong>Na Dračkách 843/24, 162&nbsp;00 Praha&nbsp;6</strong></li>
-              <li><span>IČO</span><strong>24658391</strong></li>
-              <li><span>DIČ</span><strong>CZ24658391</strong></li>
+              <li>
+                <span>Sídlo</span>
+                <strong style={{ whiteSpace: 'pre-line', display: 'block' }}>{contacts.sidlo}</strong>
+              </li>
+              <li>
+                <span>IČO</span>
+                <strong>{contacts.ico}</strong>
+              </li>
+              <li>
+                <span>DIČ</span>
+                <strong>{contacts.dic}</strong>
+              </li>
             </ul>
           </div>
         </div>

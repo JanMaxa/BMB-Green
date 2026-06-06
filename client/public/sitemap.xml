@@ -5,6 +5,11 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+    <url>
+    <loc>https://bmb-green.cz/balicky</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://bmb-green.cz/internet</loc>
     <changefreq>monthly</changefreq>
@@ -16,7 +21,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bmb-green.cz/balicky</loc>
+    <loc>https://bmb-green.cz/volani</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -27,6 +32,11 @@
   </url>
   <url>
     <loc>https://bmb-green.cz/kontakty</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bmb-green.cz/ke-stazeni</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>

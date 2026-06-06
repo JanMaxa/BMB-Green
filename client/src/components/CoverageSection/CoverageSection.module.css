@@ -63,10 +63,10 @@
 
 .markerWrap {
   display: block;
-  height: 92px;
+  height: 156px;
   pointer-events: none;
   position: relative;
-  width: 310px;
+  width: 360px;
 }
 
 .markerDot {
@@ -110,7 +110,7 @@
   font-size: 12.5px;
   font-weight: var(--w-bold);
   line-height: 1.25;
-  max-width: 260px;
+  max-width: 310px;
   padding: 6px 10px;
   top: -5px;
   white-space: nowrap;
@@ -145,6 +145,20 @@
 
 .markerDetail span {
   display: block;
+}
+
+.markerStatus {
+  margin-top: 7px;
+}
+
+.markerMessage {
+  color: var(--ink-800);
+  font-weight: var(--w-bold);
+  margin-top: 3px;
+}
+
+.markerStreets {
+  white-space: pre-line;
 }
 
 .markerDot:hover ~ .markerDetail,

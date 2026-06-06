@@ -147,15 +147,18 @@ export function normalizeBalickyData(loaded) {
   };
 }
 
-function emptyBundle() {
+export function emptyBundle() {
   return {
     name: 'Nový balíček',
-    internet: '',
-    tv: '',
-    hd: '',
-    price: '',
-    savings: '',
-    features: [],
+    internet: 'Vyplňte rychlost internetu',
+    tv: 'Vyplňte TV balíček',
+    hd: 'Vyplňte počet HD kanálů',
+    price: '0',
+    savings: 'Vyplňte úsporu oproti samostatným službám',
+    features: [
+      'Vyplňte první vlastnost balíčku',
+      'Vyplňte druhou vlastnost balíčku',
+    ],
   };
 }
 

@@ -46,35 +46,35 @@ export const defaultVolaniData = {
     description: 'VoIP telefonie od lokálního poskytovatele. Výhodné ceny volání, žádný paušál a garantovaná kvalita přenášeného hovoru v síti BMB.',
     cards: [
       {
-        icon: 'check',
-        title: 'Žádný paušál ani skryté poplatky',
-        text: 'Platíte výhradně za skutečně provolané minuty. Žádný měsíční paušál ani aktivační poplatek.',
+        "icon": "check",
+        "title": "Žádný paušál ani skryté poplatky",
+        "text": "Platíte výhradně za skutečně provolané minuty. Žádný měsíční paušál ani aktivační poplatek."
       },
       {
-        icon: 'bolt',
-        title: 'Výhodné ceny do pevných sítí',
-        text: 'Místní i dálkové hovory na pevné linky za 1,03 Kč/min ve špičce a 0,54 Kč/min mimo špičku.',
+        "icon": "bolt",
+        "title": "Výhodné ceny do pevných sítí",
+        "text": "Místní i dálkové hovory na pevné linky za 1,03 Kč/min ve špičce a 0,54 Kč/min mimo špičku."
       },
       {
-        icon: 'clock',
-        title: 'Bez časového ani finančního závazku',
-        text: 'Službu lze kdykoli ukončit bez sankce. Nezavazujete se na žádnou minimální dobu odběru.',
+        "icon": "clock",
+        "title": "Bez časového ani finančního závazku",
+        "text": "Službu lze kdykoli ukončit bez sankce. Nezavazujete se na žádnou minimální dobu odběru."
       },
       {
-        icon: 'wifi',
-        title: 'VoIP telefon v ceně do 2 000 Kč',
-        text: 'Dodáme nastavený VoIP přístroj v drátovém i bezdrátovém provedení. K jedné základně lze připojit více sluchátek.',
+        "icon": "wifi",
+        "title": "VoIP telefon",
+        "text": "Dodáme nastavený VoIP přístroj v drátovém i bezdrátovém provedení. K jedné základně lze připojit více sluchátek."
       },
       {
-        icon: 'shield-check',
-        title: 'Ochranný limit provolání',
-        text: 'Standardně nastavený limit 10 000 Kč chrání před neočekávanými náklady. Na základě dohody lze limit změnit.',
+        "icon": "shield-check",
+        "title": "Ochranný limit provolání",
+        "text": "Standardně nastavený limit 10 000 Kč chrání před neočekávanými náklady. Na základě dohody lze limit změnit."
       },
       {
-        icon: 'fiber',
-        title: 'Vyhrazený kanál pro kvalitu hovoru',
-        text: 'V sítích BMB je vyhrazen samostatný kanál pro telefonní hovory, který garantuje čistý přenos bez rušení.',
-      },
+        "icon": "fiber",
+        "title": "Vyhrazený kanál pro kvalitu hovoru",
+        "text": "V sítích BMB je vyhrazen samostatný kanál pro telefonní hovory, který garantuje čistý přenos bez rušení."
+      }
     ],
   },
 };
@@ -97,11 +97,15 @@ function emptyBenefit() {
 }
 
 function emptyRate() {
-  return { label: 'Tarif', price: '0,00 Kč' };
+  return { label: 'Vyplňte název tarifu', price: '0,00 Kč' };
 }
 
-function emptyPricingCard() {
-  return { title: 'Nová síť', desc: '', rates: [emptyRate()] };
+export function emptyPricingCard() {
+  return {
+    title: 'Nová síť',
+    desc: 'Vyplňte popis této sítě a podmínky volání.',
+    rates: [emptyRate()],
+  };
 }
 
 function emptyWhyCard() {

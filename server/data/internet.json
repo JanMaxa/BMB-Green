@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Kvalitní internetové připojení",
-    "description": "Internet na doma, do bytu i na chalupu. Podle adresy vybereme vhodnou technologii, ověříme dostupnost a připravíme instalaci včetně potřebného zařízení.",
+    "description": "Internet na doma i do bytu. Podle adresy vybereme vhodnou technologii, ověříme dostupnost a připravíme instalaci včetně potřebného zařízení.",
     "ctaLabel": "Nezávazně poptat",
     "ctaHref": "/kontakty"
   },
@@ -87,7 +87,7 @@
       },
       {
         "title": "Technologie podle reality",
-        "text": "Optika, kabelová síť, Wi-Fi nebo xDSL. Vybereme variantu podle dostupnosti a potřeb domácnosti."
+        "text": "Optika, kabelová síť, Wi-Fi. Vybereme variantu podle dostupnosti a potřeb domácnosti."
       },
       {
         "title": "Modem nebo Gateway v ceně",
@@ -98,8 +98,8 @@
         "text": "Cena tarifu je cena, kterou platíte. Aktivační podmínky sdělujeme předem, bez překvapení ve faktuře."
       },
       {
-        "title": "Lokální podpora bez fronty",
-        "text": "Poruchu nebo dotaz řešíte s místním týmem, ne s call centrem vzdáleného operátora."
+        "title": "Rychlá podpora",
+        "text": "Poruchu nebo dotaz řešíte přímo s naším týmem, ne s call centrem vzdáleného operátora."
       }
     ]
   }

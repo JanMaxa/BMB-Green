@@ -30,30 +30,30 @@
   "packages": [
     {
       "name": "BMB Mini",
-      "apiPackage": "G.TV Základ",
       "programsButtonLabel": "Zobrazit programy",
       "channels": "77 programů",
       "hd": "38 v HD",
       "price": "152 Kč",
-      "desc": "Nejnižší programová nabídka s IPTV Genius funkcemi."
+      "desc": "Nejnižší programová nabídka s IPTV Genius funkcemi.",
+      "apiPackage": "G.TV Základ"
     },
     {
       "name": "BMB Basic",
-      "apiPackage": "G.TV Standard",
       "programsButtonLabel": "Zobrazit programy",
       "channels": "120 programů",
       "hd": "56 v HD",
       "price": "355 Kč",
-      "desc": "Oblíbená nabídka pro domácnosti, které chtějí pestrý výběr kanálů."
+      "desc": "Oblíbená nabídka pro domácnosti, které chtějí pestrý výběr kanálů.",
+      "apiPackage": "G.TV Standard"
     },
     {
       "name": "BMB Max",
-      "apiPackage": "G.TV Komplet",
       "programsButtonLabel": "Zobrazit programy",
       "channels": "145 programů",
       "hd": "72 v HD",
       "price": "899 Kč",
-      "desc": "Maximální nabídka včetně HBO GO na Max a nejširší programové skladby."
+      "desc": "Maximální nabídka včetně HBO GO na Max a nejširší programové skladby.",
+      "apiPackage": "G.TV Komplet"
     }
   ],
   "whySection": {
@@ -77,7 +77,7 @@
       },
       {
         "icon": "check",
-        "title": "Bez výpadků ze špatného počasí",
+        "title": "Bez výpadků za špatného počasí",
         "text": "Kabelový rozvod eliminuje rušení a výpadky příjmu způsobené deštěm, větrem nebo špatnou polohou antény."
       },
       {

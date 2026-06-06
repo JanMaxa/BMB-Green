@@ -22,10 +22,10 @@ const services = [
   { icon: 'wifi',         title: 'Internet',         slug: 'internet',          desc: 'Rychlé a spolehlivé připojení pro domácnosti i firmy. Prostě internet, který funguje.' },
   { icon: 'tv',           title: 'Televize',         slug: 'televize',          desc: 'Stovky kanálů, zpětné přehrávání a sledování na více zařízeních najednou.' },
   { icon: 'phone',        title: 'Volání',           slug: 'volani',            desc: 'Pevná linka přes internet. Volejte v celé ČR výhodněji bez zbytečného paušálu.' },
-  { icon: 'shield-check', title: 'Zabezpečení',      slug: 'zabezpeceni',       desc: 'Alarm, kamery a přístupové systémy. Hlídáme vaši nemovitost i na dálku.' },
-  { icon: 'sun',          title: 'Fotovoltaika',     slug: 'fotovoltaika',      desc: 'Solární panely od návrhu po instalaci. Postaráme se i o dotace za vás.' },
+  { icon: 'shield-check', title: 'Zabezpečení',      slug: 'zabezpeceni',       desc: 'EZS a přístupové systémy. Hlídáme vaši nemovitost i na dálku.' },
+  { icon: 'sun',          title: 'Fotovoltaika',     slug: 'fotovoltaika',      desc: 'FVE od návrhu po instalaci. Postaráme se i o dotace za vás.' },
   { icon: 'fiber',        title: 'Sítě a kabeláž',   slug: 'site-a-kabelaz',    desc: 'Pokládáme datové rozvody a síťovou infrastrukturu pro domy i větší projekty.' },
-  { icon: 'camera',       title: 'Kamerové systémy', slug: 'kamerove-systemy',  desc: 'Přehled o své nemovitosti odkudkoliv přes telefon. Záznamy uložené bezpečně na místě.' },
+  { icon: 'camera',       title: 'Kamerové systémy', slug: 'kamerove-systemy',  desc: 'Přehled o své nemovitosti odkudkoliv mimo jiné i přes telefon. Záznamy uložené bezpečně na místě.' },
   { icon: 'building',     title: 'Pro developery',   slug: 'pro-developery',    desc: 'Kompletní technické vybavení pro nové projekty — od první schůzky až po předání.' },
 ];
 
@@ -46,7 +46,7 @@ export default function Landing() {
   const trustStats = [
     { v: String(new Date().getFullYear() - 1991), em: 'let', l: 'na trhu od roku 1991' },
     { v: formatThousands(totalConnections), em: '+',  l: 'aktivních přípojek' },
-    { v: '99,97', em: '%',  l: 'dostupnost páteřní sítě' },
+    { v: '99', em: '%',  l: 'dostupnost sítě' },
     { v: '24/7',  em: '',   l: 'technická podpora' },
   ];
 
@@ -121,22 +121,20 @@ export default function Landing() {
             <img src={aboutImage} alt="Síťová a optická infrastruktura" />
           </div>
           <div className={styles.aboutContent}>
-            <h2>Stavíme sítě, kterým může město věřit.</h2>
+            <h2>Stavíme sítě, kterým můžete věřit.</h2>
             <p>
-              BMB-Green je česká technologická společnost se&nbsp;sídlem na&nbsp;adrese
-              Na&nbsp;Dračkách&nbsp;843/24 v&nbsp;Praze&nbsp;6.
+              BMB-Green je česká společnost se&nbsp;sídlem na&nbsp;Praze&nbsp;6.
               Od&nbsp;roku 1991 budujeme optické a&nbsp;bezdrátové sítě, instalujeme bezpečnostní
               a&nbsp;fotovoltaické systémy pro domácnosti, firmy i&nbsp;developery.
             </p>
             <p>
-              Pracujeme pod&nbsp;licencí ČTÚ, máme vlastní tým techniků a&nbsp;servis dostupný 24/7.
+              Máme vlastní tým techniků s&nbsp;technickou podporou dostupnou 24/7.
               Nejsme přeprodejci — Vaši síť navrhneme, postavíme a&nbsp;dlouhodobě servisujeme my sami.
             </p>
             <ul className={styles.aboutChecks}>
-              <li><img src="/assets/icons/check.svg" alt="" />Licence ČTÚ a&nbsp;certifikace pro slaboproudé práce</li>
               <li><img src="/assets/icons/check.svg" alt="" />Vlastní tým techniků působící přímo v&nbsp;lokalitách, které obsluhujeme</li>
               <li><img src="/assets/icons/check.svg" alt="" />Pevné ceny bez závazku na&nbsp;dva roky</li>
-              <li><img src="/assets/icons/check.svg" alt="" />24/7 technická podpora s&nbsp;reakcí do&nbsp;hodiny</li>
+              <li><img src="/assets/icons/check.svg" alt="" />24/7 technická podpora</li>
             </ul>
           </div>
         </div>

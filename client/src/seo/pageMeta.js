@@ -46,6 +46,11 @@ export const pageMeta = {
       'Kontaktujte BMB-Green kvůli dostupnosti služeb, technické podpoře, fakturaci nebo nezávazné poptávce.',
     path: '/kontakty',
   },
+  '/ke-stazeni': {
+    title: 'Dokumenty ke stažení | BMB-Green',
+    description: 'Smluvní podmínky, ceníky a další dokumenty BMB-Green ke stažení ve formátu PDF.',
+    path: '/ke-stazeni',
+  },
   '/admin': {
     title: 'Admin | BMB-Green',
     description: 'Administrace obsahu webu BMB-Green.',
