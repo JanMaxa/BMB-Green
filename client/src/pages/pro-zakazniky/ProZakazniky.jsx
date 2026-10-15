@@ -8,7 +8,6 @@ import layout from '../../styles/layout.module.css';
 import styles from './ProZakazniky.module.css';
 import { defaultNewsData, normalizeNewsData } from '../../components/NewsSection/newsData.js';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 const NEWS_TITLE = 'Co je nového u nás.';
 const NEWS_DESCRIPTION = 'Krátké zprávy ze stavby sítě, z nabídky a z dotačních programů.';
 
@@ -17,7 +16,7 @@ export default function ProZakazniky() {
   const [newsData, setNewsData] = useState(defaultNewsData);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/news`)
+    fetch('/api/news')
       .then((response) => response.ok ? response.json() : null)
       .then((data) => data && setNewsData(normalizeNewsData(data)))
       .catch(() => {});
@@ -38,7 +37,7 @@ export default function ProZakazniky() {
 
       <Faq />
 
-      <section className={cx(layout.section, layout.sectionAlt)}>
+      {newsData.items.length > 0 && <section className={cx(layout.section, layout.sectionAlt)}>
         <div className={layout.container}>
           <div className={cx(layout.sectionHead, styles.newsHead)}>
             <h2>{NEWS_TITLE}</h2>
@@ -70,7 +69,7 @@ export default function ProZakazniky() {
             </div>
           </div>
         </div>
-      </section>
+      </section>}
       <ContactCta />
     </>
   );

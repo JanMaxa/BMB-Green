@@ -1,0 +1,11 @@
+.note {
+  color: var(--ink-500);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.note a {
+  color: var(--green-600);
+  text-decoration: underline;
+}

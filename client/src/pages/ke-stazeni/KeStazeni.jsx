@@ -6,13 +6,11 @@ import KeStazeniContent from './KeStazeniContent.jsx';
 import { defaultKeStazeniData, normalizeKeStazeniData } from './keStazeniData.js';
 import styles from './KeStazeni.module.css';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
-
 export default function KeStazeni() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/documents`)
+    fetch('/api/documents')
       .then((r) => r.ok ? r.json() : null)
       .then((json) => setData(normalizeKeStazeniData(json)))
       .catch(() => setData({ ...defaultKeStazeniData, items: [] }));

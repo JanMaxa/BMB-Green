@@ -1,0 +1,6 @@
+node_modules/
+.env*
+!.env.example
+
+# Files uploaded through the admin
+data/uploads/

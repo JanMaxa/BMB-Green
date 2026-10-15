@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from '../../components/Button/Button.jsx';
+import PrivacyNote from '../../components/PrivacyNote/PrivacyNote.jsx';
 import ContactCta from '../../components/ContactCta/ContactCta.jsx';
+import HoneypotField from '../../components/HoneypotField/HoneypotField.jsx';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import autoImage from '../../assets/auto.webp';
 import styles from './Kontakty.module.css';
-
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 
 const serviceInterestReasons = [
   'zajem-o-sluzby',
@@ -14,26 +14,20 @@ const serviceInterestReasons = [
 ];
 
 export default function Kontakty() {
-  const [reason, setReason] = useState('');
-  const [formData, setFormData] = useState({
+  // A link like /kontakty?reason=zajem-o-sluzby&service=internet opens the form prefilled.
+  const [reason, setReason] = useState(() => new URLSearchParams(window.location.search).get('reason') || '');
+  const [formData, setFormData] = useState(() => ({
     name: '',
     phone: '',
     email: '',
-    service: '',
+    service: new URLSearchParams(window.location.search).get('service') || '',
     message: '',
-  });
+    hpCheck: '',
+  }));
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const showServiceInterest = serviceInterestReasons.includes(reason);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const paramReason = params.get('reason');
-    const paramService = params.get('service');
-    if (paramReason) setReason(paramReason);
-    if (paramService) setFormData((current) => ({ ...current, service: paramService }));
-  }, []);
 
   const handleReasonChange = (event) => {
     const nextReason = event.target.value;
@@ -93,7 +87,7 @@ export default function Kontakty() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/sendEmail`, {
+      const response = await fetch('/api/sendEmail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -103,6 +97,7 @@ export default function Kontakty() {
           email: showServiceInterest ? formData.email : '',
           service: showServiceInterest ? formData.service : '',
           message: formData.message,
+          hpCheck: formData.hpCheck,
         }),
       });
       const result = await response.json();
@@ -119,6 +114,7 @@ export default function Kontakty() {
         email: '',
         service: '',
         message: '',
+    hpCheck: '',
       });
     } catch {
       setSubmitStatus('error');
@@ -133,6 +129,7 @@ export default function Kontakty() {
         <div className={layout.container}>
           <div className={styles.contactFormLayout}>
             <form className={styles.contactForm} onSubmit={handleSubmit}>
+              <HoneypotField value={formData.hpCheck} onChange={handleInputChange} />
               <label>
                 <span>Důvod zprávy <span className={styles.requiredMark}>*</span></span>
                 <select
@@ -235,6 +232,7 @@ export default function Kontakty() {
                   <img src="/assets/icons/arrow-right.svg" alt="" />
                 </Button>
               </div>
+              <PrivacyNote />
               {submitStatus === 'success' && (
                 <div className={styles.successMessage}>Zpráva byla úspěšně odeslána. Brzy se Vám ozveme.</div>
               )}

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import cx from '../../utils/cx.js';
 import styles from './KeStazeni.module.css';
+import EditableTextField from '../../components/EditableText/EditableText.jsx';
 
 export default function KeStazeniContent({ data, editable = false, onFieldChange, onImageUpload }) {
   const titleId = 'ke-stazeni-title';
@@ -154,18 +155,8 @@ function ImagePanel({ editable, imageUrl, onChange, onImageUpload }) {
   );
 }
 
-function EditableText({ editable, value, onChange, ariaLabel, placeholder }) {
-  if (!editable) return value;
-
-  return (
-    <input
-      aria-label={ariaLabel}
-      className={styles.editField}
-      value={value || ''}
-      placeholder={placeholder}
-      onChange={(event) => onChange(event.target.value)}
-    />
-  );
+function EditableText(props) {
+  return <EditableTextField className={styles.editField} {...props} />;
 }
 
 function EditableTextarea({ editable, value, onChange, ariaLabel, placeholder }) {

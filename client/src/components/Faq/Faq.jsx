@@ -4,13 +4,11 @@ import layout from '../../styles/layout.module.css';
 import styles from './Faq.module.css';
 import { defaultFaqData, normalizeFaqData } from './faqData.js';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
-
 export default function Faq() {
   const [data, setData] = useState(defaultFaqData);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/faq`)
+    fetch('/api/faq')
       .then((r) => r.ok ? r.json() : null)
       .then((loaded) => loaded && setData(normalizeFaqData(loaded)))
       .catch(() => {});

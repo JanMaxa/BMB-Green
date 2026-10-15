@@ -9,10 +9,8 @@ import styles from './Landing.module.css';
 import heroImage from '../../assets/hero.webp';
 import aboutImage from '../../assets/about.webp';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
-
 const featureItems = [
-  { icon: 'bolt',     t: 'Nejrychlejší Internet',   d: 'Optika a bezdrát 5 GHz, symetricky až 1 Gb/s.' },
+  { icon: 'bolt',     t: 'Nejrychlejší Internet',   d: 'Optika a bezdrát 5 GHz, až 220 Mb/s.' },
   { icon: 'clock',    t: 'Instalace do 2–3 dnů',    d: 'Rychlá montáž bez čekání na techniky.' },
   { icon: 'building', t: 'Developerské projekty',   d: 'Slaboproudá infrastruktura na klíč.' },
   { icon: 'map-pin',  t: 'Tradice od roku 1991',    d: 'Česká firma se sídlem v Praze 6.' },
@@ -30,10 +28,10 @@ const services = [
 ];
 
 export default function Landing() {
-  const [totalConnections, setTotalConnections] = useState(100);
+  const [totalConnections, setTotalConnections] = useState(0);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/locations`)
+    fetch('/api/locations')
       .then((r) => r.ok ? r.json() : null)
       .then((data) => {
         if (!data?.locations) return;
@@ -45,10 +43,10 @@ export default function Landing() {
 
   const trustStats = [
     { v: String(new Date().getFullYear() - 1991), em: 'let', l: 'na trhu od roku 1991' },
-    { v: formatThousands(totalConnections), em: '+',  l: 'aktivních přípojek' },
+    totalConnections > 0 && { v: formatThousands(totalConnections), em: '+',  l: 'aktivních přípojek' },
     { v: '99', em: '%',  l: 'dostupnost sítě' },
     { v: '24/7',  em: '',   l: 'technická podpora' },
-  ];
+  ].filter(Boolean);
 
   return (
     <>

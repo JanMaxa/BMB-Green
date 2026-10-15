@@ -3,6 +3,7 @@ import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import service from '../servicePage.module.css';
 import { normalizeVolaniData } from './volaniData.js';
+import EditableTextField from '../../components/EditableText/EditableText.jsx';
 
 const BENEFIT_ICONS = ['check', 'bolt', 'clock', 'wifi'];
 
@@ -184,17 +185,8 @@ export default function VolaniContent({ data, editable = false, onFieldChange })
   );
 }
 
-function EditableText({ editable, value, onChange, ariaLabel }) {
-  if (!editable) return value;
-
-  return (
-    <input
-      aria-label={ariaLabel}
-      className={service.editField}
-      value={value || ''}
-      onChange={(event) => onChange(event.target.value)}
-    />
-  );
+function EditableText(props) {
+  return <EditableTextField className={service.editField} {...props} />;
 }
 
 function EditableTextarea({ editable, value, onChange, ariaLabel }) {

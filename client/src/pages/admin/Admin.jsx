@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AdminLayout from './AdminLayout.jsx';
 import AdminLogin from './AdminLogin.jsx';
+import { isSignedIn as hasToken, signOut } from './adminApi.js';
 import BalickyEditor from './editors/BalickyEditor.jsx';
 import FaqEditor from './editors/FaqEditor.jsx';
 import InternetEditor from './editors/InternetEditor.jsx';
@@ -24,7 +25,7 @@ const tabs = [
 ];
 
 export default function Admin() {
-  const [isSignedIn, setIsSignedIn] = useState(() => localStorage.getItem('bmb-admin') === 'true');
+  const [isSignedIn, setIsSignedIn] = useState(hasToken);
   const [activeTab, setActiveTab] = useState('pokryti');
   const [headerAction, setHeaderAction] = useState(null);
 
@@ -46,7 +47,7 @@ export default function Admin() {
         setActiveTab(tab);
       }}
       onSignOut={() => {
-        localStorage.removeItem('bmb-admin');
+        signOut();
         setIsSignedIn(false);
       }}
     >

@@ -209,7 +209,7 @@ function NewsModal({ draft, isNew, onChange, onCancel, onSave }) {
                 <div className={styles.adminUploadPlaceholder}>
                   <span className={styles.adminUploadIcon}>🖼</span>
                   <span>Klikněte pro nahrání obrázku</span>
-                  <span className={styles.adminUploadHint}>JPEG, PNG, WebP, GIF · max 10 MB</span>
+                  <span className={styles.adminUploadHint}>JPEG, PNG, WebP, GIF · max 5 MB</span>
                 </div>
               )}
               {uploading && (

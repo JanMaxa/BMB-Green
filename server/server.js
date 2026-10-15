@@ -1,180 +1,159 @@
 import http from 'node:http';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
-import balickyRoute from './routes/balicky.js';
-import internetRoute from './routes/internet.js';
-import televizeRoute from './routes/televize.js';
-import volaniRoute from './routes/volani.js';
-import locationsRoute from './routes/locations.js';
-import newsRoute from './routes/news.js';
-import newsUploadRoute, { UPLOADS_DIR as NEWS_UPLOADS_DIR } from './routes/newsUpload.js';
-import documentsRoute from './routes/documents.js';
-import documentsUploadRoute, { UPLOADS_DIR as DOCS_UPLOADS_DIR } from './routes/documentsUpload.js';
-import faqRoute from './routes/faq.js';
-import authRoute from './routes/auth.js';
-import sendEmailRoute from './routes/sendEmail.js';
-import contactsRoute from './routes/contacts.js';
+import { fileURLToPath } from 'node:url';
+import { isMailConfigured } from './email.js';
+import { handle } from './router.js';
+import { createFileStorage } from './storage.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Runs the whole site: the API, uploaded files, and the built client.
+const here = path.dirname(fileURLToPath(import.meta.url));
 
-const PORT = 8090;
-const allowedOrigins = new Set(['http://localhost:5173', 'http://127.0.0.1:5173']);
+try {
+  process.loadEnvFile(path.join(here, '.env'));
+} catch {
+  console.warn('No .env file found — copy .env.example to .env and fill it in.');
+}
+
+const PORT = Number(process.env.PORT) || 8090;
+const SITE_DIR = path.join(here, '..', 'client', 'dist');
+const storage = createFileStorage(path.join(here, 'data'));
+
+if (!process.env.ADMIN_PASSWORD) console.warn('ADMIN_PASSWORD is not set in .env — the admin cannot sign in.');
+if (!isMailConfigured()) console.warn('SMTP_* or MAIL_TO_* is missing in .env — the contact forms cannot send e-mail.');
+
+const CONTENT_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.ico': 'image/x-icon',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml',
+  '.json': 'application/json',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+};
+
+// Request bodies above this size are refused before they are read into memory.
+const MAX_BODY_BYTES = 25 * 1024 * 1024;
 
 const server = http.createServer(async (req, res) => {
-  setCorsHeaders(req, res);
-
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204);
-    res.end();
-    return;
-  }
-
   try {
-    // Static: uploaded news images
-    if (req.url?.startsWith('/uploads/news/')) {
-      await serveNewsImage(req, res);
+    const url = new URL(req.url, 'http://localhost');
+
+    if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/uploads/')) {
+      const body = await readBody(req);
+      if (body === null) {
+        res.writeHead(413, { 'Content-Type': 'application/json; charset=utf-8', Connection: 'close' });
+        res.end(JSON.stringify({ error: 'Požadavek je příliš velký.' }));
+        return;
+      }
+      const response = await handle(toRequest(req, url, body), { storage, ip: visitorAddress(req) });
+      res.writeHead(response.status, Object.fromEntries(response.headers));
+      res.end(Buffer.from(await response.arrayBuffer()));
       return;
     }
 
-    // Static: uploaded PDF documents
-    if (req.url?.startsWith('/uploads/documents/')) {
-      await serveDocument(req, res);
-      return;
-    }
-
-    if (req.url === '/api/balicky') {
-      await balickyRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/internet') {
-      await internetRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/televize') {
-      await televizeRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/volani') {
-      await volaniRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/locations') {
-      await locationsRoute(req, res);
-      return;
-    }
-
-    // Upload route must come before the general /api/news handler
-    if (req.url === '/api/news/upload') {
-      await newsUploadRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/news') {
-      await newsRoute(req, res);
-      return;
-    }
-
-    // Upload route must come before the general /api/documents handler
-    if (req.url === '/api/documents/upload') {
-      await documentsUploadRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/documents') {
-      await documentsRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/faq') {
-      await faqRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/contacts') {
-      await contactsRoute(req, res);
-      return;
-    }
-
-    if (req.url?.startsWith('/api/auth')) {
-      await authRoute(req, res);
-      return;
-    }
-
-    if (req.url === '/api/sendEmail') {
-      await sendEmailRoute(req, res);
-      return;
-    }
-
-    res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify({ error: 'Not found' }));
+    await serveSite(url.pathname, res);
   } catch (error) {
     console.error(error);
-    res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
-    res.end(JSON.stringify({ error: 'Server error' }));
+    if (!res.headersSent) res.writeHead(500);
+    res.end();
   }
 });
 
 server.listen(PORT, () => {
-  console.log(`BMB-Green API server is running on http://localhost:${PORT}`);
+  console.log(`BMB-Green is running on http://localhost:${PORT}`);
 });
 
-function setCorsHeaders(req, res) {
-  const origin = req.headers.origin;
-  if (origin && allowedOrigins.has(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.setHeader('Vary', 'Origin');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+// The visitor's address. X-Forwarded-For counts only when the request comes from a proxy on this
+// machine or the internal network; its last entry is the one that proxy added, so a visitor cannot choose it.
+function visitorAddress(req) {
+  const direct = (req.socket.remoteAddress || '').replace(/^::ffff:/, '');
+  const forwarded = req.headers['x-forwarded-for'];
+  if (isInternalAddress(direct) && typeof forwarded === 'string') return forwarded.split(',').pop().trim() || direct;
+  return direct;
 }
 
-async function serveNewsImage(req, res) {
-  // path.basename strips any directory traversal attempts
-  const filename = path.basename(req.url.split('?')[0]);
+function isInternalAddress(address) {
+  return address === '::1'
+    || /^127\./.test(address)
+    || /^10\./.test(address)
+    || /^192\.168\./.test(address)
+    || /^172\.(1[6-9]|2\d|3[01])\./.test(address)
+    || /^f[cd]/i.test(address);
+}
 
-  if (!filename.endsWith('.webp')) {
-    res.writeHead(400);
-    res.end();
-    return;
+// Reads the whole body, or answers null once it grows past MAX_BODY_BYTES.
+function readBody(req) {
+  if (req.method === 'GET' || req.method === 'HEAD') return Promise.resolve(Buffer.alloc(0));
+  if (Number(req.headers['content-length']) > MAX_BODY_BYTES) return Promise.resolve(null);
+
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+    req.on('data', (chunk) => {
+      size += chunk.length;
+      if (size > MAX_BODY_BYTES) {
+        req.pause();
+        resolve(null);
+        return;
+      }
+      chunks.push(chunk);
+    });
+    req.on('end', () => resolve(Buffer.concat(chunks)));
+    req.on('error', reject);
+  });
+}
+
+function toRequest(req, url, body) {
+  const headers = new Headers();
+  for (const [name, value] of Object.entries(req.headers)) {
+    if (typeof value === 'string') headers.set(name, value);
+  }
+
+  const hasBody = req.method !== 'GET' && req.method !== 'HEAD';
+  return new Request(url, { method: req.method, headers, body: hasBody ? body : undefined });
+}
+
+// Built files are served as they are; every other path gets index.html and the client picks the page.
+// Files in /assets/ with a content hash in the name never change, so browsers may cache them for good.
+async function serveSite(pathname, res) {
+  let decoded = '/';
+  try {
+    decoded = decodeURIComponent(pathname);
+  } catch {
+    // A malformed address gets the page like any other unknown path.
+  }
+  const filePath = path.join(SITE_DIR, path.normalize(decoded));
+  const insideSite = filePath.startsWith(SITE_DIR + path.sep);
+  const extension = path.extname(filePath);
+
+  if (insideSite && CONTENT_TYPES[extension]) {
+    try {
+      const data = await readFile(filePath);
+      const hashed = /^\/assets\/.+-[\w-]{8}\.\w+$/.test(pathname);
+      res.writeHead(200, {
+        'Content-Type': CONTENT_TYPES[extension],
+        ...(hashed && { 'Cache-Control': 'public, max-age=31536000, immutable' }),
+      });
+      res.end(data);
+      return;
+    } catch {
+      // Not a built file — fall through to the page.
+    }
   }
 
   try {
-    const data = await readFile(path.join(NEWS_UPLOADS_DIR, filename));
-    res.writeHead(200, {
-      'Content-Type': 'image/webp',
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    });
-    res.end(data);
+    const page = await readFile(path.join(SITE_DIR, 'index.html'));
+    res.writeHead(200, { 'Content-Type': CONTENT_TYPES['.html'] });
+    res.end(page);
   } catch {
-    res.writeHead(404);
-    res.end();
-  }
-}
-
-async function serveDocument(req, res) {
-  const filename = path.basename(req.url.split('?')[0]);
-
-  if (!filename.endsWith('.pdf')) {
-    res.writeHead(400);
-    res.end();
-    return;
-  }
-
-  try {
-    const data = await readFile(path.join(DOCS_UPLOADS_DIR, filename));
-    res.writeHead(200, {
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': 'inline',
-    });
-    res.end(data);
-  } catch {
-    res.writeHead(404);
-    res.end();
+    res.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('The client is not built yet. Run `npm run build` in client/.');
   }
 }

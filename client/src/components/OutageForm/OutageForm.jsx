@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import Button from '../Button/Button.jsx';
+import PrivacyNote from '../PrivacyNote/PrivacyNote.jsx';
+import HoneypotField from '../HoneypotField/HoneypotField.jsx';
 import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import styles from './OutageForm.module.css';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 const REASON = 'oznameni-vypadku';
 
 export default function OutageForm({ className }) {
-  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '', hpCheck: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
@@ -39,7 +40,7 @@ export default function OutageForm({ className }) {
     if (!validate()) return;
     setIsSubmitting(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/api/sendEmail`, {
+      const res = await fetch('/api/sendEmail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reason: REASON, ...formData, email: '', service: '' }),
@@ -47,7 +48,7 @@ export default function OutageForm({ className }) {
       const result = await res.json();
       if (!res.ok || !result.success) throw new Error();
       setSubmitStatus('success');
-      setFormData({ name: '', phone: '', message: '' });
+      setFormData({ name: '', phone: '', message: '', hpCheck: '' });
     } catch {
       setSubmitStatus('error');
     } finally {
@@ -70,6 +71,7 @@ export default function OutageForm({ className }) {
           </div>
 
           <form className={styles.outageForm} onSubmit={handleSubmit}>
+            <HoneypotField value={formData.hpCheck} onChange={handleChange} />
             <div className={styles.outageFields}>
               <label>
                 <span>Jméno a příjmení <span className={styles.requiredMark}>*</span></span>
@@ -116,6 +118,7 @@ export default function OutageForm({ className }) {
                 <img src="/assets/icons/arrow-right.svg" alt="" />
               </Button>
             </div>
+            <PrivacyNote />
             {submitStatus === 'success' && (
               <div className={styles.successMessage}>Hlášení bylo odesláno. Naši technici se Vám brzy ozvou.</div>
             )}

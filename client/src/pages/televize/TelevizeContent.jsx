@@ -6,6 +6,7 @@ import service from '../servicePage.module.css';
 import styles from './TelevizeContent.module.css';
 
 import { normalizeTelevizeData } from './televizeData.js';
+import EditableTextField from '../../components/EditableText/EditableText.jsx';
 
 const CHANNELS_API_URL = 'https://admin.geniustv.cz/api/v1/public/channels';
 const API_PACKAGES = ['G.TV Základ', 'G.TV Standard', 'G.TV Komplet'];
@@ -283,17 +284,8 @@ function ProgramsDialog({ channels, error, onClose, packageName, status }) {
   );
 }
 
-function EditableText({ editable, value, onChange, ariaLabel }) {
-  if (!editable) return value;
-
-  return (
-    <input
-      aria-label={ariaLabel}
-      className={styles.editField}
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-    />
-  );
+function EditableText(props) {
+  return <EditableTextField className={styles.editField} {...props} />;
 }
 
 function loadChannels(setChannelsState) {

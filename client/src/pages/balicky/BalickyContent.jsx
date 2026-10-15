@@ -4,6 +4,7 @@ import layout from '../../styles/layout.module.css';
 import service from '../servicePage.module.css';
 import packageStyles from '../../components/PackagesSection/PackagesSection.module.css';
 import { normalizeBalickyData } from './balickyData.js';
+import EditableTextField from '../../components/EditableText/EditableText.jsx';
 
 export default function BalickyContent({ data, editable = false, onFieldChange }) {
   const content = normalizeBalickyData(data);
@@ -151,17 +152,8 @@ export default function BalickyContent({ data, editable = false, onFieldChange }
   );
 }
 
-function EditableText({ editable, value, onChange, ariaLabel }) {
-  if (!editable) return value;
-
-  return (
-    <input
-      aria-label={ariaLabel}
-      className={service.editField}
-      value={value || ''}
-      onChange={(event) => onChange(event.target.value)}
-    />
-  );
+function EditableText(props) {
+  return <EditableTextField className={service.editField} {...props} />;
 }
 
 function EditableTextarea({ editable, value, onChange, ariaLabel }) {

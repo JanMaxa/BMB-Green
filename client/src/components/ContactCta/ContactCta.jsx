@@ -4,13 +4,11 @@ import layout from '../../styles/layout.module.css';
 import { defaultContactData, normalizeContactData } from '../../utils/contactData.js';
 import styles from './ContactCta.module.css';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
-
 export default function ContactCta() {
   const [contacts, setContacts] = useState(defaultContactData);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/contacts`)
+    fetch('/api/contacts')
       .then((r) => r.ok ? r.json() : null)
       .then((json) => {
         if (json) setContacts(normalizeContactData(json));

@@ -4,7 +4,6 @@ import cx from '../../utils/cx.js';
 import layout from '../../styles/layout.module.css';
 import styles from './Navbar.module.css';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 const STATUS_LABELS = {
   warning: 'Upozornění',
   error: 'Výpadek',
@@ -50,7 +49,7 @@ export default function Navbar({ currentPath = '/', onNavigate }) {
   useEffect(() => {
     let ignore = false;
 
-    fetch(`${API_BASE_URL}/api/locations`)
+    fetch('/api/locations')
       .then((response) => response.ok ? response.json() : null)
       .then((data) => {
         if (!ignore && data) setLocationsData(data);

@@ -771,3 +771,111 @@
   padding: 24px 0;
   text-align: center;
 }
+
+/* ── Sidebar navigation ──────────────────────────────────── */
+
+.adminNavList {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.adminMenuToggle {
+  display: none;
+}
+
+/* ── Phone and tablet: top bar with a menu button ─────────── */
+
+@media (max-width: 900px) {
+  .adminApp {
+    flex-direction: column;
+  }
+
+  .adminSidebar {
+    width: 100%;
+    height: auto;
+    z-index: 20;
+    padding: 10px 14px;
+  }
+
+  .adminSidebarHead {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .adminLogo {
+    padding: 0;
+  }
+
+  .adminLogo img {
+    height: 30px;
+  }
+
+  .adminMenuToggle {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    display: flex;
+    padding: 8px;
+  }
+
+  .adminMenuToggle img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+  }
+
+  .adminNavList {
+    display: none;
+    padding-top: 10px;
+  }
+
+  .adminNavList.open {
+    display: flex;
+  }
+
+  .adminLogout {
+    margin-top: 6px;
+  }
+
+  .adminTopbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .adminTopbarSave {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .adminContent {
+    padding: 16px;
+  }
+
+  .adminTelevizeEditor {
+    margin: -16px;
+  }
+
+  .adminModalBackdrop {
+    padding: 12px;
+  }
+}
+
+/* ── Phone: buttons go under the text ─────────────────────── */
+
+@media (max-width: 640px) {
+  .adminFaqRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .adminLocationActions {
+    grid-column: 1 / -1;
+  }
+
+  .adminLocationActions button {
+    flex: 1;
+  }
+}

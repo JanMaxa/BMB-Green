@@ -3,23 +3,23 @@ import { loginAdmin } from './adminApi.js';
 import styles from './Admin.module.css';
 
 export default function AdminLogin({ onSignedIn }) {
-  const [username, setUsername] = useState('admin');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
+    setIsSubmitting(true);
 
-    const ok = await loginAdmin(username, password);
-
-    if (!ok) {
-      setError('Přihlášení se nepodařilo.');
-      return;
+    try {
+      await loginAdmin(password);
+      onSignedIn();
+    } catch (loginError) {
+      setError(loginError.message);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    localStorage.setItem('bmb-admin', 'true');
-    onSignedIn();
   };
 
   return (
@@ -27,15 +27,17 @@ export default function AdminLogin({ onSignedIn }) {
       <form className={styles.adminLoginCard} onSubmit={handleSubmit}>
         <img src="/assets/logo.svg" alt="BMB-Green" />
         <label>
-          Uživatelské jméno
-          <input value={username} onChange={(event) => setUsername(event.target.value)} />
-        </label>
-        <label>
           Heslo
-          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoFocus />
+          <input
+            type="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            autoComplete="current-password"
+            autoFocus
+          />
         </label>
         {error && <p className={styles.adminError}>{error}</p>}
-        <button className={styles.adminPrimary} type="submit">Přihlásit se</button>
+        <button className={styles.adminPrimary} disabled={isSubmitting} type="submit">Přihlásit se</button>
       </form>
     </div>
   );

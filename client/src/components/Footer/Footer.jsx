@@ -3,14 +3,12 @@ import layout from '../../styles/layout.module.css';
 import { defaultContactData, normalizeContactData } from '../../utils/contactData.js';
 import styles from './Footer.module.css';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
-
 export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
   const [contacts, setContacts] = useState(defaultContactData);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/contacts`)
+    fetch('/api/contacts')
       .then((r) => r.ok ? r.json() : null)
       .then((json) => {
         if (json) setContacts(normalizeContactData(json));
@@ -88,7 +86,7 @@ export default function Footer({ onNavigate }) {
         </div>
         <div className={styles.footerBottom}>
           <div>© 1991–{currentYear} BMB-Green s.r.o.</div>
-          <div>Vytvořeno: <a href="https://newside.cz" target="_blank" rel="noreferrer">newside.cz</a></div>
+          <div>Vytvořil: <a href="https://janmaxa.com" target="_blank" rel="noreferrer">janmaxa.com</a></div>
         </div>
       </div>
     </footer>

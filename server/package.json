@@ -1,14 +1,11 @@
 {
   "name": "bmb-green-server",
-  "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.js",
     "start": "node server.js"
   },
   "dependencies": {
-    "busboy": "^1.6.0",
-    "nodemailer": "^8.0.7",
-    "sharp": "^0.34.5"
+    "nodemailer": "^10.1.1"
   }
 }

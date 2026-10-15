@@ -1,28 +1,47 @@
+import { useState } from 'react';
 import cx from '../../utils/cx.js';
 import styles from './Admin.module.css';
+
 export default function AdminLayout({ activeTab, activeLabel, tabs, onChangeTab, onSignOut, headerAction, children }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className={styles.adminApp}>
       <aside className={styles.adminSidebar}>
-        <div className={styles.adminLogo}>
-          <img src="/assets/logo-on-dark.svg" alt="BMB-Green" />
-        </div>
-        <div className={styles.adminSectionLabel}>Obsah webu</div>
-        {tabs.map((tab) => (
+        <div className={styles.adminSidebarHead}>
+          <div className={styles.adminLogo}>
+            <img src="/assets/logo-on-dark.svg" alt="BMB-Green" />
+          </div>
           <button
-            className={cx(styles.adminNav, activeTab === tab.slug && styles.active)}
-            onClick={() => onChangeTab(tab.slug)}
-            key={tab.slug}
+            className={styles.adminMenuToggle}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            aria-label={isMenuOpen ? 'Zavřít menu' : 'Otevřít menu'}
+            aria-expanded={isMenuOpen}
             type="button"
           >
-            <img src={`/assets/icons/${tab.icon}.svg`} alt="" />
-            {tab.label}
+            <img src={`/assets/icons/${isMenuOpen ? 'x' : 'menu'}.svg`} alt="" />
           </button>
-        ))}
-        <button className={cx(styles.adminNav, styles.adminLogout)} onClick={onSignOut} type="button">
-          <img src="/assets/icons/x.svg" alt="" />
-          Odhlásit se
-        </button>
+        </div>
+        <nav className={cx(styles.adminNavList, isMenuOpen && styles.open)}>
+          {tabs.map((tab) => (
+            <button
+              className={cx(styles.adminNav, activeTab === tab.slug && styles.active)}
+              onClick={() => {
+                setIsMenuOpen(false);
+                onChangeTab(tab.slug);
+              }}
+              key={tab.slug}
+              type="button"
+            >
+              <img src={`/assets/icons/${tab.icon}.svg`} alt="" />
+              {tab.label}
+            </button>
+          ))}
+          <button className={cx(styles.adminNav, styles.adminLogout)} onClick={onSignOut} type="button">
+            <img src="/assets/icons/x.svg" alt="" />
+            Odhlásit se
+          </button>
+        </nav>
       </aside>
 
       <div className={styles.adminMain}>

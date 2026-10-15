@@ -1,0 +1,8 @@
+.text {
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  overflow: hidden;
+  resize: none;
+  vertical-align: top;
+}

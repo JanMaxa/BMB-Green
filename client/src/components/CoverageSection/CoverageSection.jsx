@@ -6,7 +6,6 @@ import layout from '../../styles/layout.module.css';
 import styles from './CoverageSection.module.css';
 import { defaultLocationsData, normalizeLocationsData } from './locationsData.js';
 
-const API_BASE_URL = import.meta.env.VITE_USE_LOCAL_API === 'true' ? 'http://localhost:8090' : '';
 const SECTION_TITLE = 'Pokrytí a aktuální stav naší sítě.';
 const SECTION_DESCRIPTION = 'Aktuální pokrytí a připravované lokality v síti BMB-Green.';
 
@@ -17,7 +16,7 @@ export default function CoverageSection({ className }) {
   const [locationsData, setLocationsData] = useState(defaultLocationsData);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/locations`)
+    fetch('/api/locations')
       .then((response) => response.ok ? response.json() : null)
       .then((data) => data && setLocationsData(normalizeLocationsData(data)))
       .catch(() => {});
